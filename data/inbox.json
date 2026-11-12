@@ -250,7 +250,7 @@
    "verdict": "cut",
    "why": "Pure promos, but useful for your gum video: their before/after photos and claims ('visible results after a few weeks') are perfect material to fact-check on camera.",
    "best": "'These people took the exercises seriously': before/afters with different lighting, angles and colour.",
-   "watch": "Unsubscribe after you've saved what you need for the gum video."
+   "watch": "Read for research, not for buying advice."
   },
   {
    "id": "tico",
@@ -502,7 +502,7 @@
    "fit": 2,
    "sales": 10,
    "verdict": "cut",
-   "why": "Pure sales: discounts, launches, 'last 48 hours'. Unsubscribing would remove about a third of your creator mail.",
+   "why": "Pure sales: discounts, launches, 'last 48 hours'. Nothing to learn here.",
    "best": "(none worth reading)",
    "watch": "",
    "box": "old"
@@ -513,42 +513,11 @@
    "id": "boring",
    "cat": "yt",
    "kind": "claim",
-   "title": "'It's Boring, But It Works': 59.5x",
-   "body": "'It's Boring, But It Builds An Athletic Physique' did 59.5x its channel's average, the biggest outlier in your whole inbox. Boring vs a result you want is a strong contrast, and 'it' opens a loop.",
-   "use": "'It's Boring, But It Fixed My Skin' or 'It's Boring, But It Got Rid of My Puffy Face'. Only if the method really is boring and really worked.",
+   "title": "Title formats beating their channel's average",
+   "body": "Creator Hooks' best finds from the last month: 'It's Boring, But It Builds An Athletic Physique' (59.5x, the biggest outlier in your inbox), 'Which X Are Actually Worth It? (Tier List)' (15.5x), 'Stop X: A Better Way to Y' (11x), '(Most People Are Level 1)' (8.5x) and 'Why \"Good X\" Creates Y' (8.4x). They all work through contrast, an open loop or status.",
+   "use": "'It's Boring, But It Fixed My Skin', 'Which Skincare Products Are Actually Worth It? (Tier List)', 'Stop Mewing: A Better Way to a Sharper Jaw'. Only if the video really backs up the twist. All 12 formats are in the deep dive.",
    "deep": "titles",
    "star": true,
-   "from": "hooks"
-  },
-  {
-   "id": "tier",
-   "cat": "yt",
-   "kind": "claim",
-   "title": "'Which X Are Actually Worth It? (Tier List)': 15.5x",
-   "body": "A question plus 'actually' (which challenges what people believe) plus a tier list. Farm animals did 15.5x.",
-   "use": "'Which Skincare Products Are Actually Worth It? (Tier List)'. Your evidence ranking is the tier list, and that's your edge over everyone else.",
-   "deep": "titles",
-   "star": true,
-   "from": "hooks"
-  },
-  {
-   "id": "goodbad",
-   "cat": "yt",
-   "kind": "claim",
-   "title": "Good thing, bad result",
-   "body": "'Why \"Good Parenting\" Creates Clingy Kids' (8.4x), 'The Hidden Trap of Working Hard' (4.4x), 'Stop Drawing Perfect Lines: A Better Way to Sketch' (11x). A habit people think is good leads to a result they don't want.",
-   "use": "'Why \"Clean Eating\" Can Make You Look Bloated', 'Stop Mewing: A Better Way to a Sharper Jaw'. Make sure the science backs the twist.",
-   "deep": "titles",
-   "from": "hooks"
-  },
-  {
-   "id": "level1",
-   "cat": "yt",
-   "kind": "claim",
-   "title": "'(Most People Are Level 1)': 8.5x",
-   "body": "'The Ultimate Guide to Social Intelligence (Most People Are Level 1)'. Status: everyone wants to know their level. Jake says the very specific thumbnail did half the work.",
-   "use": "'The Ultimate Guide to Looking Good (Most Guys Are Level 1)'. A levels ladder (1-5) is also a perfect visual for your wojaks.",
-   "deep": "titles",
    "from": "hooks"
   },
   {
@@ -596,7 +565,6 @@
    "title": "Algorithms make everyone the same",
    "body": "Over 75% of YouTube watch time came from recommendations (YouTube, 2018). When feeds reward the same formats, creators copy them and culture gets more uniform. Anne-Laure's fix: little acts of 'algorithmic resistance', like full albums, library books and recommendations from friends.",
    "use": "Your taste is your edge. Get some inputs from outside the feed (books, people, your own tests), or your videos will look like everyone else's.",
-   "deep": "truer",
    "from": "ness"
   },
   {
@@ -737,7 +705,6 @@
    "title": "Same views, 20x the money",
    "body": "Ed tracked 198 channels: the top 25% of earners got about the same views per video as the bottom 25% but made ~20x more per view. They make content for buyers and have an offer that's hard to refuse.",
    "use": "Not for now. When sponsors come: one product that solves the same problem as the video beats random deals.",
-   "deep": "buyers",
    "from": "ed"
   },
   {
@@ -804,7 +771,6 @@
    "title": "Taste is the bottleneck, not your PC",
    "body": "You can't edit better than what you've seen. Find one editor whose work embarrasses you, frame-step it, replay a moment 25 times, then spend just 15 minutes in Resolve making something.",
    "use": "A 15-minute daily rep that fits your Life OS. Four-week plan in the deep dive.",
-   "deep": "taste",
    "star": true,
    "from": "rystal"
   },
@@ -908,7 +874,6 @@
    "title": "Minoxidil + microneedling does beat minoxidil alone",
    "body": "Several meta-analyses of small trials find that adding microneedling to minoxidil gives more hair than minoxidil alone, and one network analysis ranked the combo top. But 'regrow everything you lost' is ad talk.",
    "use": "A strong evidence-based video for your audience: 'Losing hair at 18: the only 3 things with real evidence'.",
-   "deep": "hair",
    "from": "lml"
   },
   {
