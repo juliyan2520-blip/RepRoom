@@ -1,0 +1,1348 @@
+{
+"areas": {
+"intro": "Intros",
+"script": "Scripts",
+"pack": "Packaging",
+"channel": "Channel & community",
+"deliver": "On camera",
+"work": "Work & mindset",
+"looks": "Looks science"
+},
+"cards": [
+{
+"id": "i1",
+"a": "intro",
+"q": "Paddy Galloway's 3 intro rules?",
+"a2": "1. Confirm the click.\n2. Contradiction / hook.\n3. A seamless bridge into the content.",
+"src": "Paddy Galloway"
+},
+{
+"id": "i2",
+"a": "intro",
+"q": "Bad bridge vs good bridge: give an example of each.",
+"a2": "Bad: \"I'll show you 3 methods. Now let's get into it.\"\nGood: \"I'll show you 3 methods, and the first one is to…\"",
+"src": "Paddy Galloway"
+},
+{
+"id": "i3",
+"a": "intro",
+"q": "Paddy's minute-3 test?",
+"a2": "Stop a viewer at 3:00. He should be able to say \"he'll explain Y, at the end he shows X, and he mentioned Z so I want that too.\" If he says \"no idea where it's going\", there's no curiosity.",
+"src": "Paddy Galloway"
+},
+{
+"id": "i4",
+"a": "intro",
+"q": "Where did viewers leave your first 3 videos, and what does that mean for every intro?",
+"a2": "Between 0:22 and 0:37. So a loop has to be open by about 0:30.",
+"src": "Your Studio data"
+},
+{
+"id": "i5",
+"a": "intro",
+"q": "On face channels, which kind of opening wins and which loses?",
+"a2": "Result-first: 15% of winners vs 5% of medians.\nGreeting / intro first: 9% of winners vs 22% of medians.",
+"src": "Gap analysis (face channels)"
+},
+{
+"id": "i6",
+"a": "intro",
+"q": "Why show, not just say, in the first 5 seconds?",
+"a2": "Autoplay previews are muted. The picture has to sell the click.",
+"src": "Your notes"
+},
+{
+"id": "i7",
+"a": "intro",
+"q": "Entertainment intro vs educational intro: what is each one's job?",
+"a2": "Entertainment: prove you'll actually do what the thumbnail says.\nEducational: show why YOU are worth listening to (perceived effort, credibility).",
+"src": "Your notes"
+},
+{
+"id": "i8",
+"a": "intro",
+"q": "After the click is confirmed, which 3 things should the rest of the intro do?",
+"a2": "Open a new curiosity gap, give context, and show perceived effort.",
+"src": "Aprilynne Alter"
+},
+{
+"id": "i9",
+"a": "intro",
+"q": "Aprilynne's \"most important step\" trick?",
+"a2": "Frame step 1 as the most important, even if it's a prerequisite (packaging, \"be lean first\"). Then frame each next step as crucial in a new way. The biggest drop is at the start, so that's where the hook goes.",
+"src": "Aprilynne Alter"
+},
+{
+"id": "i10",
+"a": "intro",
+"q": "What does a 10-second self-test do in an intro? Give an example.",
+"a2": "It's a replay magnet: people rewatch it.\nExample: \"Check your face tonight vs tomorrow morning. If it's slimmer at night, that's water, not fat.\"",
+"src": "Intro Lab"
+},
+{
+"id": "i11",
+"a": "intro",
+"q": "Two speech openers from Talk Like TED?",
+"a2": "A question that matters to the viewer (his problem, framed as a question), or a surprising stat that reframes the topic.",
+"src": "Talk Like TED"
+},
+{
+"id": "i12",
+"a": "intro",
+"q": "How much of your scripting time should go to the intro?",
+"a2": "About half (Ali Abdaal). Realistically about a third for you.",
+"src": "Ali Abdaal"
+},
+{
+"id": "i13",
+"a": "intro",
+"q": "When should your personality show, and what's the risk?",
+"a2": "In the first 15 seconds, so the viewer knows who he's spending the next 15 minutes with. The risk: if it looks like just joking around, it reads as low value. Show you know your stuff too.",
+"src": "Colin & Samir with Paddy"
+},
+{
+"id": "i14",
+"a": "intro",
+"q": "Opening that worked for many of your notes' creators: the obsession intro?",
+"a2": "Say you've been obsessed with the topic and studied it for a long time (SHOW it), then reveal it's actually a simple N-step formula you'll walk through.",
+"src": "Your notes"
+},
+{
+"id": "s1",
+"a": "script",
+"q": "Made to Stick's 6 principles (SUCCESs)?",
+"a2": "Simple, Unexpected, Concrete, Credible, Emotional, Stories.",
+"src": "Made to Stick"
+},
+{
+"id": "s2",
+"a": "script",
+"q": "The tappers experiment: numbers and lesson?",
+"a2": "120 songs tapped, listeners guessed 3 (2.5%). Tappers predicted 50%.\nCurse of knowledge: once you know something, you can't imagine not knowing it.",
+"src": "Made to Stick (Newton 1990)"
+},
+{
+"id": "s3",
+"a": "script",
+"q": "Viewer intelligence vs viewer knowledge: the rule?",
+"a2": "Never underestimate his intelligence. Never overestimate his prior knowledge.",
+"src": "Your notes",
+"imp": "blue"
+},
+{
+"id": "s4",
+"a": "script",
+"q": "What does the movie-popcorn example teach?",
+"a2": "Package a stat concretely. Not \"37 g of saturated fat\" but \"more than bacon & eggs, a Big Mac and fries, and a steak dinner, combined\". It made people stop buying it.",
+"src": "Made to Stick"
+},
+{
+"id": "s5",
+"a": "script",
+"q": "The 5 small emotional moments to drop every few seconds?",
+"a2": "Curiosity (\"there's one exception…\"), surprise (\"I expected this to work, it didn't\"), humour, suspense (\"we'll come back to this\"), relief (\"the good news is…\").",
+"src": "Your Talk Like TED notes"
+},
+{
+"id": "s6",
+"a": "script",
+"q": "Your blue/red pattern-interrupt idea?",
+"a2": "Build the expectation that blue wins, then say red. Viewers who were coasting snap back to full attention, and they remember the moment.",
+"src": "Your notes"
+},
+{
+"id": "s7",
+"a": "script",
+"q": "Oscar Patel's mid-video rehook: what did he do?",
+"a2": "When it got slow: higher energy, \"I know you're getting bored, lock in\", reminded them why it matters for their life, and begged them to ACT, not just keep watching.",
+"src": "Your notes"
+},
+{
+"id": "s8",
+"a": "script",
+"q": "What went wrong in the Hormozi presentation you watched?",
+"a2": "No signposting. You didn't know step 1 had ended, so starting step 3 gave no dopamine. Always mark where the viewer is.",
+"src": "Your notes"
+},
+{
+"id": "s9",
+"a": "script",
+"q": "A plot vs B plot?",
+"a2": "A plot: what the packaging promises.\nB plot: something extra the viewer didn't expect. It's the opposite of clickbait and builds trust.",
+"src": "Your notes"
+},
+{
+"id": "s10",
+"a": "script",
+"q": "MrBeast's advice to Fabio Morena?",
+"a2": "Underpromise, overdeliver. Packaging as strong as possible, but the video gives way more. That's how viewers become fans.",
+"src": "MrBeast",
+"imp": "purple"
+},
+{
+"id": "s11",
+"a": "script",
+"q": "Aristotle's 3 parts of persuasion?",
+"a2": "Ethos: credibility. Logos: logic and data. Pathos: emotion.\nLogic alone doesn't persuade.",
+"src": "Talk Like TED"
+},
+{
+"id": "s12",
+"a": "script",
+"q": "What does every story need, and who plays which part on your channel?",
+"a2": "A hero to root for, a villain, and a turn.\nHero: your method or the viewer. Villain: blackpill, myths, salt, the \"designed to fail\" system. Townspeople: your audience.",
+"src": "Talk Like TED / Winning the Story Wars",
+"imp": "blue"
+},
+{
+"id": "s13",
+"a": "script",
+"q": "5 ways to create a jaw-dropping moment?",
+"a2": "Props and demos, shocking stats, pictures and video, a memorable repeatable line, a personal story.",
+"src": "Talk Like TED"
+},
+{
+"id": "s14",
+"a": "script",
+"q": "Which humour works best in a video?",
+"a2": "Small observations and self-deprecation, not jokes about competitors. It should amplify the point, not distract. Don't repeat the same joke.",
+"src": "Talk Like TED"
+},
+{
+"id": "s15",
+"a": "script",
+"q": "Intro Lab: concrete steps vs vague, escalating vs flat?",
+"a2": "Concrete steps: 77% of hits vs 33%.\nEscalating structure: 85% vs 36%.",
+"src": "Intro Lab"
+},
+{
+"id": "s16",
+"a": "script",
+"q": "How should a video end?",
+"a2": "On value (87% of hits vs 28%): the best result or tip, a one-line recap, then a CTA that flows into the next video.",
+"src": "Intro Lab"
+},
+{
+"id": "s17",
+"a": "script",
+"q": "\"If the viewer would imagine it…\"",
+"a2": "…draw it or show it, so his brain can focus on what you're saying instead of imagining.",
+"src": "Your editing notes"
+},
+{
+"id": "s18",
+"a": "script",
+"q": "The distracted-viewer test?",
+"a2": "Watch the video like a viewer with a phone next to you. Where you reach for the phone, it's boring: fix that part. Better: get someone else to do it before they've heard about the video.",
+"src": "Your notes"
+},
+{
+"id": "s19",
+"a": "script",
+"q": "Einstein's simplicity line, and why creators break it?",
+"a2": "\"If you can't explain it simply, you don't understand it well enough.\" Creators over-explain to show how much they know. The job is to inform the viewer, not impress him.",
+"src": "Talk Like TED"
+},
+{
+"id": "s20",
+"a": "script",
+"q": "Bite-sized chunks: why, and which of your videos shows it?",
+"a2": "One long point is hard to follow; points with sub-points keep attention. The glow-up video was split well, the carotenoid one wasn't.",
+"src": "Your notes",
+"imp": "blue"
+},
+{
+"id": "s21",
+"a": "script",
+"q": "What's a leitmotif?",
+"a2": "A recurring sound or music cue tied to one idea, place or character. Ryan Trahan's \"da mountain\".",
+"src": "Your editing notes"
+},
+{
+"id": "s22",
+"a": "script",
+"q": "Big picture or details first, and why?",
+"a2": "Big picture first. A caveman meeting a tiger asks \"will it eat me?\", not \"how many teeth?\". Why we debloat comes before potassium numbers.",
+"src": "Talk Like TED"
+},
+{
+"id": "s23",
+"a": "script",
+"q": "Contrast: where does it matter most?",
+"a2": "When you open a curiosity gap or a B plot. If the viewer doesn't notice the gap, it was never opened.",
+"src": "Your notes (Ryan Trahan)"
+},
+{
+"id": "p1",
+"a": "pack",
+"q": "Rule 1 of YouTube?",
+"a2": "If they don't click, they don't watch.",
+"src": "Your notes"
+},
+{
+"id": "p2",
+"a": "pack",
+"q": "What's a curiosity gap, and how do low-view titles usually fail it?",
+"a2": "A question the viewer can't answer and needs to.\nLow-view titles either answer themselves or ask something everyone already knows.",
+"src": "Your notes"
+},
+{
+"id": "p3",
+"a": "pack",
+"q": "Make your content ___, your packaging ___.",
+"a2": "Niche; broad.",
+"src": "Your notes"
+},
+{
+"id": "p4",
+"a": "pack",
+"q": "How many core elements in a thumbnail? Example?",
+"a2": "3 max. For example: you + text/arrow + one object.",
+"src": "Your notes"
+},
+{
+"id": "p5",
+"a": "pack",
+"q": "Title and thumbnail should ___, never ___.",
+"a2": "Talk to each other (complement); never repeat each other.",
+"src": "Your notes"
+},
+{
+"id": "p6",
+"a": "pack",
+"q": "The glance test?",
+"a2": "Show it for 2 seconds. Ask: what's it about, what stood out first, what do you remember? If they can't answer, it isn't clear.",
+"src": "Your notes"
+},
+{
+"id": "p7",
+"a": "pack",
+"q": "Why $295 instead of $300, and $45,000/month instead of $1M?",
+"a2": "Odd, current numbers feel real and specific.",
+"src": "Your notes"
+},
+{
+"id": "p8",
+"a": "pack",
+"q": "Title words that lift views on face channels?",
+"a2": "\"for men / as a guy\" 1.69×, tier list 1.40×, \"I tried / I tested\" 1.28×, age/teen 1.28×. Question marks: 0.86×.",
+"src": "Gap analysis"
+},
+{
+"id": "p9",
+"a": "pack",
+"q": "What matters in a face-channel thumbnail?",
+"a2": "Your face, big, plus 1–3 words (face 1.24×, 1–3 words 1.12×). Before/after did NOT separate winners on face channels.",
+"src": "Gap analysis"
+},
+{
+"id": "p10",
+"a": "pack",
+"q": "Does thumbnail colour lift views?",
+"a2": "No. Within a channel, colour, contrast and clutter stay within ±10%. Concept beats pixels.",
+"src": "Thumb Lab"
+},
+{
+"id": "p11",
+"a": "pack",
+"q": "How should you A/B test thumbnails?",
+"a2": "3 macro-different concepts first, then micro tweaks (shirt, object, word) on the winner.",
+"src": "Your notes"
+},
+{
+"id": "p12",
+"a": "pack",
+"q": "Paddy's 5 hallmarks of a great idea?",
+"a2": "Interesting to core, casual AND new viewers · easy to convey in title + thumbnail · novelty · combines proven formats · friends get excited when you mention it.",
+"src": "Paddy Galloway"
+},
+{
+"id": "p13",
+"a": "pack",
+"q": "The party question?",
+"a2": "What are you bringing that the party doesn't already have? Jägermeister, not more Finlandia.",
+"src": "Your notes",
+"imp": "purple"
+},
+{
+"id": "p14",
+"a": "pack",
+"q": "Why does \"___ Is Designed to Fail\" work?",
+"a2": "It makes viewers feel set up (paranoia + victimhood), and you become the truth-teller. \"Your Skincare Routine Is Designed to Fail.\"",
+"src": "Bryan Ng formats"
+},
+{
+"id": "p15",
+"a": "pack",
+"q": "Which title format was a 470× outlier?",
+"a2": "\"What [Authority] Won't Tell You (But I Will)\".",
+"src": "Your notes"
+},
+{
+"id": "p16",
+"a": "pack",
+"q": "The insulin title: format and result?",
+"a2": "\"If You Don't Understand Insulin, You Don't Understand Fat Loss\": 250K+ views on a channel averaging ~1K. Tie what they want to a hidden factor.",
+"src": "Your notes"
+},
+{
+"id": "p17",
+"a": "pack",
+"q": "Negativity framing: the Bezos CTR example?",
+"a2": "\"Dumb Things Jeff Bezos Wastes His Billions On\" 3.13% CTR vs \"How Billionaire Jeff Bezos Spends All His Money\" 2.30%.",
+"src": "Your notes"
+},
+{
+"id": "p18",
+"a": "pack",
+"q": "Lists vs \"how to\" in Jake Thomas's tests?",
+"a2": "Lists won 3 out of 3. \"5 Tips To Make Your Videos Cinematic\" 2.51% vs \"How To Make Your Videos Look Cinematic\" 1.90%.",
+"src": "Your notes"
+},
+{
+"id": "p19",
+"a": "pack",
+"q": "What should a thumbnail look like, per Paddy?",
+"a2": "Like an action: a frame you could press play on. For education, show a process.",
+"src": "Paddy Galloway"
+},
+{
+"id": "p20",
+"a": "pack",
+"q": "When do you sketch the thumbnail?",
+"a2": "Before filming, so you capture the shot you need.",
+"src": "Your notes"
+},
+{
+"id": "p21",
+"a": "pack",
+"q": "Why study billboards and movie posters?",
+"a2": "They're made by people whose whole job is a one-second read. Steal formats from outside YouTube.",
+"src": "Your notes"
+},
+{
+"id": "p22",
+"a": "pack",
+"q": "Purple cow: what's the lesson and the catch?",
+"a2": "Remarkable stands out. The catch: only while it's rare. If every cow is purple, nobody cares. Have your own angle, not a copied format.",
+"src": "Talk Like TED / Seth Godin"
+},
+{
+"id": "c1",
+"a": "channel",
+"q": "The 3 most important YouTube metrics?",
+"a2": "CTR, average view duration, returning viewers.",
+"src": "Your notes"
+},
+{
+"id": "c2",
+"a": "channel",
+"q": "Healthy numbers right after an upload?",
+"a2": "CTR over 5%, ~70% still watching at 30 s, and on a 12-min video over 50% average view duration.",
+"src": "Your notes"
+},
+{
+"id": "c3",
+"a": "channel",
+"q": "Returning viewers are low. What's the first question?",
+"a2": "Am I targeting a different identity with every video? Build every video for one person who'd watch most of them.",
+"src": "Your notes"
+},
+{
+"id": "c4",
+"a": "channel",
+"q": "Your channel promise?",
+"a2": "\"I will help you become more attractive.\" Fans trust the promise, so they click whatever the packaging.",
+"src": "Your notes"
+},
+{
+"id": "c5",
+"a": "channel",
+"q": "Your common enemy, and the 3 contrasts with it?",
+"a2": "Blackpill / extreme looksmaxxing.\nMental health (they get depressed, you do the opposite), physical health (only safe methods), legitimacy (only proven methods).",
+"src": "Your notes"
+},
+{
+"id": "c6",
+"a": "channel",
+"q": "Airrack's community test for any idea?",
+"a2": "Would ~80% of this video's viewers also watch your other videos? 50M empty views don't build a community.",
+"src": "Airrack"
+},
+{
+"id": "c7",
+"a": "channel",
+"q": "\"Package every video for a stranger, but film it for ___.\"",
+"a2": "…the 16-year-old who's been watching since the start.",
+"src": "Your notes"
+},
+{
+"id": "c8",
+"a": "channel",
+"q": "\"Make it a show\": how does it apply to you?",
+"a2": "Series with a recurring cue, ideally back to back. N-day tests rated 1–10 each time, so viewers binge the series like one thing.",
+"src": "Your notes"
+},
+{
+"id": "c9",
+"a": "channel",
+"q": "Dan Mace's 3 tips?",
+"a2": "Reframe the intro so people care (the shoes → education line), interested is interesting, repeat objects (a signature item).",
+"src": "Dan Mace"
+},
+{
+"id": "c10",
+"a": "channel",
+"q": "How to upload (your routine)?",
+"a2": "Upload unlisted first so YouTube processes it. Post a community post as it goes public. Don't watch your fresh upload unless you watch to the end.",
+"src": "Your notes"
+},
+{
+"id": "c11",
+"a": "channel",
+"q": "How do you mention the Discord?",
+"a2": "Naturally: \"we've been talking about this in the Discord\". Make videos that answer Discord questions. It shows a living community.",
+"src": "Your notes"
+},
+{
+"id": "c12",
+"a": "channel",
+"q": "Top 3 traits when hiring someone for the channel?",
+"a2": "Coachability, real interest in the topic, wanting to go further with you.",
+"src": "Your notes"
+},
+{
+"id": "c13",
+"a": "channel",
+"q": "MrBeast's way of training a team member?",
+"a2": "Spend a huge amount of time with them. They watch you do every detail for months and become like you, then train 3 others the same way.",
+"src": "MrBeast"
+},
+{
+"id": "c14",
+"a": "channel",
+"q": "\"Be where your competition isn't\": your combination?",
+"a2": "Attractiveness for young guys + cinematic + jokes. Plus your edges: being young and having an aesthetic body.",
+"src": "Your notes"
+},
+{
+"id": "c15",
+"a": "channel",
+"q": "What makes a cult-like audience (pick 4 of your 7)?",
+"a2": "A common enemy, a very specific niche, giving the viewer ownership, being who he wants to be, being his bro, being funny, recurring jokes.",
+"src": "Your notes"
+},
+{
+"id": "d1",
+"a": "deliver",
+"q": "Talk Like TED's 3 Ps of delivery?",
+"a2": "Passion, Practice, Presence.",
+"src": "Talk Like TED"
+},
+{
+"id": "d2",
+"a": "deliver",
+"q": "What should your delivery sound like?",
+"a2": "An exciting dinner conversation with a friend: more energy than real life, but a conversation, never reading.",
+"src": "Your TED notes",
+"imp": "blue"
+},
+{
+"id": "d3",
+"a": "deliver",
+"q": "4 gesture rules?",
+"a2": "Hands free. Use gestures sparingly and naturally. Save the biggest for key moments. Keep them above the waist.",
+"src": "Talk Like TED"
+},
+{
+"id": "d4",
+"a": "deliver",
+"q": "Eager vs reserved nonverbal style?",
+"a2": "Eager: animated, broad open moves, leaning forward. It makes an offer more attractive.\nReserved: leaning back, small slow moves, slow speech.",
+"src": "Talk Like TED"
+},
+{
+"id": "d5",
+"a": "deliver",
+"q": "Power posing: what can you honestly say?",
+"a2": "It may make you FEEL a bit more confident. The testosterone/cortisol claims failed to replicate (Ranehill 2015).",
+"src": "Claims log"
+},
+{
+"id": "d6",
+"a": "deliver",
+"q": "5 things to control in your voice?",
+"a2": "Speed, volume, pauses, emphasis, pitch. Let the important lines breathe.",
+"src": "Talk Like TED"
+},
+{
+"id": "d7",
+"a": "deliver",
+"q": "Why must you believe every line you say?",
+"a2": "If you don't, your body and voice show it. Viewers have watched thousands of videos and can spot it.",
+"src": "Talk Like TED"
+},
+{
+"id": "w1",
+"a": "work",
+"q": "Ali Abdaal's \"unblocking\": what is it?",
+"a2": "Take the stone out of your shoe instead of running to dinner bleeding. Remove what blocks the task instead of forcing it with discipline.",
+"src": "Ali Abdaal"
+},
+{
+"id": "w2",
+"a": "work",
+"q": "NICE goals?",
+"a2": "Near-term, Input-based, Controllable, Energizing.",
+"src": "Ali Abdaal"
+},
+{
+"id": "w3",
+"a": "work",
+"q": "The 4 questions before a task you might avoid?",
+"a2": "A week passed and you haven't started: what are the 3 reasons? How can you reduce each? Who can help? What can you do right now?",
+"src": "Ali Abdaal"
+},
+{
+"id": "w4",
+"a": "work",
+"q": "How can rewards kill motivation? The studies?",
+"a2": "Kids who expected a reward for drawing drew less afterwards (Lepper 1973). Paid puzzle-solvers played less in their free time (Deci 1971). Love the process.",
+"src": "Claims log",
+"imp": "blue"
+},
+{
+"id": "w5",
+"a": "work",
+"q": "What did the \"I forgive myself\" study find?",
+"a2": "Students who forgave themselves for procrastinating procrastinated less before the next exam (Wohl 2010).",
+"src": "Claims log"
+},
+{
+"id": "w6",
+"a": "work",
+"q": "The 10/10/10 question?",
+"a2": "Will this matter in 10 minutes? In 10 weeks? In 10 years?",
+"src": "Ali Abdaal"
+},
+{
+"id": "w7",
+"a": "work",
+"q": "Asking face to face vs by message?",
+"a2": "In-person requests were about 34× more effective than email (Roghanizad & Bohns 2017).",
+"src": "Claims log"
+},
+{
+"id": "w8",
+"a": "work",
+"q": "\"Errors are the basis for neuroplasticity.\" So what do you do?",
+"a2": "Make more errors, with feedback. A weak video is the heavy set that builds the good one.",
+"src": "Huberman / your notes"
+},
+{
+"id": "w9",
+"a": "work",
+"q": "Your definition of growth?",
+"a2": "Putting in effort, and putting it in the right place. Views don't decide whether you're doing well.",
+"src": "Your notes",
+"imp": "purple"
+},
+{
+"id": "w10",
+"a": "work",
+"q": "The Swedish saying, and what to do with it?",
+"a2": "Shared joy is double joy, shared sorrow is half sorrow. React with energy when someone tells you good news.",
+"src": "Ali Abdaal"
+},
+{
+"id": "w11",
+"a": "work",
+"q": "The 5 whys: what's it for?",
+"a2": "Before a new task, ask why 5 times. If it doesn't lead to something important long-term, it may be a waste of time.",
+"src": "Ali Abdaal"
+},
+{
+"id": "w12",
+"a": "work",
+"q": "\"What's the next step?\": give an example.",
+"a2": "Ask for the smallest physical step. Script avoided → open Notion. Gym avoided → put your shoes on.",
+"src": "Ali Abdaal"
+},
+{
+"id": "l1",
+"a": "looks",
+"q": "Bloat or fat: how do you tell?",
+"a2": "Water changes within a day (puffier in the morning, slimmer at night). Fat takes weeks to months.",
+"src": "Debloat research"
+},
+{
+"id": "l2",
+"a": "looks",
+"q": "Average sodium intake vs the WHO limit?",
+"a2": "About 4,300 mg a day on average vs under 2,000 mg (5 g salt).",
+"src": "WHO 2023"
+},
+{
+"id": "l3",
+"a": "looks",
+"q": "Why does potassium help with bloat?",
+"a2": "It makes the kidneys excrete more sodium. It helps your body get rid of the salt.",
+"src": "Claims log"
+},
+{
+"id": "l4",
+"a": "looks",
+"q": "Why do carbs add water weight?",
+"a2": "Each gram of stored glycogen holds about 3 g of water, and insulin makes the kidneys hold on to sodium.",
+"src": "Claims log"
+},
+{
+"id": "l5",
+"a": "looks",
+"q": "Calf raises after meals (soleus push-up): what's proven?",
+"a2": "They cut the blood-sugar spike by about half (Hamilton 2022). Not proven to debloat your face directly.",
+"src": "Claims log"
+},
+{
+"id": "l6",
+"a": "looks",
+"q": "Can you spot-reduce face fat?",
+"a2": "No. Fat loss isn't local. A face slims through overall fat loss and less water retention.",
+"src": "Claims log"
+},
+{
+"id": "l7",
+"a": "looks",
+"q": "Jawline gum: what does the best evidence say?",
+"a2": "Bite force goes up, but a 6-month RCT in young adults (Jung 2024, n=58) found no change in masseter size or jaw shape. The pump is temporary; heavy use risks TMJ pain.",
+"src": "Gum research"
+},
+{
+"id": "l8",
+"a": "looks",
+"q": "Mewing in adults?",
+"a2": "No controlled evidence it reshapes bone.",
+"src": "Claims log"
+},
+{
+"id": "l9",
+"a": "looks",
+"q": "Veggie tan: what's the evidence?",
+"a2": "More fruit & veg makes skin more golden within ~6 weeks, and it's rated healthier and more attractive. Carotenoid colour beat melanin (tan) colour in those studies (Whitehead 2012; Stephen 2011).",
+"src": "Claims log"
+},
+{
+"id": "l10",
+"a": "looks",
+"q": "First-line acne treatment you can put on your skin, and how long until it works?",
+"a2": "A retinoid like adapalene. About 8–12 weeks. Expect some irritation; wear sunscreen.",
+"src": "Claims log"
+},
+{
+"id": "l11",
+"a": "looks",
+"q": "Blue-light glasses for sleep?",
+"a2": "A Cochrane review (2023) found little or no effect. Lower brightness and screen time instead.",
+"src": "Claims log"
+},
+{
+"id": "l12",
+"a": "looks",
+"q": "Does sleep change how attractive you look?",
+"a2": "Yes: sleep-deprived people were rated less attractive and more tired (Axelsson 2010; Sundelin 2017).",
+"src": "Claims log"
+},
+{
+"id": "l13",
+"a": "looks",
+"q": "Why do you look worse in selfies?",
+"a2": "At about 30 cm the lens makes the nose look ~30% wider than at 1.5 m (Ward 2018). Hold the phone further away or zoom in.",
+"src": "Ward 2018"
+},
+{
+"id": "l14",
+"a": "looks",
+"q": "Why do you like your mirror face more than photos?",
+"a2": "Mere exposure: you see your mirrored face every day, so the real (camera) version feels off (Mita 1977).",
+"src": "Mita 1977"
+},
+{
+"id": "l15",
+"a": "looks",
+"q": "What do r/LooksmaxingAdvice posters want most?",
+"a2": "A verdict and a priority order: ~44% of posts are rate-me / \"what should I fix?\". The crowd's #1 fix: haircut, then beard, leaner, clothes.",
+"src": "Demand research"
+},
+{
+"id": "l16",
+"a": "looks",
+"q": "\"Can I still grow?\": how big is that question?",
+"a2": "16% of questions under the top height videos. Height how-to hits 2× on 56% of face-channel videos.",
+"src": "Gap analysis"
+},
+{
+"id": "l17",
+"a": "looks",
+"q": "Facial contrast research: the catch?",
+"a2": "It's mostly studied on women's faces. In men, contrast is tied more to looking younger and healthier.",
+"src": "Claims log"
+},
+{
+"id": "l18",
+"a": "looks",
+"q": "Hunter eyes without surgery?",
+"a2": "The shape is mostly bone and fat structure. You can reduce under-eye puffiness and groom brows, not change the shape.",
+"src": "Claims log"
+},
+{
+"id": "l19",
+"a": "looks",
+"q": "Ego depletion (willpower runs on glucose): true?",
+"a2": "It failed a 23-lab replication (Hagger 2016). Don't say it on camera.",
+"src": "Claims log"
+},
+{
+"id": "l20",
+"a": "looks",
+"q": "Why are emotional moments remembered better?",
+"a2": "The amygdala (in the temporal lobe, not the prefrontal cortex) and noradrenaline strengthen hippocampus memory. That's why a jaw-dropping moment sticks.",
+"src": "Claims log"
+},
+{
+"id": "c16",
+"a": "channel",
+"imp": "purple",
+"q": "What should you obsess over instead of analytics?",
+"a2": "Good ideas. Spend far more time on the idea and the angle (the tier list changed your whole first video): write several versions with different angles and pick the best.",
+"src": "Many top creators / your notes"
+},
+{
+"id": "c17",
+"a": "channel",
+"imp": "purple",
+"q": "Personal brand = ?",
+"a2": "What you do + what you believe in + how they remember you. Be the example everywhere they find you, have a story, and keep what you say and do the same.",
+"src": "Zornica, Teenovator"
+},
+{
+"id": "c18",
+"a": "channel",
+"imp": "purple",
+"q": "MrBeast's question to ask yourself every day?",
+"a2": "\"Why don't you work more?\" And always be a student: he called a far smaller creator for the chance of one spark.",
+"src": "MrBeast to Fabio Morena"
+},
+{
+"id": "c19",
+"a": "channel",
+"imp": "blue",
+"q": "What is a \"core\", Southwest-style?",
+"a2": "One simple question every decision can be checked against. Southwest: \"does this help us be the cheapest airline?\" Anyone can apply it without a script.",
+"src": "Made to Stick"
+},
+{
+"id": "s24",
+"a": "script",
+"imp": "blue",
+"q": "Packaging, intro, editing and script should…",
+"a2": "…all feel like they belong to the same video. And stick to the core idea, for the channel and the video.",
+"src": "Your notes"
+},
+{
+"id": "w13",
+"a": "work",
+"imp": "blue",
+"q": "How do you make a video faster?",
+"a2": "Set a self-imposed deadline (\"the deadline is Monday\"): realistic, but a bit hard.",
+"src": "Your notes"
+},
+{
+"id": "w14",
+"a": "work",
+"imp": "purple",
+"q": "What's the real reward when you make a video?",
+"a2": "Getting to make it. The effort makes you grow, and growth is the reward. Views and comments are a separate bonus.",
+"src": "Your notes (EXTREMELY IMPORTANT)"
+}
+],
+"teach": [
+{
+"id": "tz1",
+"who": "zoomer",
+"a": "looks",
+"q": "bro why is my face puffier in the morning than at night??",
+"points": [
+"It's water, not fat: it can change in a day",
+"Lying flat overnight lets fluid settle in the face; standing and moving during the day drains it",
+"Salty, carby or boozy dinners make you hold more water by morning",
+"Fixes: less salt at dinner, potassium foods, move after meals"
+]
+},
+{
+"id": "tz2",
+"who": "zoomer",
+"a": "looks",
+"q": "my cousin says if i chew jawline gum every day i'll get a chad jaw. true?",
+"points": [
+"Bite force goes up",
+"Best RCT (Jung 2024, young adults, 6 months): no change in masseter size or jaw shape",
+"The 'pump' right after chewing is temporary",
+"Heavy use can cause jaw (TMJ) pain or headaches",
+"Jaw definition depends mostly on body fat"
+]
+},
+{
+"id": "tz3",
+"who": "zoomer",
+"a": "looks",
+"q": "is mewing gonna fix my jaw? i'm 18",
+"points": [
+"No controlled evidence that mewing reshapes adult bone",
+"Normal tongue posture is harmless, but don't expect a new jaw",
+"Body fat, haircut, beard and posture change how your jaw looks much more",
+"Avoid hard mewing / bone smashing: risk with no proven benefit"
+]
+},
+{
+"id": "tz4",
+"who": "zoomer",
+"a": "looks",
+"q": "i've tried like 5 face washes and my acne won't go away. what do i do",
+"points": [
+"Face washes are rarely the fix",
+"A retinoid like adapalene is first-line; benzoyl peroxide also helps",
+"Give it 8–12 weeks and be consistent",
+"Moisturise and wear sunscreen (retinoids irritate and sensitise)",
+"See a dermatologist if it's severe or scarring"
+]
+},
+{
+"id": "tz5",
+"who": "zoomer",
+"a": "looks",
+"q": "why do i look so ugly in selfies but fine in the mirror",
+"points": [
+"Close-up lens distortion: at ~30 cm the nose looks ~30% wider (Ward 2018)",
+"Mirror familiarity: you're used to your flipped face (mere exposure)",
+"Lighting and angle matter a lot",
+"Fix: phone further away / 2× zoom, light in front of you, camera slightly above eye level"
+]
+},
+{
+"id": "tz6",
+"who": "zoomer",
+"a": "looks",
+"q": "can eating carrots actually change my skin colour lol",
+"points": [
+"Yes: carotenoids from fruit & veg build up in skin",
+"Visible golden tone in about 6 weeks",
+"Rated healthier and more attractive in studies, even more than a tan",
+"Variety of colourful fruit & veg, not only carrots",
+"Only extreme amounts turn you orange"
+]
+},
+{
+"id": "tz7",
+"who": "zoomer",
+"a": "looks",
+"q": "what's the ONE thing i should fix first to look better?",
+"points": [
+"Most common answer from 905K posts: a haircut that suits your face",
+"Then: lower body fat (shows your jaw and face shape), clear skin",
+"Ignore bone-structure hacks first",
+"Fix the cheap, high-impact things in order"
+]
+},
+{
+"id": "tz8",
+"who": "zoomer",
+"a": "looks",
+"q": "does salt really make my face look fat?",
+"points": [
+"More salt than usual → your body holds more water for a while",
+"It often shows in the face first",
+"Average intake ~4,300 mg vs the WHO limit of 2,000 mg",
+"It's water, so it comes off in days, unlike fat",
+"Potassium helps the body get rid of sodium"
+]
+},
+{
+"id": "tz9",
+"who": "zoomer",
+"a": "looks",
+"q": "should i sleep less so i have more time for gym and stuff?",
+"points": [
+"Sleep-deprived people are rated less attractive and more tired-looking",
+"Muscle recovery and training get worse",
+"Less sleep raises hunger and makes fat loss harder",
+"Keep 7–9 hours; it's the cheapest looks upgrade"
+]
+},
+{
+"id": "tz10",
+"who": "zoomer",
+"a": "looks",
+"q": "how do i get hunter eyes?",
+"points": [
+"Eye shape is mostly bone, fat and genetics",
+"No exercise or mewing has evidence for changing it",
+"You CAN reduce puffiness and dark circles (sleep, salt) and groom your brows",
+"Don't fall for surgery hype at 18"
+]
+},
+{
+"id": "tz11",
+"who": "zoomer",
+"a": "looks",
+"q": "am i still growing at 18?",
+"points": [
+"Many guys stop around 16–18, some grow into their early 20s",
+"Growth stops when growth plates close (an X-ray can show it)",
+"Clues: grown in the last year? shoe size still changing? when did your dad stop?",
+"Posture adds apparent height; stretching or supplements don't add height after plates close"
+]
+},
+{
+"id": "tz12",
+"who": "zoomer",
+"a": "looks",
+"q": "does face yoga slim your face?",
+"points": [
+"You can't spot-reduce fat",
+"The one small study (Alam 2018, middle-aged women) showed fuller cheeks, not slimmer",
+"A face slims from overall fat loss and less water retention"
+]
+},
+{
+"id": "te1",
+"who": "editor",
+"a": "intro",
+"q": "why can't our intro just start with 'hey guys welcome back'?",
+"points": [
+"Viewers decide in seconds, and autoplay is muted",
+"Result-first openings win (15% of winners vs 5%); greeting first loses (9% vs 22%)",
+"The first seconds must confirm the click from the thumbnail",
+"Greetings tell strangers the video is for old fans"
+]
+},
+{
+"id": "te2",
+"who": "editor",
+"a": "intro",
+"q": "what even is a curiosity gap and how do i put one in an intro?",
+"points": [
+"A question the viewer can't answer but wants to",
+"Open it by ~0:30 (our viewers left at 0:22–0:37)",
+"Example: '3 steps, and the third is the one nobody does'",
+"Make it clear (contrast) and close it later in the video"
+]
+},
+{
+"id": "te3",
+"who": "editor",
+"a": "pack",
+"q": "why do you care so much that the first 10 seconds match the thumbnail?",
+"points": [
+"The viewer clicked for a promise and checks it immediately",
+"A mismatch feels like clickbait → he leaves",
+"Confirming the click is Paddy's rule 1",
+"It protects trust, which the channel is built on"
+]
+},
+{
+"id": "te4",
+"who": "editor",
+"a": "pack",
+"q": "why can't i put like 6 things in the thumbnail?",
+"points": [
+"It's read in about a second on a phone",
+"Max 3 core elements",
+"On face channels: big face + 1–3 words wins",
+"Use the glance test: 2 seconds, what's it about?"
+]
+},
+{
+"id": "te5",
+"who": "editor",
+"a": "channel",
+"q": "why are you obsessed with returning viewers?",
+"points": [
+"They show a real community, not random views",
+"They come from serving one identity every time",
+"Fans trust the channel promise and click whatever the packaging",
+"Airrack: consistency compounds; empty views don't"
+]
+},
+{
+"id": "te6",
+"who": "editor",
+"a": "pack",
+"q": "how do you know an idea is good before we script it?",
+"points": [
+"Interesting to core, casual and new viewers",
+"Easy to show in a title and thumbnail",
+"Something new (novelty)",
+"Uses a proven format",
+"Friends get excited when you say it"
+]
+},
+{
+"id": "te7",
+"who": "editor",
+"a": "script",
+"q": "why do you keep asking 'does this move the story forward?' in the edit?",
+"points": [
+"Viewers want new information",
+"Repetition and setup lines make people leave",
+"Faster isn't better, but wasted seconds are",
+"Lower cognitive load: one clear thing at a time"
+]
+},
+{
+"id": "te8",
+"who": "editor",
+"a": "script",
+"q": "what's the point of a B plot?",
+"points": [
+"The A plot is what the packaging promised",
+"The B plot is the unexpected extra",
+"Over-delivering is the opposite of clickbait",
+"It turns viewers into fans who trust the next click"
+]
+},
+{
+"id": "te9",
+"who": "editor",
+"a": "script",
+"q": "why do you always call step 1 the most important?",
+"points": [
+"The biggest drop-off is at the start",
+"Framing step 1 as crucial hooks people there",
+"Each later step gets framed as crucial in a new way",
+"The best payoff still comes at the end (escalation)"
+]
+},
+{
+"id": "te10",
+"who": "editor",
+"a": "script",
+"q": "how do i make a boring stat actually interesting?",
+"points": [
+"Compare it to something concrete (the popcorn example)",
+"Make it about the viewer's daily life",
+"Add emotion: surprise, disgust, relief",
+"Show it visually instead of just saying the number"
+]
+},
+{
+"id": "te11",
+"who": "editor",
+"a": "script",
+"q": "why should we edit for emotion and not just make it look cool?",
+"points": [
+"Edits should make the viewer feel something",
+"Don't show off editing skills",
+"If it's too fast or cluttered to understand, cut it",
+"Music and sound follow the story; sound used sparingly"
+]
+},
+{
+"id": "te12",
+"who": "editor",
+"a": "script",
+"q": "why put personal stories in an educational video?",
+"points": [
+"Stories hit emotion first, then logic",
+"Brains sync during stories (brain-to-brain coupling)",
+"Viewers want a human, which is why AI channels can't build community",
+"Gives a hero to root for and builds trust"
+]
+}
+],
+"fix": [
+{
+"id": "f1",
+"kind": "Intro",
+"bad": "Hey guys, welcome back to my channel! Today we're gonna talk about debloating your face, which is something a lot of you have asked about. So let's get into it.",
+"task": "Rewrite the first ~15 seconds. No greeting, show the result, open a loop.",
+"rules": [
+"No greeting first",
+"Show the result in the first seconds",
+"Open a curiosity loop by ~0:30",
+"Seamless bridge, no 'let's get into it'"
+],
+"model": "[Bloated vs debloated photo, same lighting] This is my face two days apart. Same guy, same body fat. The difference is water, and by the end of this video you'll know the 4 things that control it. One of them has nothing to do with food, and it's the first one."
+},
+{
+"id": "f2",
+"kind": "Title",
+"bad": "How to Get Better Skin",
+"task": "Rewrite the title so it has a curiosity gap and names the viewer.",
+"rules": [
+"Curiosity gap the title doesn't answer",
+"Specific (number, price, timeframe)",
+"'for men / as a guy' or age",
+"No question mark"
+],
+"model": "The Only Skincare Routine a Guy Needs (Under €30)"
+},
+{
+"id": "f3",
+"kind": "Bridge",
+"bad": "So those are the 3 methods I'm going to show you. Now let's get into it.",
+"task": "Rewrite as a seamless bridge into method 1.",
+"rules": [
+"No 'let's get into it'",
+"Flow straight into the first point",
+"Keep curiosity on"
+],
+"model": "…and the first one starts before you've even had breakfast."
+},
+{
+"id": "f4",
+"kind": "Stat",
+"bad": "The average person eats about 4,300 mg of sodium a day, which is more than double the recommended amount.",
+"task": "Make this stat concrete and felt, like the popcorn example.",
+"rules": [
+"Concrete comparison the viewer can picture",
+"About his daily life",
+"Stays accurate"
+],
+"model": "Half a takeaway pizza already puts you past your whole day's salt limit. Most guys hit that before dinner, every day."
+},
+{
+"id": "f5",
+"kind": "Signpost",
+"bad": "Another thing you can do is sleep better. Sleep is important for a lot of things.",
+"task": "Rewrite with clear signposting and a reason to care.",
+"rules": [
+"Say which step we're on",
+"Frame it as important in a new way",
+"Concrete, not 'important for a lot of things'"
+],
+"model": "Step 3 is the one that works while you're unconscious: how you sleep. Strangers rate sleep-deprived guys as less attractive. Not a little, measurably."
+},
+{
+"id": "f6",
+"kind": "Ending",
+"bad": "So yeah, that's it. Thanks for watching and see you in the next one!",
+"task": "End on value with a recap and a CTA that flows.",
+"rules": [
+"End on value, not goodbye",
+"One-line recap",
+"CTA with a reason to click"
+],
+"model": "So: less salt at dinner, potassium in the morning, and move after you eat. Do that for a week and take the same photo I took. And if you want the full protocol, it's in this video right here."
+},
+{
+"id": "f7",
+"kind": "Title",
+"bad": "I Tried Jawline Gum",
+"task": "Make it a stronger experiment title.",
+"rules": [
+"Timeframe",
+"A promise of measurement/honesty",
+"Over ~45 characters",
+"No question mark"
+],
+"model": "I Chewed Jawline Gum for 60 Days and Measured My Jaw"
+},
+{
+"id": "f8",
+"kind": "Claim",
+"bad": "Science proves gua sha drains your lymph and debloats your face forever.",
+"task": "Make it honest without killing the energy.",
+"rules": [
+"Correct confidence (no 'proves', no 'forever')",
+"Says what it's actually good for",
+"Still sounds like you"
+],
+"model": "Gua sha can depuff you for a few hours. It's a quick fix before a photo, not a long-term change. The small studies say short-term, so that's exactly how I use it."
+},
+{
+"id": "f9",
+"kind": "Hook",
+"bad": "In this video I'm going to share some tips for better sleep.",
+"task": "Rewrite as a hook that makes him care in one sentence.",
+"rules": [
+"About what he wants (looks), not the topic",
+"A surprising fact or question",
+"No 'in this video I'm going to'"
+],
+"model": "Strangers rate sleep-deprived guys as less attractive, and you can see the difference in one night. Here's how to fix your sleep tonight."
+},
+{
+"id": "f10",
+"kind": "Thumbnail text",
+"bad": "Title: \"The Only Skincare Routine a Guy Needs\"\nThumbnail text: \"THE ONLY SKINCARE ROUTINE\"",
+"task": "Write new thumbnail text (1–3 words) that complements the title instead of repeating it.",
+"rules": [
+"1–3 words",
+"Adds something the title doesn't say",
+"Doesn't repeat the title"
+],
+"model": "\"UNDER €30\" next to three products and your face. Or \"3 PRODUCTS\"."
+},
+{
+"id": "f11",
+"kind": "Rehook",
+"bad": "(Minute 8 of a 15-minute debloat guide. Energy is dropping.)",
+"task": "Write a 2–3 sentence rehook.",
+"rules": [
+"Higher energy",
+"Reminds him why it matters for HIS life",
+"Pushes him to act, not just to keep watching",
+"Genuine, not begging"
+],
+"model": "Quick check: if you're still here, you already know more about this than most guys. But knowing changes nothing in the mirror. The next step is the one you'll actually see tomorrow morning, so lock in."
+},
+{
+"id": "f12",
+"kind": "Self-test",
+"bad": "(A video about posture.)",
+"task": "Write a 10-second self-test the viewer can do right now.",
+"rules": [
+"Doable in 10 seconds where he is",
+"Clear result he can see",
+"Leads into the video"
+],
+"model": "Stand against a wall right now: heels, butt and upper back touching. If the back of your head doesn't touch without tilting your chin up, that's forward head posture, and that's what we're fixing."
+},
+{
+"id": "f13",
+"kind": "Jargon",
+"bad": "Insulin has an antinatriuretic effect, increasing renal sodium reabsorption.",
+"task": "Explain this so an 18-year-old gets it in one breath.",
+"rules": [
+"No jargon",
+"Cause → effect he can picture",
+"Stays correct"
+],
+"model": "When you eat carbs, insulin tells your kidneys to hold on to salt. And where salt stays, water stays."
+},
+{
+"id": "f14",
+"kind": "Title",
+"bad": "Debloating Myths",
+"task": "Rewrite using one of your proven title formats.",
+"rules": [
+"Uses a proven format",
+"Curiosity gap",
+"Broad language"
+],
+"model": "Everyone's Debloating Wrong (Here's What Actually Works)"
+},
+{
+"id": "f15",
+"kind": "Story",
+"bad": "Retinoids are good for acne. I use one.",
+"task": "Turn it into a 2-sentence personal story with an unexpected turn.",
+"rules": [
+"Personal",
+"An expectation, then a surprise",
+"Leads into the lesson"
+],
+"model": "The first two weeks on a retinoid, my skin got WORSE, and I almost quit. Turns out that's normal, and quitting there is exactly why most guys say it doesn't work."
+}
+]
+}

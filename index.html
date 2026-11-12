@@ -1,0 +1,902 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Rep Room</title>
+<meta name="description" content="Daily reads and reps from Juliyan's notes.">
+<meta name="theme-color" content="#FFFEFB" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#191716" media="(prefers-color-scheme: dark)">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Rep Room">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<style>html{padding-top:env(safe-area-inset-top,0px)}body{margin:0;font-size:14px}img{max-width:100%}[hidden]{display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&family=Montserrat:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: one phone-width column, a gym-log feel: today's workout up top, sets below, cream paper + brand inks */
+:root{
+  --bg:#FFFEFB; --paper:#FFFFFF; --sunk:#F6F2EB; --ink:#2A2826; --muted:#6E6862; --line:#E7E0D5;
+  --blue:#0571D3; --blue-soft:#E3EFFB; --pink:#FF59F8; --pink-soft:#FFE6FE; --orange:#FF7A1A; --orange-soft:#FFEBDD;
+  --red:#F3080F; --red-soft:#FDE3E3; --violet:#7A35E0; --violet-soft:#EFE6FD;
+  --display:"Montserrat",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --hand:"Gloria Hallelujah","Comic Sans MS",cursive;
+  --r:14px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#191716; --paper:#23201E; --sunk:#2B2725; --ink:#F3EEE8; --muted:#A79F96; --line:#3A3532;
+  --blue:#4CA4F6; --blue-soft:#13283D; --pink:#FF7EF9; --pink-soft:#3A1A39; --orange:#FF8F3F; --orange-soft:#3A2414;
+  --red:#FF5157; --red-soft:#3D1718; --violet:#B48CFF; --violet-soft:#2C1F45; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#191716; --paper:#23201E; --sunk:#2B2725; --ink:#F3EEE8; --muted:#A79F96; --line:#3A3532;
+  --blue:#4CA4F6; --blue-soft:#13283D; --pink:#FF7EF9; --pink-soft:#3A1A39; --orange:#FF8F3F; --orange-soft:#3A2414;
+  --red:#FF5157; --red-soft:#3D1718; --violet:#B48CFF; --violet-soft:#2C1F45; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--display);font-size:15px;line-height:1.5;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:14px 48px}
+.wrap{max-width:560px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
+h1,h2,h3{margin:0;text-wrap:balance}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,textarea:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.hand{font-family:var(--hand)}
+.muted{color:var(--muted)}
+.small{font-size:13px}
+.label{font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.grow{flex:1;min-width:0}
+
+/* header */
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{font-weight:800;font-size:26px;letter-spacing:-.02em;line-height:1}
+.logo span{color:var(--blue)}
+.tag{font-family:var(--hand);color:var(--pink);font-size:14px;margin-top:2px}
+.streak{display:flex;flex-direction:column;align-items:flex-end;font-variant-numeric:tabular-nums}
+.streak b{font-size:22px;font-weight:800;color:var(--orange);line-height:1}
+.back{background:none;border:0;padding:6px 0;font-weight:700;color:var(--muted)}
+
+/* workout card */
+.workout{background:var(--ink);color:var(--bg);border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:14px;position:relative;overflow:hidden}
+.workout h2{font-size:24px;font-weight:800;line-height:1.15}
+.workout .sets{display:flex;gap:8px;flex-wrap:wrap}
+.workout .set{border:1.5px solid color-mix(in srgb,var(--bg) 35%,transparent);border-radius:999px;padding:4px 11px;font-size:12px;font-weight:600}
+.workout .go{align-self:flex-start;background:var(--orange);color:#2A2826;border:0;border-radius:12px;padding:13px 22px;font-weight:800;font-size:16px}
+.workout .done-note{font-family:var(--hand);color:var(--orange);font-size:15px}
+.workout img{position:absolute;right:-6px;bottom:-8px;width:120px;opacity:.95;pointer-events:none}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.stat{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:12px;min-width:0}
+.stat b{display:block;font-size:22px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.1;white-space:nowrap}
+.stat .small{display:block}
+.stat b .small{display:inline}
+
+/* log grid */
+.log{display:grid;grid-template-columns:repeat(14,1fr);gap:4px}
+.log i{aspect-ratio:1;border-radius:4px;background:var(--sunk);display:block}
+.log i.l1{background:color-mix(in srgb,var(--orange) 35%,var(--sunk))}
+.log i.l2{background:color-mix(in srgb,var(--orange) 70%,var(--sunk))}
+.log i.l3{background:var(--orange)}
+.log i.today{outline:2px solid var(--ink);outline-offset:1px}
+
+/* exercise list */
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.exb{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:13px;text-align:left;display:flex;flex-direction:column;gap:3px;min-width:0}
+.exb:hover{border-color:var(--ink)}
+.exb b{font-weight:800;font-size:15px}
+.exb .k{width:26px;height:4px;border-radius:2px;margin-bottom:6px}
+
+/* mastery */
+.areas{display:flex;flex-direction:column;gap:2px}
+.area{display:grid;grid-template-columns:minmax(0,1fr) 110px 44px;gap:10px;align-items:center;background:none;border:0;padding:8px 2px;text-align:left;border-bottom:1px solid var(--line)}
+.bar{height:8px;border-radius:4px;background:var(--sunk);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--blue);border-radius:4px}
+.area span:last-child{text-align:right;font-variant-numeric:tabular-nums;font-size:13px;color:var(--muted)}
+
+details.why{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px}
+details.why summary{font-weight:700;cursor:pointer}
+details.why ul{margin:10px 0 0;padding-left:18px;display:flex;flex-direction:column;gap:6px}
+
+/* session */
+.prog{display:flex;gap:3px}
+.prog i{flex:1;height:6px;border-radius:3px;background:var(--line)}
+.prog i.on{background:var(--ink)}
+.prog i.cur{background:var(--orange)}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:18px;display:flex;flex-direction:column;gap:14px}
+.chip{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:3px 10px;font-size:12px;font-weight:700;background:var(--sunk);color:var(--muted)}
+.chip.blue{background:var(--blue-soft);color:var(--blue)}
+.chip.pink{background:var(--pink-soft);color:var(--pink)}
+.chip.orange{background:var(--orange-soft);color:var(--orange)}
+.chip.red{background:var(--red-soft);color:var(--red)}
+.q{font-size:20px;font-weight:800;line-height:1.3}
+.ans{background:var(--sunk);border-radius:12px;padding:14px;white-space:pre-line;font-weight:500}
+.src{font-size:12px;color:var(--muted)}
+textarea{width:100%;min-height:88px;resize:vertical;border:1.5px solid var(--line);border-radius:12px;padding:11px 12px;font:inherit;background:var(--bg);color:var(--ink)}
+.btn{border:0;border-radius:12px;padding:12px 16px;font-weight:800;background:var(--ink);color:var(--bg)}
+.btn.ghost{background:var(--sunk);color:var(--ink)}
+.btn[disabled]{opacity:.45;cursor:default}
+.grades{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.grades button{border:1.5px solid var(--line);background:var(--paper);border-radius:12px;padding:10px 4px;font-weight:700;font-size:13px;display:flex;flex-direction:column;align-items:center;gap:1px}
+.grades button small{font-weight:500;color:var(--muted);font-size:11px}
+.grades .g0{border-color:var(--red);color:var(--red)}
+.grades .g3{border-color:var(--blue);color:var(--blue)}
+
+/* call it */
+.thumb{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:12px;background:var(--sunk);display:block;max-width:100%}
+.vt{font-weight:800;font-size:17px;line-height:1.3}
+.opening{font-size:14px;background:var(--sunk);border-radius:12px;padding:12px;max-height:210px;overflow:auto}
+.opening .label{display:block;margin-bottom:4px}
+.pick{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pick button{border:2px solid var(--line);background:var(--paper);border-radius:14px;padding:14px 8px;font-weight:800;font-size:16px}
+.pick button.sel.hit{border-color:var(--blue);background:var(--blue-soft);color:var(--blue)}
+.pick button.sel.flop{border-color:var(--red);background:var(--red-soft);color:var(--red)}
+.pick button.sel.any{border-color:var(--ink);background:var(--sunk)}
+.conf{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.conf button{border:1.5px solid var(--line);background:var(--paper);border-radius:10px;padding:8px 4px;font-size:13px;font-weight:600}
+.conf button.sel{border-color:var(--ink);background:var(--ink);color:var(--bg)}
+.why1{width:100%;border:1.5px solid var(--line);border-radius:10px;padding:9px 11px;font:inherit;background:var(--bg);color:var(--ink)}
+.verdict{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.verdict .big{font-size:34px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1}
+.verdict .big.hit{color:var(--blue)} .verdict .big.flop{color:var(--red)}
+.note{font-family:var(--hand);font-size:16px;line-height:1.45}
+.note.red{color:var(--red)} .note.blue{color:var(--blue)} .note.pink{color:var(--pink)}
+.codes{display:flex;flex-wrap:wrap;gap:6px}
+.lesson{font-weight:700;font-size:16px;line-height:1.4}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pair .side{display:flex;flex-direction:column;gap:8px;min-width:0}
+.pair .vt{font-size:14px}
+.pair .opening{font-size:12.5px;max-height:150px}
+
+/* teach */
+.convo{display:flex;flex-direction:column;gap:12px}
+.bubble{display:grid;grid-template-columns:64px minmax(0,1fr);gap:10px;align-items:end}
+.bubble img{width:64px;height:auto}
+.bubble .say{background:var(--sunk);border-radius:16px 16px 16px 4px;padding:11px 13px;font-family:var(--hand);font-size:16px;line-height:1.4}
+.me{align-self:flex-end;max-width:88%;background:var(--blue);color:#fff;border-radius:16px 16px 4px 16px;padding:10px 13px;white-space:pre-line}
+.grade{border:1.5px solid var(--line);border-radius:14px;padding:13px;display:flex;flex-direction:column;gap:8px}
+.grade .score{font-size:28px;font-weight:800;font-variant-numeric:tabular-nums}
+.grade ul{margin:0;padding-left:18px}
+.thinking{font-family:var(--hand);color:var(--muted)}
+.bad{background:var(--red-soft);border-radius:12px;padding:12px;white-space:pre-line}
+.rules{margin:0;padding-left:18px;font-size:14px;color:var(--muted)}
+
+/* priority marks: his purple / blue circles */
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;flex:none}
+.dot.purple{background:var(--violet)} .dot.blue{background:var(--blue)}
+.chip.purple{background:var(--violet-soft);color:var(--violet)}
+
+/* bottom nav */
+body{padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+.nav{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--paper);border-top:1px solid var(--line);
+  padding:6px max(16px,env(safe-area-inset-right,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.nav div{max-width:560px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
+.nav button{background:none;border:0;border-radius:12px;padding:8px 4px;font-weight:700;font-size:13px;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:3px}
+.nav button svg{width:22px;height:22px}
+.nav button.on{color:var(--ink);background:var(--sunk)}
+
+/* today's read */
+.daily{background:var(--paper);border:1.5px solid var(--ink);border-radius:20px;padding:18px;display:flex;flex-direction:column;gap:10px;text-align:left;width:100%}
+.daily h2{font-size:21px;font-weight:800;line-height:1.25}
+.daily .dek{color:var(--muted)}
+
+/* library */
+.filters{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+.filters::-webkit-scrollbar{display:none}
+.filters button{flex:none;border:1.5px solid var(--line);background:var(--paper);border-radius:999px;padding:6px 12px;font-size:13px;font-weight:600;white-space:nowrap}
+.filters button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.rlist{display:flex;flex-direction:column}
+.ritem{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;align-items:start;background:none;border:0;border-bottom:1px solid var(--line);padding:13px 2px;text-align:left;width:100%}
+.ritem .t{font-weight:700;font-size:15.5px;line-height:1.3;display:flex;gap:8px;align-items:baseline}
+.ritem .t .dot{transform:translateY(-1px)}
+.ritem .d{grid-column:1;font-size:13px;color:var(--muted);line-height:1.4}
+.ritem .m{grid-row:1/span 2;grid-column:2;text-align:right;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.ritem.read .t{color:var(--muted)}
+.ritem .done{color:var(--blue);font-weight:800}
+.bundle{display:flex;align-items:center;gap:12px;background:var(--sunk);border:0;border-radius:14px;padding:13px 14px;text-align:left;width:100%}
+.bundle b{display:block}
+.catHead{margin-top:14px}
+
+/* reader */
+.article{display:flex;flex-direction:column;gap:6px}
+.article h1{font-size:27px;font-weight:800;line-height:1.18;letter-spacing:-.01em;margin-top:4px}
+.article .dek{font-size:17px;color:var(--muted);line-height:1.45}
+.prose{font-size:17px;line-height:1.7;max-width:62ch}
+.prose h2{font-size:19px;font-weight:800;margin:26px 0 6px;line-height:1.3}
+.prose h3{font-size:16.5px;font-weight:800;margin:20px 0 4px}
+.prose p{margin:0 0 14px}
+.prose ul,.prose ol{margin:0 0 14px;padding-left:22px}
+.prose li{margin-bottom:6px}
+.prose blockquote{margin:6px 0 16px;padding:10px 14px;border-left:4px solid var(--pink);background:var(--pink-soft);border-radius:0 12px 12px 0;font-weight:600}
+.prose blockquote p{margin:0}
+.prose strong{font-weight:800}
+.prose .tbl{overflow-x:auto;margin:0 0 16px}
+.prose table{border-collapse:collapse;font-size:14px;line-height:1.45;min-width:520px}
+.prose th,.prose td{border-bottom:1px solid var(--line);padding:7px 8px;text-align:left;vertical-align:top}
+.prose th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+@media (max-width:600px){ /* tables become stacked cards on a phone */
+  .prose table{min-width:0;width:100%}
+  .prose thead{display:none}
+  .prose table,.prose tbody,.prose tr,.prose td{display:block}
+  .prose tr{background:var(--sunk);border-radius:12px;padding:10px 12px;margin-bottom:10px}
+  .prose td{border:0;padding:3px 0}
+  .prose td:first-child{font-weight:800;font-size:15px}
+  .prose td:not(:first-child)::before{content:attr(data-label);display:block;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+}
+.prose hr{border:0;border-top:1px solid var(--line);margin:22px 0}
+.prose .part{font-size:13px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--orange);margin:34px 0 0}
+.prose .part:first-child{margin-top:8px}
+.prose .parttitle{font-size:23px;font-weight:800;margin:2px 0 10px;line-height:1.2}
+.checks{display:flex;flex-direction:column;gap:8px}
+.check{background:var(--sunk);border:0;border-radius:12px;padding:12px 14px;text-align:left;width:100%}
+.check .ca{display:block;margin-top:6px;color:var(--blue);font-weight:600}
+
+/* end */
+.end h2{font-size:26px;font-weight:800}
+.tally{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.foot{font-size:12px;color:var(--muted);text-align:center}
+@media (max-width:420px){.pair{grid-template-columns:1fr}.area{grid-template-columns:minmax(0,1fr) 80px 40px}.q{font-size:18px}}
+@media (prefers-reduced-motion:no-preference){.card{animation:in .25s ease-out}@keyframes in{from{transform:translateY(6px);opacity:.6}to{transform:none;opacity:1}}}
+</style>
+</head>
+<body>
+<div class="wrap" id="app">
+  <div class="top">
+    <div><div class="logo">Rep <span>Room</span></div><div class="tag">reps for your YouTube brain</div></div>
+    <div class="streak"><b id="streakN">0</b><span class="small muted">day streak</span></div>
+  </div>
+  <div id="view"><p class="muted">Loading your deck…</p></div>
+  <p class="foot" id="saveNote">Progress saves on this device.</p>
+</div>
+<nav class="nav" id="nav" aria-label="Sections"><div>
+  <button data-tab="today"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>Today</button>
+  <button data-tab="read"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 5c3-1 6-1 10 1v14c-4-2-7-2-10-1z"/><path d="M22 5c-3-1-6-1-10 1v14c4-2 7-2 10-1z"/></svg>Read</button>
+  <button data-tab="train"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 7v10M18 7v10M3 10v4M21 10v4M6 12h12"/></svg>Train</button>
+</div></nav>
+
+<script>
+(() => {
+const AREA_COL = {intro:"var(--orange)",script:"var(--blue)",pack:"var(--pink)",channel:"var(--ink)",deliver:"var(--orange)",work:"var(--muted)",looks:"var(--blue)"};
+const CODE_NAMES = {promise_first:"Promise first",viewer_result:"Viewer's result",roadmap:"Roadmap",ease:"Feels easy",greeting_first:"Greeting first",credentials_first:"Credentials first",mirror:"Mirrors viewer",villain:"Villain",story_60:"Story in 60 s",shown_proof:"Proof shown",curiosity:"Curiosity gap",thumb_face:"Face in thumb",thumb_outcome:"Outcome in thumb"};
+const BAD_CODES = new Set(["greeting_first","credentials_first"]);
+const IMPW = {purple:0, blue:1};
+const LS_KEY = "reproom-state-v1";
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const ymd = d => { const z = n => String(n).padStart(2,"0"); return d.getFullYear()+"-"+z(d.getMonth()+1)+"-"+z(d.getDate()); };
+const addDays = (s, n) => { const d = new Date(s+"T12:00:00"); d.setDate(d.getDate()+n); return ymd(d); };
+const shuffle = a => { for (let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; };
+const today = () => ymd(new Date());
+
+const S = { deck:null, intros:[], byId:{}, st:null, db:null, ref:null, sample:null, q:[], i:0, mode:null, results:[] };
+
+function blankState(){ return { v:1, cards:{}, calls:[], fixes:{}, teach:{}, reads:{}, daily:null, days:{}, streak:{cur:0,best:0,last:null}, wdone:null }; }
+
+/* ---------- storage ---------- */
+function loadLocal(){ try { const r = localStorage.getItem(LS_KEY); return r ? JSON.parse(r) : null; } catch { return null; } }
+function saveLocal(){ try { localStorage.setItem(LS_KEY, JSON.stringify(S.st)); } catch {} }
+let saveTimer = null, saving = Promise.resolve();
+function persist(){
+  saveLocal();
+  if (!S.ref) return;
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(() => { saving = saving.then(() => S.ref.set(JSON.parse(JSON.stringify(S.st)))).catch(() => {}); }, 900);
+}
+function newer(a, b){ // pick the state with more total reps
+  const n = s => s ? Object.values(s.days||{}).reduce((x,y)=>x+y,0) : -1;
+  return n(a) >= n(b) ? a : b;
+}
+async function connect(){
+  const cl = window.claude;
+  if (!cl || !cl.use) return;
+  cl.use("sample").then(s => { S.sample = s; }).catch(() => {});
+  try {
+    const [db, user] = await Promise.all([cl.use("db"), cl.use("user")]);
+    if (!db || !user) return;
+    const uid = await user.id();
+    if (!uid) return;
+    S.db = db; S.ref = db.doc("data/users/" + uid + "/state");
+    const snap = await S.ref.get();
+    const remote = snap.exists ? snap.data() : null;
+    const pick = newer(remote ? JSON.parse(JSON.stringify(remote)) : null, S.st);
+    if (pick !== S.st) { S.st = Object.assign(blankState(), pick); saveLocal(); if (S.mode === null && !$("#nav").hidden) home(); }
+    $("#saveNote").textContent = "Progress saves to your Claude account, so it follows you between phone and laptop.";
+    if (!remote) persist();
+  } catch { /* stay on local storage */ }
+}
+
+/* ---------- scheduling ---------- */
+function cardState(id){ return S.st.cards[id]; }
+function isDue(id){ const c = cardState(id); return c && c.due <= today(); }
+function dueCards(area){
+  return S.deck.cards.filter(c => (!area || c.a === area) && isDue(c.id))
+    .sort((a,b) => (cardState(a.id).due).localeCompare(cardState(b.id).due) || (cardState(b.id).l||0)-(cardState(a.id).l||0));
+}
+function newCards(area){ // round-robin across areas so new cards come mixed, not one topic in a row
+  const all = S.deck.cards.filter(c => (!area || c.a === area) && !cardState(c.id));
+  const prio = all.filter(c => c.imp).sort((a,b) => IMPW[a.imp] - IMPW[b.imp]); // purple, then blue notes first
+  const left = all.filter(c => !c.imp);
+  const by = {}; for (const c of left) (by[c.a] ||= []).push(c);
+  const lists = Object.values(by), out = [];
+  for (let k = 0; out.length < left.length; k++) for (const l of lists) if (l[k]) out.push(l[k]);
+  return prio.concat(out);
+}
+function gradeCard(id, g){
+  const t = today(), c = S.st.cards[id] || {i:0, n:0, l:0};
+  c.n++;
+  if (g === 0){ c.i = 0; c.l++; c.due = addDays(t,1); }
+  else if (g === 1){ c.i = 1; c.due = addDays(t,1); }
+  else if (g === 2){ c.i = Math.max(2, Math.round(c.i*2.2)); c.due = addDays(t,c.i); }
+  else { c.i = Math.max(4, Math.round(c.i*3.2)); c.due = addDays(t,c.i); }
+  c.g = g; S.st.cards[id] = c;
+}
+function strength(c){ return c ? Math.min(c.i,21)/21 : 0; }
+function areaStats(a){
+  const cs = S.deck.cards.filter(c => c.a === a);
+  const s = cs.reduce((x,c) => x + strength(cardState(c.id)), 0) / cs.length;
+  const locked = cs.filter(c => (cardState(c.id)?.i||0) >= 10).length;
+  return { pct: Math.round(s*100), n: cs.length, locked };
+}
+function seenCalls(){ return new Set(S.st.calls.map(c => c.id)); }
+function pickIntros(n){
+  const seen = seenCalls();
+  const wrong = new Set(S.st.calls.filter(c => !c.ok).map(c => c.id));
+  let pool = shuffle(S.intros.filter(x => !seen.has(x.id)));
+  if (pool.length < n) pool = pool.concat(shuffle(S.intros.filter(x => wrong.has(x.id))), shuffle(S.intros.slice()));
+  const out = [], used = new Set(), chans = {};
+  for (const x of pool){ if (used.has(x.id) || (chans[x.ch]||0) >= 1 && out.length < 4) continue; out.push(x); used.add(x.id); chans[x.ch]=(chans[x.ch]||0)+1; if (out.length >= n) break; }
+  return out;
+}
+function pickPair(){
+  const seen = seenCalls();
+  const byCh = {};
+  for (const x of S.intros) (byCh[x.ch] ||= {hit:[],flop:[]})[x.role].push(x);
+  const opts = [];
+  for (const ch in byCh){ const {hit,flop} = byCh[ch]; for (const h of hit) for (const f of flop){
+    const fresh = (!seen.has(h.id)) + (!seen.has(f.id)); const same = h.pair && h.pair === f.pair;
+    opts.push({a:h,b:f,w: fresh*2 + (same?3:0) + Math.random()*2});
+  } }
+  opts.sort((x,y) => y.w - x.w);
+  const o = opts[0]; return Math.random() < .5 ? [o.a,o.b] : [o.b,o.a];
+}
+function pickLeast(list, store){
+  return list.slice().sort((a,b) => {
+    const A = store[a.id], B = store[b.id];
+    return (A?1:0)-(B?1:0) || (A?.best??-1)-(B?.best??-1) || Math.random()-.5;
+  })[0];
+}
+
+/* ---------- streak + reps ---------- */
+function rep(kind, payload){
+  const t = today();
+  S.st.days[t] = (S.st.days[t]||0) + 1;
+  const keys = Object.keys(S.st.days).sort(); if (keys.length > 120) for (const k of keys.slice(0, keys.length-120)) delete S.st.days[k];
+  const sk = S.st.streak;
+  if (sk.last !== t){ sk.cur = sk.last === addDays(t,-1) ? sk.cur + 1 : 1; sk.last = t; sk.best = Math.max(sk.best, sk.cur); }
+  S.results.push({kind, ...payload});
+  persist(); drawStreak();
+}
+function drawStreak(){ const sk = S.st.streak; const alive = sk.last === today() || sk.last === addDays(today(),-1); $("#streakN").textContent = alive ? sk.cur : 0; }
+
+/* ---------- reads ---------- */
+function readState(id){ return (S.st.reads || {})[id]; }
+function sortReads(list){ return list.slice().sort((a,b) => (IMPW[a.imp]??2)-(IMPW[b.imp]??2) || (readState(a.id)?1:0)-(readState(b.id)?1:0)); }
+function dailyRead(){
+  const t = today(); S.st.reads ||= {};
+  if (S.st.daily && S.st.daily.d === t && S.R.byId[S.st.daily.id]) return S.R.byId[S.st.daily.id];
+  const prevCat = S.st.daily && S.R.byId[S.st.daily.id] ? S.R.byId[S.st.daily.id].cat : null;
+  let pool = S.R.reads.filter(r => !readState(r.id));
+  if (!pool.length) pool = S.R.reads.slice().sort((a,b) => (readState(a.id).last||"").localeCompare(readState(b.id).last||"")).slice(0, 10);
+  pool = sortReads(pool);
+  const pick = pool.find(r => r.cat !== prevCat) || pool[0];
+  S.st.daily = {d:t, id:pick.id}; persist();
+  return pick;
+}
+function markRead(ids){
+  const t = today(); S.st.reads ||= {};
+  for (const id of ids){ const r = S.st.reads[id] || {n:0}; r.n++; r.last = t; S.st.reads[id] = r; }
+  rep("read", {n: ids.length});
+}
+const catChip = r => `<span class="chip">${esc(S.R.cats[r.cat])}</span>`;
+const impChip = r => r.imp === "purple" ? `<span class="chip purple"><i class="dot purple"></i>Purple note</span>` : r.imp === "blue" ? `<span class="chip blue"><i class="dot blue"></i>Blue note</span>` : "";
+
+/* tiny markdown: headings, lists, quotes, tables, rules, bold/italic */
+function inline(s){
+  return esc(s)
+    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+    .replace(/(^|[\s(])\*(?!\s)([^*]+?)\*(?=[\s).,:;!?]|$)/g, "$1<em>$2</em>")
+    .replace(/`([^`]+)`/g, "<code>$1</code>")
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, "$1");
+}
+function md(src){
+  const L = src.split("\n"), out = []; let i = 0;
+  const isList = s => /^\s*([-*•]|\d+\.)\s+/.test(s);
+  while (i < L.length){
+    const l = L[i]; let m;
+    if (!l.trim()){ i++; continue; }
+    if ((m = l.match(/^(#{1,4})\s+(.*)/))){ const n = m[1].length >= 3 ? 3 : 2; out.push(`<h${n}>${inline(m[2])}</h${n}>`); i++; continue; }
+    if (/^\s*(---|\*\*\*)\s*$/.test(l)){ out.push("<hr>"); i++; continue; }
+    if (l.startsWith(">")){ const q = []; while (i < L.length && L[i].startsWith(">")){ q.push(L[i].replace(/^>\s?/, "")); i++; } out.push(`<blockquote><p>${inline(q.join(" "))}</p></blockquote>`); continue; }
+    if (l.trim().startsWith("|")){
+      const rows = []; while (i < L.length && L[i].trim().startsWith("|")){ rows.push(L[i].trim()); i++; }
+      const cells = r => r.replace(/^\|/, "").replace(/\|$/, "").split("|").map(c => c.trim());
+      const body = rows.filter(r => !/^\|[\s:|-]+$/.test(r));
+      const head = cells(body[0]);
+      out.push(`<div class="tbl"><table><thead><tr>${head.map(c => `<th>${inline(c)}</th>`).join("")}</tr></thead><tbody>${body.slice(1).map(r => `<tr>${cells(r).map((c,j) => `<td data-label="${esc(head[j]||"")}">${inline(c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`);
+      continue;
+    }
+    if (isList(l)){
+      const ordered = /^\s*\d+\./.test(l), items = [];
+      while (i < L.length && isList(L[i])){ let it = L[i].replace(/^\s*([-*•]|\d+\.)\s+/, ""); i++; while (i < L.length && /^\s{2,}\S/.test(L[i]) && !isList(L[i])){ it += " " + L[i].trim(); i++; } items.push(it); }
+      out.push(`<${ordered ? "ol" : "ul"}>${items.map(x => `<li>${inline(x)}</li>`).join("")}</${ordered ? "ol" : "ul"}>`);
+      continue;
+    }
+    const p = []; while (i < L.length && L[i].trim() && !/^(#{1,4}\s|>|\s*\|)/.test(L[i]) && !isList(L[i]) && !/^\s*---\s*$/.test(L[i])){ p.push(L[i].trim()); i++; }
+    out.push(`<p>${inline(p.join(" "))}</p>`);
+  }
+  return out.join("");
+}
+
+/* ---------- tabs ---------- */
+let TAB = "today";
+const LIB = { cat:"all", len:"any" };
+function go(tab){
+  TAB = tab; S.mode = null; S.q = []; S.results = [];
+  document.querySelectorAll("#nav button").forEach(b => b.classList.toggle("on", b.dataset.tab === tab));
+  $("#nav").hidden = false;
+  ({today:viewToday, read:viewRead, train:viewTrain})[tab]();
+  drawStreak(); window.scrollTo(0,0);
+}
+function home(){ go(TAB); }
+function eye(){
+  const last = S.st.calls.slice(-40);
+  if (!last.length) return null;
+  const acc = Math.round(100 * last.filter(c=>c.ok).length / last.length);
+  const sure = last.filter(c => c.c === 2);
+  return { acc, n: last.length, sure: sure.length ? Math.round(100*sure.filter(c=>c.ok).length/sure.length) : null };
+}
+function workoutPlan(){
+  const due = dueCards().length, fresh = Math.min(5, newCards().length);
+  return { nCards: Math.min(8, due + fresh) || 0, finisher: (new Date().getDate() % 2) ? "fix" : "teach" };
+}
+function viewToday(){
+  const r = dailyRead(), p = workoutPlan(), e = eye(), sk = S.st.streak;
+  const doneToday = S.st.wdone === today(), readToday = readState(r.id)?.last === today();
+  const nRead = Object.keys(S.st.reads||{}).filter(id => S.R.byId[id]).length;
+  const days = []; for (let k=27;k>=0;k--){ const d = addDays(today(),-k); const n = S.st.days[d]||0; days.push(`<i class="${n?(n<8?"l1":n<15?"l2":"l3"):""} ${k===0?"today":""}" title="${d}: ${n} reps"></i>`); }
+  const mastered = S.deck.cards.filter(c => (cardState(c.id)?.i||0) >= 10).length;
+  $("#view").innerHTML = `
+  <div class="wrap" style="gap:18px">
+    <section style="display:flex;flex-direction:column;gap:8px">
+      <div class="row"><span class="label grow">Today's read</span><span class="small muted">${nRead}/${S.R.reads.length} read</span></div>
+      <button class="daily" id="dread">
+        <span class="row">${catChip(r)}${impChip(r)}<span class="small muted">${r.min} min</span>${readToday ? `<span class="small" style="color:var(--blue);font-weight:800">✓ read today</span>` : ""}</span>
+        <h2>${esc(r.title)}</h2>
+        <span class="dek">${esc(r.dek)}</span>
+      </button>
+    </section>
+    <section class="workout">
+      <span class="label" style="color:var(--orange)">Today's workout · about 12 min</span>
+      <h2>${doneToday ? "Workout done. Want an extra set?" : "Warm up, 3 calls, one finisher."}</h2>
+      <div class="sets"><span class="set">${p.nCards} cards</span><span class="set">2 Call it</span><span class="set">1 Which won</span><span class="set">${p.finisher === "fix" ? "Fix it" : "Teach"} finisher</span></div>
+      <button class="go" id="goW">${doneToday ? "Another round" : "Start workout"}</button>
+      ${doneToday ? `<span class="done-note">${sk.cur} days in a row. That's the heavy set done.</span>` : ""}
+      <img src="data/img/chad.png" alt="">
+    </section>
+    <section class="stats">
+      <div class="stat"><b>${mastered}<span class="small muted">/${S.deck.cards.length}</span></b><span class="small muted">cards locked in</span></div>
+      <div class="stat"><b>${e ? e.acc+"%" : "–"}</b><span class="small muted">Eye ${e ? `(last ${e.n} calls)` : "· 50% = coin flip"}</span></div>
+      <div class="stat"><b>${e && e.sure!==null ? e.sure+"%" : "–"}</b><span class="small muted">right when "certain"</span></div>
+    </section>
+    <section style="display:flex;flex-direction:column;gap:8px">
+      <div class="row"><span class="label grow">Rep log · last 4 weeks</span><span class="small muted">best streak ${sk.best}</span></div>
+      <div class="log">${days.join("")}</div>
+    </section>
+  </div>`;
+  $("#dread").onclick = () => openRead([r.id]);
+  $("#goW").onclick = startWorkout;
+}
+function viewRead(){
+  const cats = S.R.cats;
+  const lens = {any:"Any length", short:"2 min or less", mid:"3–5 min", long:"Long reads"};
+  const chips = (obj, key) => Object.entries(obj).map(([k,v]) => `<button data-${key}="${k}" class="${LIB[key]===k?"on":""}">${esc(v)}</button>`).join("");
+  const bundles = [];
+  const prio = sortReads(S.R.reads.filter(r => r.imp));
+  if (LIB.cat === "all") bundles.push({key:"prio", title:"All your purple & blue notes", ids:prio.map(r=>r.id)});
+  for (const k in cats){ if (LIB.cat !== "all" && LIB.cat !== k) continue; const ids = S.R.reads.filter(r => r.cat === k).map(r => r.id); bundles.push({key:k, title:"All of " + cats[k], ids}); }
+  const mins = ids => ids.reduce((a,id) => a + S.R.byId[id].min, 0);
+  const bundleHTML = b => `<button class="bundle" data-bundle="${b.key}"><span class="grow"><b>${esc(b.title)}</b><span class="small muted">${b.ids.length} reads in one go</span></span><span class="small muted" style="white-space:nowrap">${mins(b.ids)} min</span></button>`;
+  let listHTML;
+  if (LIB.len === "long"){
+    listHTML = `<div style="display:flex;flex-direction:column;gap:8px">${bundles.map(bundleHTML).join("")}</div>`;
+  } else {
+    const fit = r => LIB.len === "any" || (LIB.len === "short" ? r.min <= 2 : r.min >= 3 && r.min <= 5);
+    const rs = sortReads(S.R.reads.filter(r => (LIB.cat === "all" || r.cat === LIB.cat) && fit(r)));
+    const item = r => { const st = readState(r.id); return `<button class="ritem ${st?"read":""}" data-read="${r.id}"><span class="t">${r.imp ? `<i class="dot ${r.imp}"></i>` : ""}<span>${esc(r.title)}</span></span><span class="m">${r.min} min${st ? `<br><span class="done">✓</span>` : ""}</span><span class="d">${esc(r.dek)}</span></button>`; };
+    listHTML = (LIB.cat !== "all" ? bundleHTML(bundles[0]) : "") + `<div class="rlist">${rs.map(item).join("") || `<p class="muted">Nothing at this length here. Try another filter.</p>`}</div>`;
+  }
+  const nRead = S.R.reads.filter(r => readState(r.id)).length;
+  $("#view").innerHTML = `
+  <div class="wrap" style="gap:12px">
+    <div class="row"><h2 class="grow" style="font-size:22px;font-weight:800">Library</h2><span class="small muted">${nRead}/${S.R.reads.length} read</span></div>
+    <p class="small muted" style="margin:0"><i class="dot purple"></i> purple and <i class="dot blue"></i> blue notes come first, like in your notepad.</p>
+    <div class="filters" role="group" aria-label="Topic">${chips({all:"All", ...cats}, "cat")}</div>
+    <div class="filters" role="group" aria-label="Length">${chips(lens, "len")}</div>
+    ${listHTML}
+  </div>`;
+  document.querySelectorAll("[data-cat]").forEach(b => b.onclick = () => { LIB.cat = b.dataset.cat; viewRead(); });
+  document.querySelectorAll("[data-len]").forEach(b => b.onclick = () => { LIB.len = b.dataset.len; viewRead(); });
+  document.querySelectorAll("[data-read]").forEach(b => b.onclick = () => openRead([b.dataset.read]));
+  document.querySelectorAll("[data-bundle]").forEach(b => b.onclick = () => { const x = bundles.find(y => y.key === b.dataset.bundle); openRead(x.ids, x.title); });
+}
+function openRead(ids, bundleTitle){
+  const rs = ids.map(id => S.R.byId[id]), single = rs.length === 1, r = rs[0];
+  const total = rs.reduce((a,x) => a + x.min, 0);
+  const already = rs.every(x => readState(x.id)?.last === today());
+  $("#nav").hidden = true;
+  const head = single
+    ? `<div class="row">${catChip(r)}${impChip(r)}<span class="small muted">${r.min} min read</span></div><h1>${esc(r.title)}</h1>${r.dek ? `<p class="dek" style="margin:0">${esc(r.dek)}</p>` : ""}`
+    : `<div class="row"><span class="chip orange">Long read</span><span class="small muted">${rs.length} reads · ${total} min</span></div><h1>${esc(bundleTitle)}</h1>`;
+  const body = single ? md(r.md) : rs.map((x,k) => `<div class="part">${k+1} of ${rs.length}${x.imp ? ` · ${x.imp} note` : ""}</div><div class="parttitle">${esc(x.title)}</div>${md(x.md)}`).join("");
+  const checks = shuffle(rs.flatMap(x => x.checks || [])).slice(0, single ? 4 : 6);
+  const srcs = [...new Set(rs.map(x => x.src))].join(", ");
+  $("#view").innerHTML = `<div class="wrap" style="gap:14px">
+    <div class="row"><button class="back" id="rb">← Back</button></div>
+    <article class="article">${head}<div class="prose" style="margin-top:12px">${body}</div><p class="src" style="margin:0">Source: ${esc(srcs)}</p></article>
+    ${checks.length ? `<section class="checks"><span class="label">Check yourself · tap to reveal</span>${checks.map(c => `<button class="check"><b>${esc(c.q)}</b><span class="ca" hidden>${esc(c.a)}</span></button>`).join("")}</section>` : ""}
+    <button class="btn" id="mr">${already ? "Read again today" : "Mark as read"}</button>
+  </div>`;
+  document.querySelectorAll(".check").forEach(b => b.onclick = () => { b.querySelector(".ca").hidden = false; });
+  $("#rb").onclick = home;
+  $("#mr").onclick = () => { markRead(ids); $("#mr").textContent = "✓ Read"; $("#mr").disabled = true; setTimeout(home, 450); };
+  window.scrollTo(0,0);
+}
+function viewTrain(){
+  const areaRows = Object.entries(S.deck.areas).map(([k,name]) => { const s = areaStats(k); return `<button class="area" data-area="${k}"><span><b>${esc(name)}</b> <span class="small muted">${s.locked}/${s.n} locked in</span></span><span class="bar"><i style="width:${s.pct}%;background:${AREA_COL[k]}"></i></span><span>${s.pct}%</span></button>`; }).join("");
+  $("#view").innerHTML = `
+  <div class="wrap" style="gap:18px">
+    <section style="display:flex;flex-direction:column;gap:8px">
+      <span class="label">Single exercises</span>
+      <div class="ex">
+        <button class="exb" data-ex="cards"><i class="k" style="background:var(--blue)"></i><b>Flash cards</b><span class="small muted">${dueCards().length} due · ${newCards().length} new</span></button>
+        <button class="exb" data-ex="call"><i class="k" style="background:var(--orange)"></i><b>Call it</b><span class="small muted">Hit or flop? Then why</span></button>
+        <button class="exb" data-ex="pair"><i class="k" style="background:var(--orange)"></i><b>Which won?</b><span class="small muted">Same creator, two videos</span></button>
+        <button class="exb" data-ex="fix"><i class="k" style="background:var(--pink)"></i><b>Fix it</b><span class="small muted">Rewrite, Claude grades</span></button>
+        <button class="exb" data-ex="teach-zoomer"><i class="k" style="background:var(--pink)"></i><b>Teach the viewer</b><span class="small muted">Looks science, typed</span></button>
+        <button class="exb" data-ex="teach-editor"><i class="k" style="background:var(--pink)"></i><b>Teach your editor</b><span class="small muted">YouTube craft, typed</span></button>
+      </div>
+    </section>
+    <section style="display:flex;flex-direction:column;gap:4px">
+      <span class="label">Strength by area · tap to train one</span>
+      <div class="areas">${areaRows}</div>
+    </section>
+    <details class="why"><summary>Why the workout is built like this</summary>
+      <ul class="small">
+        <li><b>You answer before you see it.</b> Pulling an answer out of memory beats rereading in hundreds of studies. Your own research graded it A. Reading is still great for understanding and for fun, which is what the Read tab is for.</li>
+        <li><b>Cards come back on a schedule.</b> Spacing: easy cards wait longer, missed ones come back tomorrow. Purple and blue cards come first.</li>
+        <li><b>You call it before the reveal.</b> Guessing first, even wrong, makes the real answer stick better (pretesting).</li>
+        <li><b>You rate your confidence.</b> Mistakes you were sure about get corrected best. That's why they get a note.</li>
+        <li><b>Which won? uses one creator.</b> Comparing two cases side by side shows what actually made the difference.</li>
+        <li><b>Everything is mixed.</b> Switching creators and exercise types (interleaving) trains you to tell good from bad, not to memorise.</li>
+        <li><b>Fix it and Teach make you produce.</b> Writing the real thing with feedback is deliberate practice, and explaining to someone is one of the strongest ways to learn. Typing works.</li>
+        <li><b>No points for being right.</b> The streak rewards showing up. Rewards for results can kill the fun (Lepper; Deci, from your own notes).</li>
+      </ul>
+    </details>
+  </div>`;
+  document.querySelectorAll(".exb").forEach(b => b.onclick = () => startSingle(b.dataset.ex));
+  document.querySelectorAll(".area").forEach(b => b.onclick = () => startSingle("cards", b.dataset.area));
+}
+
+/* ---------- sessions ---------- */
+function startWorkout(){
+  const p = workoutPlan();
+  let cards = dueCards().slice(0, 8);
+  if (cards.length < 8) cards = cards.concat(newCards().slice(0, Math.min(5, 8 - cards.length)));
+  if (!cards.length) cards = shuffle(S.deck.cards.slice()).slice(0, 4);
+  const calls = pickIntros(2);
+  const items = cards.map(c => ({t:"card", id:c.id}));
+  const mains = [{t:"call", id:calls[0].id}, {t:"call", id:calls[1].id}, {t:"pair"}];
+  const q = []; let m = 0;
+  items.forEach((it, k) => { q.push(it); if ((k+1) % 3 === 0 && m < mains.length) q.push(mains[m++]); });
+  while (m < mains.length) q.push(mains[m++]);
+  q.push(p.finisher === "fix" ? {t:"fix"} : {t:"teach", who: Math.random()<.5 ? "zoomer" : "editor"});
+  run(q, "workout");
+}
+function startSingle(ex, area){
+  let q = [];
+  if (ex === "cards"){
+    let cs = dueCards(area).concat(newCards(area).slice(0, 8));
+    if (!cs.length) cs = shuffle(S.deck.cards.filter(c => !area || c.a === area)).slice(0, 8);
+    q = cs.slice(0, 12).map(c => ({t:"card", id:c.id}));
+  } else if (ex === "call") q = pickIntros(5).map(x => ({t:"call", id:x.id}));
+  else if (ex === "pair") q = [{t:"pair"},{t:"pair"},{t:"pair"}];
+  else if (ex === "fix") q = [{t:"fix"},{t:"fix"}];
+  else if (ex === "teach-zoomer") q = [{t:"teach", who:"zoomer"},{t:"teach", who:"zoomer"}];
+  else if (ex === "teach-editor") q = [{t:"teach", who:"editor"},{t:"teach", who:"editor"}];
+  run(q, ex);
+}
+function run(q, mode){ S.q = q; S.i = 0; S.mode = mode; S.results = []; S.requeued = new Set(); step(); }
+function frame(inner){
+  const prog = S.q.map((_,k) => `<i class="${k<S.i?"on":k===S.i?"cur":""}"></i>`).join("");
+  $("#view").innerHTML = `<div class="wrap" style="gap:12px"><div class="row"><button class="back" id="quit">← Rep Room</button><span class="grow"></span><span class="small muted">${S.i+1} / ${S.q.length}</span></div><div class="prog">${prog}</div>${inner}</div>`;
+  $("#quit").onclick = home;
+  $("#nav").hidden = true;
+  window.scrollTo(0,0);
+}
+function next(){ S.i++; if (S.i >= S.q.length) return finish(); step(); }
+function step(){
+  const it = S.q[S.i];
+  if (it.t === "card") return showCard(it);
+  if (it.t === "call") return showCall(S.byId[it.id]);
+  if (it.t === "pair") return showPair(it);
+  if (it.t === "fix") return showFix(it);
+  if (it.t === "teach") return showTeach(it);
+}
+
+/* ---------- flash card ---------- */
+function showCard(it){
+  const c = S.deck.cards.find(x => x.id === it.id), st = cardState(c.id);
+  const tagNew = (c.imp ? impChip(c) : "") + (!st ? `<span class="chip orange">new</span>` : st.l ? `<span class="chip red">missed ${st.l}×</span>` : "");
+  frame(`<div class="card">
+    <div class="row"><span class="chip" style="color:${AREA_COL[c.a]}">${esc(S.deck.areas[c.a])}</span>${tagNew}</div>
+    <div class="q">${esc(c.q)}</div>
+    <textarea id="try" placeholder="Say it in your head, or type it. Typing makes it stick a bit better." aria-label="Your answer"></textarea>
+    <button class="btn" id="show">Show answer</button>
+    <div id="after" hidden>
+      <div class="ans">${esc(c.a2)}</div>
+      <div class="src" style="margin:6px 0 12px">From: ${esc(c.src)}</div>
+      <span class="label">How well did you know it?</span>
+      <div class="grades" style="margin-top:6px">
+        <button class="g0" data-g="0">Missed<small>again soon</small></button>
+        <button data-g="1">Shaky<small>tomorrow</small></button>
+        <button data-g="2">Got it<small>later</small></button>
+        <button class="g3" data-g="3">Easy<small>much later</small></button>
+      </div>
+    </div></div>`);
+  $("#show").onclick = () => { $("#after").hidden = false; $("#show").hidden = true; };
+  document.querySelectorAll(".grades button").forEach(b => b.onclick = () => {
+    const g = +b.dataset.g; gradeCard(c.id, g);
+    if (g === 0 && !S.requeued.has(c.id)){ S.requeued.add(c.id); S.q.push({t:"card", id:c.id}); }
+    rep("card", {id:c.id, g}); next();
+  });
+}
+
+/* ---------- call it ---------- */
+function introBlock(x, compact){
+  return `<img class="thumb" src="data/thumbs/${esc(x.id)}.jpg" alt="Thumbnail: ${esc(x.thumbDesc||x.title)}" loading="lazy">
+    <div><div class="small muted">${esc(x.chName)}${x.date ? " · " + esc(x.date.slice(0,4)) : ""}</div><div class="vt">${esc(x.title)}</div></div>
+    <div class="opening"><span class="label">First ~30 seconds</span>${esc(compact ? x.opening.split(" ").slice(0,55).join(" ")+" …" : x.opening)}</div>`;
+}
+function codeChips(x){
+  return Object.entries(x.codes||{}).filter(([k,v]) => CODE_NAMES[k] && v >= 0.5).map(([k,v]) => `<span class="chip ${BAD_CODES.has(k)?"red":""}">${CODE_NAMES[k]}${v<1?" (partly)":""}</span>`).join("") || `<span class="small muted">No standout patterns coded.</span>`;
+}
+function confRow(){ return `<span class="label">How sure?</span><div class="conf" id="conf"><button data-c="0">Guess</button><button data-c="1" class="sel">Pretty sure</button><button data-c="2">Certain</button></div>`; }
+function bindConf(){ let c = 1; document.querySelectorAll("#conf button").forEach(b => b.onclick = () => { c = +b.dataset.c; document.querySelectorAll("#conf button").forEach(x => x.classList.toggle("sel", x===b)); }); return () => c; }
+function showCall(x){
+  frame(`<div class="card">
+    <div class="row"><span class="chip orange">Call it</span><span class="small muted">Did this beat ${esc(x.chName)}'s normal, or flop?</span></div>
+    ${introBlock(x)}
+    <div class="pick" id="pick"><button data-p="hit" class="hit">Hit</button><button data-p="flop" class="flop">Flop</button></div>
+    ${confRow()}
+    <input class="why1" id="why" placeholder="Why? One line (optional, but it helps)" aria-label="Why">
+    <button class="btn" id="rev" disabled>Reveal</button>
+    <div id="out"></div></div>`);
+  let p = null; const getC = bindConf();
+  document.querySelectorAll("#pick button").forEach(b => b.onclick = () => { p = b.dataset.p; document.querySelectorAll("#pick button").forEach(y => y.classList.toggle("sel", y===b)); $("#rev").disabled = false; });
+  $("#rev").onclick = () => {
+    const c = getC(), ok = p === x.role;
+    S.st.calls.push({id:x.id, p, c, ok:ok?1:0, d:today()}); if (S.st.calls.length > 400) S.st.calls.shift();
+    rep("call", {ok, c});
+    document.querySelectorAll("#pick button,#conf button,#rev,#why").forEach(el => el.disabled = true);
+    const why = $("#why").value.trim();
+    $("#out").innerHTML = `<div style="display:flex;flex-direction:column;gap:12px">
+      <div class="verdict"><span class="big ${x.role}">${x.score}×</span><span><b>${x.role === "hit" ? "HIT" : "FLOP"}</b> <span class="muted">vs this channel's normal${x.views ? " · " + fmtViews(x.views) + " views" : ""}</span></span></div>
+      <div class="note ${ok ? "blue" : "red"}">${ok ? (c===0 ? "Right, and you only guessed. Read why so next time it's not luck." : "You called it.") : (c===2 ? "You were certain and wrong. This is the one to remember." : "Missed it. Look at what decided it:")}</div>
+      ${why ? `<div class="small"><span class="label">Your why</span><br>${esc(why)}</div>` : ""}
+      <div><span class="label">What decided it</span><div class="lesson">${esc(x.lesson)}</div></div>
+      ${x.read ? `<div class="small muted">${esc(x.read)}</div>` : ""}
+      <div><span class="label">Patterns found in the intro + thumbnail</span><div class="codes" style="margin-top:6px">${codeChips(x)}</div></div>
+      <button class="btn" id="nx">Next</button></div>`;
+    $("#nx").onclick = next; $("#nx").scrollIntoView({behavior:"smooth", block:"nearest"});
+  };
+}
+function fmtViews(v){ return v >= 1e6 ? (v/1e6).toFixed(1).replace(".0","")+"M" : v >= 1e3 ? Math.round(v/1e3)+"K" : String(v); }
+function showPair(it){
+  if (!it.a){ const [a,b] = pickPair(); it.a = a.id; it.b = b.id; }
+  const A = S.byId[it.a], B = S.byId[it.b];
+  frame(`<div class="card">
+    <div class="row"><span class="chip orange">Which won?</span><span class="small muted">Both by ${esc(A.chName)}. One beat the channel's normal, one flopped.</span></div>
+    <div class="pair"><div class="side">${introBlock(A,true)}</div><div class="side">${introBlock(B,true)}</div></div>
+    <div class="pick" id="pick"><button data-p="a" class="any">Left won</button><button data-p="b" class="any">Right won</button></div>
+    ${confRow()}
+    <input class="why1" id="why" placeholder="What's the difference? One line" aria-label="What's the difference">
+    <button class="btn" id="rev" disabled>Reveal</button>
+    <div id="out"></div></div>`);
+  let p = null; const getC = bindConf();
+  document.querySelectorAll("#pick button").forEach(b => b.onclick = () => { p = b.dataset.p; document.querySelectorAll("#pick button").forEach(y => y.classList.toggle("sel", y===b)); $("#rev").disabled = false; });
+  $("#rev").onclick = () => {
+    const c = getC(), win = A.role === "hit" ? "a" : "b", ok = p === win;
+    S.st.calls.push({id:A.id+"|"+B.id, p, c, ok:ok?1:0, d:today(), pair:1}); if (S.st.calls.length > 400) S.st.calls.shift();
+    rep("pair", {ok, c});
+    document.querySelectorAll("#pick button,#conf button,#rev,#why").forEach(el => el.disabled = true);
+    const side = (x, label) => `<div style="display:flex;flex-direction:column;gap:6px;min-width:0"><div class="verdict"><span class="big ${x.role}" style="font-size:26px">${x.score}×</span><span class="small"><b>${label}</b> ${x.role==="hit"?"won":"flopped"}</span></div><div class="lesson" style="font-size:14px">${esc(x.lesson)}</div><div class="codes">${codeChips(x)}</div></div>`;
+    $("#out").innerHTML = `<div style="display:flex;flex-direction:column;gap:12px">
+      <div class="note ${ok?"blue":"red"}">${ok ? "Right. Now check whether your reason matches." : (c===2 ? "You were certain and wrong. Compare the two lessons closely." : "Not this time. The difference is below.")}</div>
+      <div class="pair">${side(A,"Left")}${side(B,"Right")}</div>
+      <button class="btn" id="nx">Next</button></div>`;
+    $("#nx").onclick = next;
+  };
+}
+
+/* ---------- Claude grading ---------- */
+const VOICE = "Juliyan is 18 and runs the YouTube channel Grow With Juliyan (science-based, healthy attractiveness for young men; core values: help the viewer, build community, never trade trust for views). Be direct and specific, short, casual, no fluff, no praise padding.";
+async function ask(prompt){
+  if (!S.sample) throw {code:"unavailable"};
+  return S.sample.json(prompt, {modelTier:"quick", cache:false});
+}
+function errCopy(e){
+  const c = e && e.code;
+  if (!window.claude) return "Claude grades this in the claude.ai version. In the app, compare with the model answer yourself.";
+  if (c === "not_granted" || c === "sampling_disabled" || c === "unavailable") return "Claude grading isn't available here, so compare with the model answer yourself.";
+  if (c === "rate_limited") return "Claude is busy for a moment. Compare with the model answer, or try again in a minute.";
+  return "That didn't come back. Compare with the model answer, or try again.";
+}
+function gradeHTML(g, extra){
+  const li = a => (a||[]).filter(Boolean).map(s => `<li>${esc(s)}</li>`).join("");
+  return `<div class="grade">
+    <div class="row"><span class="score" style="color:${g.score>=7?"var(--blue)":g.score>=4?"var(--orange)":"var(--red)"}">${Math.max(0,Math.min(10,+g.score||0))}/10</span><span class="grow"><b>${esc(g.verdict||"")}</b></span></div>
+    ${li(g.good||g.landed) ? `<div><span class="label">Landed</span><ul>${li(g.good||g.landed)}</ul></div>` : ""}
+    ${li(g.wrong) ? `<div><span class="label" style="color:var(--red)">Not true</span><ul>${li(g.wrong)}</ul></div>` : ""}
+    ${li(g.fix||g.missing) ? `<div><span class="label">Missing / fix</span><ul>${li(g.fix||g.missing)}</ul></div>` : ""}
+    ${g.better ? `<div><span class="label">Your answer, sharpened</span><div class="ans" style="margin-top:4px">${esc(g.better)}</div></div>` : ""}
+    ${extra||""}</div>`;
+}
+
+/* ---------- fix it ---------- */
+function showFix(it){
+  const f = it.id ? S.deck.fix.find(x => x.id === it.id) : pickLeast(S.deck.fix, S.st.fixes); it.id = f.id;
+  frame(`<div class="card">
+    <div class="row"><span class="chip pink">Fix it · ${esc(f.kind)}</span>${S.st.fixes[f.id] ? `<span class="small muted">best ${S.st.fixes[f.id].best}/10</span>` : ""}</div>
+    <div class="bad">${esc(f.bad)}</div>
+    <div class="q" style="font-size:17px">${esc(f.task)}</div>
+    <ul class="rules">${f.rules.map(r => `<li>${esc(r)}</li>`).join("")}</ul>
+    <textarea id="txt" placeholder="Write your version" aria-label="Your rewrite"></textarea>
+    <div class="row"><button class="btn grow" id="chk">Check with Claude</button><button class="btn ghost" id="mdl">Model answer</button></div>
+    <div id="out"></div></div>`);
+  if (!window.claude) $("#chk").textContent = "Check";
+  const done = (score) => { const r = S.st.fixes[f.id] || {best:0,n:0}; r.n++; r.best = Math.max(r.best, score); S.st.fixes[f.id] = r; rep("fix", {score}); };
+  const showModel = (self) => {
+    $("#mdl").disabled = true;
+    $("#out").insertAdjacentHTML("beforeend", `<div style="display:flex;flex-direction:column;gap:10px;margin-top:12px"><span class="label">One good answer</span><div class="ans">${esc(f.model)}</div>
+      ${self ? `<span class="label">How close were you?</span><div class="grades"><button data-s="2">Far</button><button data-s="5">Close-ish</button><button data-s="8">Close</button><button data-s="10" class="g3">Better</button></div>` : `<button class="btn" id="nx">Next</button>`}</div>`);
+    if (self) document.querySelectorAll("#out .grades button").forEach(b => b.onclick = () => { done(+b.dataset.s); next(); });
+    else $("#nx").onclick = next;
+  };
+  $("#mdl").onclick = () => { $("#chk").disabled = true; showModel(true); };
+  $("#chk").onclick = async () => {
+    const ans = $("#txt").value.trim(); if (!ans){ $("#txt").focus(); return; }
+    $("#chk").disabled = true; $("#mdl").disabled = true; $("#txt").readOnly = true;
+    $("#out").innerHTML = `<p class="thinking">Claude is reading it…</p>`;
+    const prompt = `${VOICE}\n\nGrade his rewrite in a writing drill.\nTask: ${f.task}\nWeak original:\n"""${f.bad}"""\nRules to check:\n- ${f.rules.join("\n- ")}\nOne reference answer (others can be better, never require matching it):\n"""${f.model}"""\nHis answer:\n"""${ans}"""\n\nAlso flag any factual claim that isn't true. Reply with only JSON: {"score": integer 0-10 (7+ only if every rule is met; 0 if empty or off-task), "verdict": "one short sentence", "good": ["up to 2 short points"], "fix": ["up to 2 short points, each naming the rule"], "wrong": ["false claims, or empty"], "better": "his answer improved: keep his idea and casual voice, 1-3 sentences"}`;
+    try {
+      const g = await ask(prompt);
+      $("#out").innerHTML = gradeHTML(g);
+      done(Math.max(0, Math.min(10, +g.score || 0)));
+      showModel(false);
+    } catch (e){
+      $("#out").innerHTML = `<p class="small muted">${esc(errCopy(e))}</p>`;
+      showModel(true);
+    }
+  };
+}
+
+/* ---------- teach ---------- */
+function showTeach(it){
+  const pool = S.deck.teach.filter(t => t.who === it.who);
+  const t = it.id ? S.deck.teach.find(x => x.id === it.id) : pickLeast(pool, S.st.teach); it.id = t.id;
+  const zoomer = t.who === "zoomer";
+  const who = zoomer ? "an 18-year-old guy who watches your channel" : "a new editor who just joined your team";
+  const img = zoomer ? "data/img/zoomer.png" : "data/img/editor.png";
+  frame(`<div class="card">
+    <div class="row"><span class="chip pink">Teach · ${zoomer ? "your viewer" : "your editor"}</span>${S.st.teach[t.id] ? `<span class="small muted">best ${S.st.teach[t.id].best}/10</span>` : ""}</div>
+    <div class="convo" id="convo"><div class="bubble"><img src="${img}" alt=""><div class="say">${esc(t.q)}</div></div></div>
+    <textarea id="txt" placeholder="Explain it to him like you would in a DM. Simple words, no notes." aria-label="Your explanation"></textarea>
+    <div class="row"><button class="btn grow" id="send">Send</button><button class="btn ghost" id="pts">Key points</button></div>
+    <div id="out"></div></div>`);
+  const convo = $("#convo");
+  const done = (score) => { const r = S.st.teach[t.id] || {best:0,n:0}; r.n++; r.best = Math.max(r.best, score); S.st.teach[t.id] = r; rep("teach", {score}); };
+  const keyPts = `<div><span class="label">A full answer covers</span><ul class="rules" style="margin-top:4px">${t.points.map(p => `<li>${esc(p)}</li>`).join("")}</ul></div>`;
+  const selfCheck = (msg) => {
+    $("#out").innerHTML = `<div class="grade">${msg ? `<p class="small muted" style="margin:0">${esc(msg)}</p>` : ""}${keyPts}<span class="label">How many did you cover?</span><div class="grades"><button data-s="2">Few</button><button data-s="5">Half</button><button data-s="8">Most</button><button data-s="10" class="g3">All</button></div></div>`;
+    document.querySelectorAll("#out .grades button").forEach(b => b.onclick = () => { done(+b.dataset.s); next(); });
+  };
+  $("#pts").onclick = () => { $("#send").disabled = true; $("#pts").disabled = true; selfCheck(); };
+  $("#send").onclick = async () => {
+    const ans = $("#txt").value.trim(); if (!ans){ $("#txt").focus(); return; }
+    convo.insertAdjacentHTML("beforeend", `<div class="me">${esc(ans)}</div>`);
+    $("#txt").value = ""; $("#txt").hidden = true; $("#send").disabled = true; $("#pts").disabled = true;
+    $("#out").innerHTML = `<p class="thinking">${zoomer ? "he's reading it…" : "your editor is reading it…"}</p>`;
+    const prompt = `${VOICE}\n\nJuliyan is practising explaining things. He is explaining to ${who}, who asked: "${t.q}"\nKey points a full answer covers (the facts here are checked; he doesn't need the same wording or every point):\n- ${t.points.join("\n- ")}\nHis explanation:\n"""${ans}"""\n\nJudge: is it correct (flag anything false or overclaimed), simple enough for an 18-year-old, and does it cover the key points? Reply with only JSON: {"score": integer 0-10, "verdict": "one short sentence", "landed": ["up to 3 short points he got right"], "missing": ["key points he left out, short"], "wrong": ["false or overclaimed statements, or empty"], "followup": "one short follow-up question the learner would now ask, in their voice${zoomer ? " (lowercase, texting style)" : ""}, that makes Juliyan explain the WHY one level deeper"}`;
+    try {
+      const g = await ask(prompt);
+      const score = Math.max(0, Math.min(10, +g.score || 0));
+      $("#out").innerHTML = gradeHTML(g, `<details><summary class="small" style="cursor:pointer;font-weight:700">Key points</summary>${keyPts}</details>`);
+      if (g.followup){
+        convo.insertAdjacentHTML("beforeend", `<div class="bubble"><img src="${zoomer ? "data/img/zoomer_confused.png" : img}" alt=""><div class="say">${esc(g.followup)}</div></div>`);
+        $("#out").insertAdjacentHTML("beforeend", `<div style="display:flex;flex-direction:column;gap:8px;margin-top:12px"><textarea id="txt2" placeholder="Answer the follow-up" aria-label="Your follow-up answer"></textarea><div class="row"><button class="btn grow" id="send2">Answer</button><button class="btn ghost" id="skip">Skip</button></div><div id="out2"></div></div>`);
+        $("#skip").onclick = () => { done(score); next(); };
+        $("#send2").onclick = async () => {
+          const a2 = $("#txt2").value.trim(); if (!a2){ $("#txt2").focus(); return; }
+          convo.insertAdjacentHTML("beforeend", `<div class="me">${esc(a2)}</div>`);
+          $("#send2").disabled = true; $("#skip").disabled = true; $("#txt2").readOnly = true;
+          $("#out2").innerHTML = `<p class="thinking">…</p>`;
+          try {
+            const r = await ask(`${VOICE}\n\nJuliyan explained "${t.q}" to ${who}. The learner then asked: "${g.followup}"\nHis answer:\n"""${a2}"""\nChecked facts for reference:\n- ${t.points.join("\n- ")}\n\nReply with only JSON: {"ok": true or false (did he answer it correctly and simply), "reply": "2-3 sentences: what was right or wrong, then the correct short answer in his casual voice"}`);
+            $("#out2").innerHTML = `<div class="note ${r.ok ? "blue" : "red"}">${r.ok ? "Nailed the follow-up." : "Not quite."}</div><div class="ans" style="margin-top:6px">${esc(r.reply||"")}</div><button class="btn" id="nx" style="margin-top:10px">Next</button>`;
+            done(Math.min(10, score + (r.ok ? 1 : 0)));
+          } catch (e){
+            $("#out2").innerHTML = `<p class="small muted">${esc(errCopy(e))}</p><button class="btn" id="nx">Next</button>`; done(score);
+          }
+          $("#nx").onclick = next;
+        };
+      } else {
+        $("#out").insertAdjacentHTML("beforeend", `<button class="btn" id="nx" style="margin-top:10px">Next</button>`); done(score); $("#nx").onclick = next;
+      }
+    } catch (e){
+      selfCheck(errCopy(e));
+    }
+  };
+}
+
+/* ---------- finish ---------- */
+function finish(){
+  if (S.mode === "workout") S.st.wdone = today();
+  persist();
+  const r = S.results;
+  const cards = r.filter(x => x.kind === "card"), calls = r.filter(x => x.kind === "call" || x.kind === "pair");
+  const missed = [...new Set(cards.filter(x => x.g === 0).map(x => x.id))].map(id => S.deck.cards.find(c => c.id === id));
+  const scored = r.filter(x => x.kind === "fix" || x.kind === "teach");
+  const sureWrong = calls.filter(x => !x.ok && x.c === 2).length;
+  $("#view").innerHTML = `<div class="wrap end" style="gap:16px">
+    <div class="card" style="align-items:flex-start">
+      <img src="data/img/${S.mode === "workout" ? "chad" : "zoomer_happy"}.png" alt="" style="width:110px">
+      <h2>${S.mode === "workout" ? "Workout done." : "Set done."}</h2>
+      <p class="note pink" style="margin:0">${S.st.streak.cur} day${S.st.streak.cur===1?"":"s"} in a row. Every rep is the rewiring.</p>
+      <div class="tally" style="width:100%">
+        <div class="stat"><b>${r.length}</b><span class="small muted">reps</span></div>
+        <div class="stat"><b>${cards.length ? cards.filter(x=>x.g>=2).length+"/"+cards.length : "–"}</b><span class="small muted">cards recalled</span></div>
+        <div class="stat"><b>${calls.length ? calls.filter(x=>x.ok).length+"/"+calls.length : "–"}</b><span class="small muted">calls right</span></div>
+        <div class="stat"><b>${scored.length ? Math.round(scored.reduce((a,x)=>a+x.score,0)/scored.length)+"/10" : "–"}</b><span class="small muted">writing score</span></div>
+      </div>
+      ${sureWrong ? `<p class="small" style="margin:0"><b>${sureWrong} call${sureWrong>1?"s":""} you were certain about went wrong.</b> Those are the ones your brain fixes fastest.</p>` : ""}
+      ${missed.length ? `<div style="width:100%"><span class="label">Coming back tomorrow</span><ul class="small" style="margin:6px 0 0;padding-left:18px">${missed.map(c => `<li>${esc(c.q)}</li>`).join("")}</ul></div>` : ""}
+      <button class="btn" id="home">Back to Rep Room</button>
+    </div></div>`;
+  $("#home").onclick = home; $("#nav").hidden = true; window.scrollTo(0,0);
+}
+
+/* ---------- boot ---------- */
+async function boot(){
+  S.st = Object.assign(blankState(), loadLocal() || {});
+  try {
+    const [deck, intros, reads] = await Promise.all(["data/deck.json","data/intros.json","data/reads.json"].map(u => fetch(u).then(r => r.json())));
+    S.deck = deck; S.intros = intros; for (const x of intros) S.byId[x.id] = x;
+    S.R = { cats: reads.cats, reads: reads.reads, byId: {} }; for (const r of reads.reads) S.R.byId[r.id] = r;
+  } catch {
+    $("#view").innerHTML = `<p>The deck didn't load. Reload the page to try again.</p>`; return;
+  }
+  document.querySelectorAll("#nav button").forEach(b => b.onclick = () => go(b.dataset.tab));
+  const h = (location.hash || "").slice(1);
+  go(["today","read","train"].includes(h) ? h : "today");
+  connect();
+}
+boot();
+})();
+</script>
+<script>
+if ("serviceWorker" in navigator) addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));
+</script>
+</body>
+</html>
