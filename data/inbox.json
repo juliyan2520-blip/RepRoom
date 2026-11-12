@@ -1,0 +1,545 @@
+{
+ "updated": "2026-11-12",
+ "cats": {
+  "yt": "YouTube",
+  "craft": "Craft",
+  "mind": "Mind",
+  "money": "Money",
+  "looks": "Looks"
+ },
+ "creators": [
+  {
+   "id": "mastroianni",
+   "name": "Adam Mastroianni",
+   "by": "Experimental History",
+   "topic": "Psychology & science",
+   "freq": "Weekly",
+   "color": "violet",
+   "score": 9.0,
+   "signal": 9,
+   "fit": 8,
+   "sales": 2,
+   "verdict": "keep",
+   "why": "The best thinker in your inbox. A psychologist who shows how studies fail, in funny, sharp writing. Every issue makes you better at judging the evidence your channel is built on.",
+   "best": "We need more goat sacrifices: most big programs meant to change people have zero measured effect, and one-off studies are worth little.",
+   "watch": "Long reads (15+ min). Save them for the weekend."
+  },
+  {
+   "id": "ed",
+   "name": "Ed Lawrence",
+   "by": "Film Booth + Story OS",
+   "topic": "YouTube & business",
+   "freq": "2-3 a week",
+   "color": "orange",
+   "score": 7.5,
+   "signal": 8,
+   "fit": 6,
+   "sales": 6,
+   "verdict": "keep",
+   "why": "Real numbers from someone who has made millions on YouTube: views vs money, ideation, scripts, pivots. Written for coaches who sell courses, so half of it is about funnels you don't have yet.",
+   "best": "100 nuggets of YouTube wisdom: the list he wishes he'd had in 2019.",
+   "watch": "Two sender addresses (film-booth.com and story-os.ai) = double the emails. Every P.S. sells Story OS."
+  },
+  {
+   "id": "tubelab",
+   "name": "Antonio",
+   "by": "TubeLab",
+   "topic": "Niches, formats, hooks",
+   "freq": "Weekly + promos",
+   "color": "blue",
+   "score": 7.0,
+   "signal": 7,
+   "fit": 6,
+   "sales": 7,
+   "verdict": "keep",
+   "why": "A weekly digest of what's over-performing: title formats, hooks pulled from outliers, thumbnail styles, and a 'twist' for each niche. The niches are rarely yours, but the patterns transfer.",
+   "best": "6 thumbnails that work in any niche: Downfall and Comparison grids pulled from outlier videos.",
+   "watch": "It exists to sell the TubeLab tool. Skip the 'welcome' and 'last day for your code' emails."
+  },
+  {
+   "id": "rystal",
+   "name": "rystal",
+   "by": "rystaledits",
+   "topic": "Editing in DaVinci",
+   "freq": "Daily course (Aug)",
+   "color": "pink",
+   "score": 6.5,
+   "signal": 7,
+   "fit": 7,
+   "sales": 4,
+   "verdict": "keep",
+   "why": "Short emails, one idea each, all about getting better at Resolve and Fusion. The taste + 15-minute loop is exactly the kind of small daily rep you like.",
+   "best": "stop being bad at editing: taste is the bottleneck, not your PC.",
+   "watch": "The 30-day course ended in September. Now it's mostly TypeFlow update emails."
+  },
+  {
+   "id": "marcus",
+   "name": "Marcus Jones",
+   "by": "Grow Your Gaming Channel",
+   "topic": "Mindset + YouTube",
+   "freq": "Saturdays",
+   "color": "ink",
+   "score": 5.0,
+   "signal": 5,
+   "fit": 4,
+   "sales": 3,
+   "verdict": "skim",
+   "why": "Friendly Saturday essays on motivation and follow-through. Mostly ideas you already know from books (room for error, tribes, crabs in a bucket). Aimed at gaming creators.",
+   "best": "Some life-changing ideas for ya: tribes, learning from other fields, room for error.",
+   "watch": "Comes as HTML only, so it often looks empty in previews."
+  },
+  {
+   "id": "tilbury",
+   "name": "Mark Tilbury",
+   "by": "Newsletter",
+   "topic": "Money basics",
+   "freq": "Rare",
+   "color": "ink",
+   "score": 4.5,
+   "signal": 4,
+   "fit": 3,
+   "sales": 3,
+   "verdict": "skim",
+   "why": "Kind, simple money basics (start now, time is the scarce thing, don't only sell hours). Nothing you'll act on this year.",
+   "best": "What rich people figured out about time: the 86,400-seconds idea.",
+   "watch": "Only a few emails a year."
+  },
+  {
+   "id": "chic",
+   "name": "chicgirlmoment",
+   "by": "Substack",
+   "topic": "Lifestyle, focus",
+   "freq": "3 a week",
+   "color": "pink",
+   "score": 4.0,
+   "signal": 4,
+   "fit": 2,
+   "sales": 2,
+   "verdict": "cut",
+   "why": "Opinions and personal observations, no sources, written for young women. One good idea (park what fascinates you on a list) per many emails.",
+   "best": "12 ways to ruin your brain: multitasking two thinking tasks, phone first and last thing, bed as an office.",
+   "watch": "Half of each post is paywalled."
+  },
+  {
+   "id": "lml",
+   "name": "Love Made Logical",
+   "by": "beehiiv",
+   "topic": "Dating & looks",
+   "freq": "Dormant since May 2025",
+   "color": "red",
+   "score": 3.0,
+   "signal": 3,
+   "fit": 5,
+   "sales": 9,
+   "verdict": "cut",
+   "why": "Ads written to look like a newsletter. Worth keeping one as a case study: it's a textbook looks-niche affiliate funnel (celebrity hairline → Norwood scale → personal story → discount code).",
+   "best": "Have you seen Tom Cruise lately?: a minoxidil + derma-pen ad.",
+   "watch": "Overclaims what minoxidil can do. See the deep dive."
+  },
+  {
+   "id": "builders",
+   "name": "The Builders",
+   "by": "Kaleidoscope / Walter Isaacson",
+   "topic": "Founders, podcasts",
+   "freq": "Weekly",
+   "color": "ink",
+   "score": 3.0,
+   "signal": 2,
+   "fit": 2,
+   "sales": 5,
+   "verdict": "cut",
+   "why": "Just promos for podcast episodes. Watch the episodes on YouTube if a guest interests you.",
+   "best": "Alex Karp on the surveillance state.",
+   "watch": ""
+  },
+  {
+   "id": "hamza",
+   "name": "Hamza Ahmed",
+   "by": "Newsletter",
+   "topic": "Self-improvement",
+   "freq": "Dead since 2023",
+   "color": "ink",
+   "score": 2.0,
+   "signal": 2,
+   "fit": 3,
+   "sales": 6,
+   "verdict": "cut",
+   "why": "Last email was 2023, a teaser for a video. Nothing left to read.",
+   "best": "Any plans this weekend?",
+   "watch": ""
+  },
+  {
+   "id": "sales",
+   "name": "Editing shops",
+   "by": "Video Editor Studio, sh4rk, European Filmmaker, X-Session, Creative Herd",
+   "topic": "Packs & plugins",
+   "freq": "Almost daily",
+   "color": "red",
+   "score": 1.5,
+   "signal": 1,
+   "fit": 2,
+   "sales": 10,
+   "verdict": "cut",
+   "why": "Pure sales: discounts, launches, 'last 48 hours'. Unsubscribing would remove about a third of your creator mail.",
+   "best": "(none worth reading)",
+   "watch": ""
+  }
+ ],
+ "ideas": [
+  {
+   "id": "flywheel",
+   "cat": "yt",
+   "kind": "checked",
+   "title": "Build a flywheel, not a launch",
+   "body": "Big results come from many small pushes on one loop, each turn feeding the next (Jim Collins). Ed's version: every video promotes something, the email list grows, money funds better videos.",
+   "use": "Your loop: honest test video → right viewers → their comments → better ideas and proof → next video. Upload rhythm is the push.",
+   "deep": "flywheel",
+   "star": true,
+   "from": "ed"
+  },
+  {
+   "id": "freeversion",
+   "cat": "money",
+   "kind": "claim",
+   "title": "Give away the free version of your system",
+   "body": "Ed put his paid program's basic version in one video ('$0 to $1M, step by step'): 1-3 simple actions per step, then a call to action. He says it made $240k in 90 days. His mistake: he mentioned his email list at minute 19 instead of the first 90 seconds.",
+   "use": "Your version later: 'My whole glow-up system in one video'. It works as a binge video now and a funnel once you sell something.",
+   "deep": "buyers",
+   "from": "ed"
+  },
+  {
+   "id": "viewsvsmoney",
+   "cat": "money",
+   "kind": "claim",
+   "title": "Same views, 20x the money",
+   "body": "Ed tracked 198 channels: the top 25% of earners got about the same views per video as the bottom 25% but made ~20x more per view. They make content for buyers and have an offer that's hard to refuse.",
+   "use": "Not for now. When sponsors come: one product that solves the same problem as the video beats random deals.",
+   "deep": "buyers",
+   "from": "ed"
+  },
+  {
+   "id": "niche45",
+   "cat": "yt",
+   "kind": "claim",
+   "title": "'Self-improvement' searches are down 45%",
+   "body": "Ed looked at 44 course-creator niches: 42 shrank since 2023. Self-improvement -45%, investing -43%. YouTube as a whole is growing.",
+   "use": "A reason to stay specific (looks, skin, debloat with science) and not drift into general 'improve your life' videos.",
+   "from": "ed"
+  },
+  {
+   "id": "twist",
+   "cat": "yt",
+   "kind": "opinion",
+   "title": "The twist: same format, new audience",
+   "body": "Every TubeLab niche ends with a 'twist': take a format that's working and move it to another country, age or room. 'Why orcas fear…' was flooded in English. A French channel did it early and got 1.1M views in 24 days.",
+   "use": "Steal the shape, keep your science: 'X grooming rules Korean men follow (and which ones the research backs)'.",
+   "from": "tubelab"
+  },
+  {
+   "id": "hooks3",
+   "cat": "craft",
+   "kind": "opinion",
+   "title": "3 hooks that keep showing up in outliers",
+   "body": "Cold open (one person, a name, a number, then the twist). 'You' scenario (put the viewer in a moment they know too well; strongest for money, health, fitness). Bold claim (one sentence that sounds wrong, the video proves it).",
+   "use": "Your Intro Lab already measured that promise-first openings win. See the deep dive for gum-video versions of each.",
+   "deep": "hooks",
+   "star": true,
+   "from": "tubelab"
+  },
+  {
+   "id": "finish",
+   "cat": "craft",
+   "kind": "claim",
+   "title": "'Finish this sentence…'",
+   "body": "An outlier that did 10x its channel average opened with: 'Finish this sentence. I'll finally be happy when…' It makes the viewer answer in their head in the first second.",
+   "use": "'Finish this sentence: I'd look better if my ___ was different.' Then make the video about the most common answer.",
+   "from": "tubelab"
+  },
+  {
+   "id": "villain",
+   "cat": "yt",
+   "kind": "claim",
+   "title": "The villain is your inner voice",
+   "body": "A self-improvement cartoon channel makes wordless animated shorts where the bad guy is the viewer's own inner voice. TubeLab estimates ~6M views across 13 videos.",
+   "use": "You already have wojaks. An 'inner voice' wojak arguing with you on screen is a cheap way to show temptation (skipping skincare, junk food).",
+   "from": "tubelab"
+  },
+  {
+   "id": "steal",
+   "cat": "craft",
+   "kind": "opinion",
+   "title": "Steal concepts, not work",
+   "body": "rystal says 99% of his ideas are copied concepts: the timing, the easing, the way a title reveals. Surround yourself with work you love, take it apart, then mash several stolen pieces together with your own twist.",
+   "use": "Keep a 'steal file' folder: 10-second clips of moves you love, each with one line on what makes it work.",
+   "deep": "taste",
+   "from": "rystal"
+  },
+  {
+   "id": "taste",
+   "cat": "craft",
+   "kind": "opinion",
+   "title": "Taste is the bottleneck, not your PC",
+   "body": "You can't edit better than what you've seen. Find one editor whose work embarrasses you, frame-step it, replay a moment 25 times, then spend just 15 minutes in Resolve making something.",
+   "use": "A 15-minute daily rep that fits your Life OS. Four-week plan in the deep dive.",
+   "deep": "taste",
+   "star": true,
+   "from": "rystal"
+  },
+  {
+   "id": "script2w",
+   "cat": "craft",
+   "kind": "opinion",
+   "title": "Leave the script for 2 weeks",
+   "body": "Write it, forget it, then edit. You won't remember what you meant, so the weak parts jump out. He also says editing a script should take longer than writing it.",
+   "use": "Works with your idea bank: script video N+2 while filming video N, so every script gets a cold read.",
+   "from": "ed"
+  },
+  {
+   "id": "ideation",
+   "cat": "yt",
+   "kind": "opinion",
+   "title": "10x more time on ideas than you think",
+   "body": "From Ed's 100 nuggets: spend far more time on ideation, do titles and thumbnails first, make several thumbnails, use the community tab to test ideas, and views per video matter more than subscribers.",
+   "use": "Matches your packaging-review skill: no script until the title and thumbnail pass.",
+   "from": "ed"
+  },
+  {
+   "id": "buddy",
+   "cat": "yt",
+   "kind": "opinion",
+   "title": "Buddy up with a creator your size",
+   "body": "Meet one creator at a similar level every 2-4 weeks. Share what's working, fix each other's problems. He says this beat anything the internet taught him.",
+   "use": "One call a month with a looks or self-improvement creator around your size. Swap thumbnails before posting.",
+   "from": "ed"
+  },
+  {
+   "id": "evolve",
+   "cat": "mind",
+   "kind": "opinion",
+   "title": "Your viewers grow up with you",
+   "body": "Charlie from Charisma on Command (7M subs) is pivoting after 10 years because he's outgrown his topic. His point: long-time viewers changed too, so many want the new topic more. Ed saw the same when he left Film Booth's old topic.",
+   "use": "When you move to the Netherlands and uni, your audience can come along. Don't force topics you've outgrown, viewers can tell.",
+   "from": "ed"
+  },
+  {
+   "id": "ironlaw",
+   "cat": "mind",
+   "kind": "checked",
+   "title": "The Iron Law: most interventions do nothing",
+   "body": "Sociologist Peter Rossi (1987): the expected effect of a big social program is zero, and the better the evaluation, the more likely it finds nothing. Laptops for every child in Peru: a 10-year trial of 531 schools found no effect on grades.",
+   "use": "Your channel's edge is saying 'this doesn't work' honestly. Tiny tricks promising big changes (mewing, gum, cold water) need big evidence.",
+   "deep": "studies",
+   "star": true,
+   "from": "mastroianni"
+  },
+  {
+   "id": "illusion",
+   "cat": "mind",
+   "kind": "checked",
+   "title": "Bad study, real effect",
+   "body": "The famous 1975 'illusion of control' study gave people football cards, not lottery tickets. People who picked chose their favourite players, so of course they valued them more. Proper replications with real lotteries find nothing. Yet superstitions are everywhere, so the feeling is real.",
+   "use": "A great script move: 'The famous study is wrong… but the thing it describes is real.' Viewers love being let in on it.",
+   "from": "mastroianni"
+  },
+  {
+   "id": "tenx",
+   "cat": "mind",
+   "kind": "opinion",
+   "title": "Ask 'how could I 10x?' every year",
+   "body": "Ed asked each January what could 10x his business, then tried and failed. Failing at 10x still doubled it 4 years in a row. Idea from the book '10x Is Easier Than 2x' (Sullivan & Hardy).",
+   "use": "For your yearly review: 2x thinking means 'upload a bit more'. 10x thinking forces a different system (editor, batching, a format that travels).",
+   "from": "ed"
+  },
+  {
+   "id": "seconds",
+   "cat": "mind",
+   "kind": "opinion",
+   "title": "86,400 seconds",
+   "body": "If someone stole $10 from your $86,400, you wouldn't throw away the rest. You get 86,400 seconds a day, so don't let 10 bad seconds wreck the other 86,390.",
+   "use": "A quick reset line for a bad comment or a flop video.",
+   "from": "tilbury"
+  },
+  {
+   "id": "park",
+   "cat": "mind",
+   "kind": "opinion",
+   "title": "Park what fascinates you",
+   "body": "When a new idea grabs you but it's not the time, write it on a list instead of starting it. Your brain stops nagging you once it knows the idea is saved.",
+   "use": "Your idea bank already does this. Add a 'later, not never' section for non-YouTube projects (games, apps).",
+   "from": "chic"
+  },
+  {
+   "id": "adanatomy",
+   "cat": "looks",
+   "kind": "opinion",
+   "title": "How a looks-niche ad is built",
+   "body": "Celebrity comparison (Tom Cruise vs Jude Law hairlines) → a scale you check yourself against (Norwood) → personal 'I was losing it too' story → doctor said it's fine → discount code. Every step is copyable. The claims aren't.",
+   "use": "Use the structure honestly when you have a sponsor: comparison, self-check, your real test, then the code, with only claims the studies support.",
+   "deep": "hair",
+   "from": "lml"
+  },
+  {
+   "id": "minox",
+   "cat": "looks",
+   "kind": "checked",
+   "title": "Minoxidil + microneedling does beat minoxidil alone",
+   "body": "Several meta-analyses of small trials find that adding microneedling to minoxidil gives more hair than minoxidil alone, and one network analysis ranked the combo top. But 'regrow everything you lost' is ad talk.",
+   "use": "A strong evidence-based video for your audience: 'Losing hair at 18: the only 3 things with real evidence'.",
+   "deep": "hair",
+   "from": "lml"
+  },
+  {
+   "id": "roomforerror",
+   "cat": "mind",
+   "kind": "opinion",
+   "title": "Leave room for error",
+   "body": "The biggest wins are rare and take time to compound. Whoever can survive a few flops stays in the game long enough to catch one. Marcus borrows this from money writers like Morgan Housel.",
+   "use": "Plan your channel so one flop never makes you quit: a buffer of 2 finished videos, school first, no money pressure.",
+   "from": "marcus"
+  }
+ ],
+ "images": [
+  {
+   "id": "downfall",
+   "src": "https://pbs.twimg.com/media/HVuskpDaEAARf2O?format=jpg&name=large",
+   "title": "The Downfall thumbnail",
+   "cap": "A fall from greatness: big loss number or a mocking word, red arrow down, high contrast. Each of these beat its channel's average by 5-20x.",
+   "use": "'The fall of the jawline gum trend' or 'Why mewing is getting exposed', only if the video really tells that story.",
+   "from": "tubelab"
+  },
+  {
+   "id": "comparison",
+   "src": "https://pbs.twimg.com/media/HVusln6bMAAbKkO?format=jpg&name=large",
+   "title": "The Comparison thumbnail",
+   "cap": "Split panels with one number each ($2 vs $75). One clear promise: you have to know the difference.",
+   "use": "Perfect for looks: '$4 vs $40 moisturiser', 'Day 1 vs Day 60'. Matches your Thumb Lab finding that outcome thumbnails win (78% hits vs 32%).",
+   "from": "tubelab"
+  },
+  {
+   "id": "norwood",
+   "src": "https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/8668f8cc-f5c6-4918-be6b-d250d84d9df9/Norwood_Scale.jpg?t=1746910144",
+   "title": "The Norwood scale",
+   "cap": "The 7-stage chart doctors use for male pattern hair loss. The ad used it to make readers check their own hairline.",
+   "use": "A ready-made visual for a hair-loss video: viewers find their own number in 2 seconds (a self-test, which your Intro Lab says is a replay magnet).",
+   "from": "lml"
+  }
+ ],
+ "deep": [
+  {
+   "id": "flywheel",
+   "title": "The flywheel: the one loop your channel runs on",
+   "dek": "You said 'firewheel'. It's the flywheel, Jim Collins' idea that Amazon and most big creators run on. Here's yours.",
+   "visual": "flywheel",
+   "sources": [
+    "Jim Collins, Good to Great (2001) and Turning the Flywheel (2019)",
+    "Ed Lawrence, Film Booth emails (Oct-Nov 2026)",
+    "Your Intro Lab and demand research"
+   ],
+   "md": "## What a flywheel is\n\nA flywheel is a heavy wheel. The first push barely moves it. The tenth push moves it a bit. By the hundredth, it's spinning on its own momentum, and each push adds to the speed you already built.\n\nJim Collins used it in *Good to Great* (2001) to explain how good companies became great: **there was no single big moment**. From the inside it was one loop, pushed again and again, for years. Companies that failed did the opposite. They changed strategy every time something didn't work right away. He called that the **doom loop**.\n\n## Amazon's version\n\nBezos drew it after meeting Collins: lower prices → more customers → more sellers → more products → lower costs → lower prices. Every arrow causes the next. That's the test of a real flywheel: **each step has to cause the next one**, not just happen near it.\n\n## Ed's version for YouTube\n\nEd's emails describe it without using the word:\n\n- Promote something in **every** video, so every video grows something (the list, the offer).\n- Talk to your viewers 2-3 hours a day, because understanding them makes the next video better.\n- Views per video matter more than subscribers, and money per view matters more than views.\n\n## Yours, right now\n\nLook at the diagram above. Your loop has five steps:\n\n1. **An honest test video** (a real 60-day test, real measurements).\n2. **The right viewers find it**: guys around 18 who want to look better without bro-science.\n3. **They comment**: questions, doubts, \"try X next\".\n4. **You get better ideas and proof**: the comments become your next titles, and your measured results become your thumbnails ('Day 1 vs Day 60').\n5. **The next video is better**, so it travels further, and the loop turns faster.\n\nThe push that matters most is the one that moves the wheel every week: **uploading on a rhythm with promise-first packaging**. New tools, new apps, a new editing pack: those are polish on the wheel, not pushes.\n\n## The outer ring (later)\n\nOnce the inner loop spins: an email list from your comments' best questions → one product or one honest sponsor that solves the same problem as the videos → money for an editor → more videos → faster loop. Ed's warning: one product, the simplest version first.\n\n## How to use this\n\n- Write your loop on one line and stick it above your desk.\n- Before any new project, ask: **which arrow does this push?** If none, it's a hobby (fine, but call it that).\n- Don't switch loops after one flop. Collins' doom loop is exactly that.",
+   "min": 2
+  },
+  {
+   "id": "hooks",
+   "title": "Hooks: what the newsletters say vs what you measured",
+   "dek": "TubeLab's 3 outlier hooks, checked against your own Intro Lab data, plus a version of each for the gum video.",
+   "visual": "hooks",
+   "sources": [
+    "TubeLab weekly digest, 23 Oct 2026",
+    "Your Intro Lab findings (553 videos, 8 Nov 2026)"
+   ],
+   "md": "## What TubeLab found\n\nThey pulled the top outlier videos in many niches and read the first 30 seconds of each. Three hooks kept showing up:\n\n- **Cold open.** Drop the viewer into one person's moment: a name, a place, a number. Then the twist.\n- **\"You\" scenario.** Put the viewer inside a moment they know too well. Works best for money, health and fitness.\n- **Bold claim.** One sentence that sounds wrong. The whole video proves it.\n\nPlus one oddball that did 10x its channel average: *\"Finish this sentence. I'll finally be happy when…\"*\n\n## What your own data says\n\nYour Intro Lab measured hits vs flops across 553 videos (chart above). The pattern behind all three hooks is the same: **say what the viewer gets, fast, and make it feel easy**. Greeting-first and credentials-first openings lose badly, and no newsletter hook starts with \"Hey guys\".\n\nWhat TubeLab doesn't tell you: a hook only works if the next 30 seconds pay it off. Your data says concrete steps (77% vs 33%) and escalation (85% vs 36%) are what keep people after the hook.\n\n## Gum video versions (60 days of jawline gum)\n\n**Cold open**\n> Day 1. One piece of this gum felt like chewing a car tyre. Sixty days and about forty hours of chewing later, I put the same tape measure on my jaw.\n\n**\"You\" scenario**\n> You catch your side profile in a car window and your jaw just… isn't there. So you start chewing gum because a guy on TikTok said so.\n\n**Bold claim**\n> Chewing gum can't give you a jawline. Most of what you see under your ear is fat and posture, not muscle. So for 60 days, I tested the one part gum *can* change.\n\n**Finish the sentence**\n> Finish this sentence: I'd look better if my jaw was ___.\n\n## Pick by the evidence\n\nUse the bold claim when your result is honest and surprising. Use the cold open when your test has a dramatic day-1 moment on camera. Use the 'you' scenario when the problem is embarrassing and common. All three still need the promise in the first 10 seconds.",
+   "min": 2
+  },
+  {
+   "id": "studies",
+   "title": "How to read a study like Adam Mastroianni",
+   "dek": "Why most interventions 'do nothing', why one study is never enough, and a 5-question check for every looks claim you make.",
+   "visual": null,
+   "sources": [
+    "Adam Mastroianni, Experimental History, 'We need more goat sacrifices' (10 Nov 2026)",
+    "Peter Rossi, The Iron Law of Evaluation (1987)",
+    "Open Science Collaboration, Science (2015)"
+   ],
+   "md": "## The Iron Law\n\nIn 1987 the sociologist Peter Rossi wrote a half-joking paper with rules everyone still quotes:\n\n- **Iron Law:** the expected net effect of a big social program is zero.\n- **Stainless Steel Law:** the better the evaluation, the more likely it finds no effect.\n- **Brass Law:** the more a program tries to *change people*, the more likely it does nothing.\n\nMastroianni lists examples: $3 billion in US school grants with no clear effect; laptops for every child in Peru (a 10-year trial in 531 schools, zero effect on grades); messages meant to persuade parents to vaccinate that didn't work, and one that backfired.\n\n## Why this matters for a looks channel\n\nYour whole niche is people trying to *change themselves*: jaw, skin, bloat, posture. That's exactly what the Brass Law is about. So expect most hacks to do little, and treat big promises as suspicious until proven.\n\n## \"Rinky-dink interventions have rinky-dink effects\"\n\nBefore psychology's replication crisis, people believed tiny tricks had big effects. When 100 psychology studies were re-run in 2015, only about a third of the significant results came out significant again. Mastroianni's rule of thumb: a small trick usually has a small effect, or none.\n\n## Bad study, real effect\n\nHis favourite example is the 1975 \"illusion of control\" study. It's taught as \"people value lottery tickets more if they pick the numbers\", but it actually used football cards, and pickers simply chose their favourite players. Proper replications with real lotteries find nothing. Yet people blow on dice and wear lucky socks. **A study can be bad while the thing it describes is real.** That's a great script beat.\n\n## Your 5-question check (put it in claims.md)\n\n1. **One study or many?** A meta-analysis of trials beats one trial, which beats a mechanism (\"it increases blood flow, so…\").\n2. **Was it pre-registered and did it have a control group?** If not, \"worked\" might mean nothing.\n3. **How big, in real units?** \"Significant\" means little. Look for millimetres, hairs per cm², kg.\n4. **Tiny trick, huge promise?** Rinky-dink alarm. Ask for more evidence.\n5. **Who's selling it?** The hair-loss ad in your inbox is a perfect example: a real treatment, oversold.\n\n## How to say it on camera\n\n\"Here's what the best evidence says, here's how big the effect is, and here's what I measured on myself.\" Honest null results (\"this did nothing\") are rare in your niche, and that's your edge.",
+   "min": 2
+  },
+  {
+   "id": "taste",
+   "title": "The taste gap: a 15-minute daily editing rep",
+   "dek": "rystal's loop, Ira Glass's 'gap' and Austin Kleon's 'steal like an artist', turned into a 4-week plan for Resolve.",
+   "visual": null,
+   "sources": [
+    "rystal's editing emails (Aug-Sep 2026)",
+    "Ira Glass on 'the gap' (2009 interview)",
+    "Austin Kleon, Steal Like an Artist (2012)"
+   ],
+   "md": "## The gap\n\nIra Glass (This American Life) has a famous point about beginners: you got into this because you have good taste, so for the first couple of years you can *see* your work isn't as good as you want. That gap is normal. The only way through is **volume**: make a lot of work, on a deadline.\n\nrystal says the same from the other side: you can't edit better than what you've seen. If your feed is mid edits, mid feels like the ceiling.\n\n## Steal like an artist\n\nAustin Kleon's rule, which rystal follows: copy *concepts*, not work. You copy one move (the easing on a zoom, how a title builds, the timing of a cut), learn why it works, then mix three stolen moves into something that's yours. Copying a whole edit teaches nothing. Copying a move and taking it apart teaches everything.\n\n## The loop\n\n1. **Consume great work properly.** Not scrolling: one 10-second moment, frame by frame, replayed until you can say why it feels clean.\n2. **Write one line**: \"the text overshoots and settles in 6 frames\".\n3. **Make something in 15 minutes.** A text animation, a circle in Fusion, one zoom.\n\n## 4-week plan\n\n- **Week 1: Collect.** Pick 3 editors whose work embarrasses you (one in your niche, one motion designer, one documentary channel). Save 7 moments into a 'steal file' folder.\n- **Week 2: Rebuild.** Each day, rebuild one saved moment in Resolve. Match it as closely as you can. Ugly is fine.\n- **Week 3: Mix.** Combine two moves per day (for example, overshoot easing + your wojak entering).\n- **Week 4: Ship.** Use your three best moves in your next video's intro. Compare its retention graph with your last one.\n\n## Rules\n\n- 15 minutes, every day, not 3 hours on Sunday. Small daily reps beat bursts.\n- Always note **why** a move works. That note is the real skill.\n- Keep everything you make, even bad ones. In 3 months, scrolling back is the best motivation there is.",
+   "min": 2
+  },
+  {
+   "id": "hair",
+   "title": "Minoxidil + microneedling: what the evidence actually says",
+   "dek": "The ad in your inbox, checked. What works for male pattern hair loss, how big the effect is, and how a video on it could look.",
+   "visual": null,
+   "img": "norwood",
+   "sources": [
+    "Meta-analysis of 8 RCTs (472 people), Chinese Medicine and Natural Products 2024",
+    "Meta-analysis, Archives of Dermatological Research 2025",
+    "Network meta-analysis, Skin Appendage Disorders 2023",
+    "Love Made Logical email, May 2025"
+   ],
+   "md": "## What the ad said\n\nTom Cruise (62) vs Jude Law (52): the younger man looks older because of his hairline. Then the Norwood scale, a personal story, \"my doctor said it's fine\", and a discount on a minoxidil + derma-pen kit that will let you \"gain back much of what you've already lost\".\n\n## What the evidence says\n\n- **Minoxidil** (topical, 5% for men) is one of only two treatments with long-standing approval for male pattern hair loss. The other is finasteride, which is prescription only. Mostly, minoxidil **slows loss and thickens existing hair**. Regrowth is partial, and the trials mostly looked at the crown, not the temples.\n- **Adding microneedling helps.** A 2024 meta-analysis of 8 randomised trials (472 people) found more hair with microneedling + minoxidil than minoxidil alone. A 2025 meta-analysis found the same, with a large but very uneven effect between trials. A 2023 network analysis ranked minoxidil + microneedling first for hair density.\n- **But:** the trials are small, the results vary a lot between them, and most last 3-6 months. Nobody has shown \"regrow everything\".\n\n## What the ad left out\n\n- A shed in the first weeks is common and scares people into quitting.\n- It only works while you keep using it. Stop, and the gains fade over months.\n- Microneedling done wrong (too deep, dirty needles) can irritate or infect the scalp.\n- At 18, the first step is a doctor or dermatologist confirming it's pattern loss and not something else (stress, low iron, thyroid).\n\n## The video idea\n\n**\"Losing your hair at 18: the only things with real evidence\"**\n\n- Hook: the Norwood scale on screen, \"find your number\" (a self-test, which your Intro Lab says gets replays).\n- Body: what works (minoxidil, finasteride with a doctor, microneedling as an add-on), how big the effect is in real numbers, and what doesn't (most shampoos, most supplements unless you're actually deficient).\n- Ending on value: a one-screen plan, \"see a doctor first if you're under 20\".\n\nThe ad's structure (comparison → self-check → story → offer) is copyable. Its promises aren't.",
+   "min": 2
+  },
+  {
+   "id": "buyers",
+   "title": "Content for buyers: Ed's money ideas, filtered for an 18-year-old",
+   "dek": "What to take from 'the $240k video' and 'top earners make 20x per view' now, and what to save for later.",
+   "visual": null,
+   "sources": [
+    "Ed Lawrence emails: 'Copy this video' (12 Nov), '25 tough lessons' (5 Nov), 'niche views down 65%' (19 Oct), '100 nuggets' (13 Oct 2026)"
+   ],
+   "md": "## Ed's claims (his numbers, not verified)\n\n- One video that gave away the free version of his paid system made **$240k in 90 days**, 2,000+ emails and 130k views.\n- Of 198 channels he tracked, the **top 25% of earners got about the same views** as the bottom 25%, but made **~20x more per view**.\n- In 42 of 44 niches for course creators, demand fell since 2023. **Self-improvement: -45%.**\n\nAll three come from the person selling the system that fixes them, so treat them as hints, not facts.\n\n## What applies to you now\n\n1. **The \"free version\" video is also a great binge video.** Lay out your whole method, step by step, with 1-3 simple actions per step. \"This was so good I should have paid for it\" is the feeling you want, sale or not.\n2. **Mention the next step early.** He lost ~2,000 emails by plugging his list at minute 19 instead of the first 90 seconds. For you, the \"next step\" is your playlist or your next test video.\n3. **Be specific, not \"self-improvement\".** If broad self-improvement demand is falling, specific, measurable looks topics are the safer place to be.\n4. **Talk to viewers.** He spends 2-3 hours a day on it. You can reply to every comment while you're small. That's your demand research for free.\n\n## What to save for later\n\n- One product, simplest version first. No free community (it eats your time).\n- Promote something in every video once you have something worth promoting.\n- A \"contentment number\": decide what's enough before the money pulls you into grinding 24/7.\n\n## Where I disagree with Ed\n\n- \"Hire an editor ASAP\" and \"short-form is a waste\": his advice is for business owners with money. At your stage, editing *is* your skill-building, and Shorts are cheap tests of hooks.\n- \"Never use visual metaphors in thumbnails\" is too absolute. Your Thumb Lab found clear outcome images win, which is a narrower rule.",
+   "min": 2
+  }
+ ],
+ "hooks": [
+  {
+   "k": "Promise first",
+   "hit": 38,
+   "flop": 14
+  },
+  {
+   "k": "Greeting first",
+   "hit": 17,
+   "flop": 52
+  }
+ ],
+ "rates": [
+  {
+   "k": "Feels easy",
+   "a": 83,
+   "b": 41
+  },
+  {
+   "k": "Concrete steps",
+   "a": 77,
+   "b": 33
+  },
+  {
+   "k": "Escalating",
+   "a": 85,
+   "b": 36
+  },
+  {
+   "k": "Ends on value",
+   "a": 87,
+   "b": 28
+  },
+  {
+   "k": "Outcome thumbnail",
+   "a": 78,
+   "b": 32
+  }
+ ]
+}
