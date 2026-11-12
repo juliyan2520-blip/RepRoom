@@ -656,7 +656,7 @@ function viewTrain(){
 const CAT_COL = {yt:"var(--orange)", craft:"var(--pink)", mind:"var(--violet)", money:"var(--muted)", looks:"var(--blue)"};
 const KIND = {checked:"✓ Checked", claim:"Their claim", opinion:"Opinion"};
 const VERDICT = {keep:"Keep", skim:"Skim", cut:"Unsubscribe"};
-const IB = { sec:"ideas", cat:"all", open:null };
+const IB = { sec:"ideas", cat:"all", open:null, box:"all" };
 function ibState(){ S.st.inbox ||= {seen:{}, saved:{}, deep:{}}; return S.st.inbox; }
 function creator(id){ return S.I.creators.find(c => c.id === id); }
 function viewInbox(){
@@ -672,8 +672,13 @@ function viewInbox(){
     body = `<div class="filters" role="group" aria-label="Topic">${Object.entries(cats).map(([k,v]) => `<button data-icat="${k}" class="${IB.cat===k?"on":""}">${esc(v)}</button>`).join("")}</div>
       <div style="display:flex;flex-direction:column;gap:12px">${list.map(ideaHTML).join("") || `<p class="muted">Nothing here yet. Tap ☆ on an idea to save it.</p>`}</div>`;
   } else if (IB.sec === "rank"){
-    body = `<p class="small muted" style="margin:0">Score = useful ideas per email, fit for your channel, minus how much of each email is a sales pitch. Tap one for details.</p>
-      <div style="display:flex;flex-direction:column;gap:10px">${I.creators.slice().sort((a,b) => b.score-a.score).map((c,k) => creatorHTML(c,k)).join("")}</div>`;
+    const boxes = {all:"Both inboxes", ...(I.boxes||{})};
+    const cs = I.creators.filter(c => IB.box === "all" || c.box === IB.box).sort((a,b) => b.score-a.score);
+    const cut = cs.filter(c => c.verdict === "cut");
+    body = `<div class="filters" role="group" aria-label="Inbox">${Object.entries(boxes).map(([k,v]) => `<button data-ibox="${k}" class="${IB.box===k?"on":""}">${esc(v)}</button>`).join("")}</div>
+      <p class="small muted" style="margin:0">Score = useful ideas per email, fit for your channel, minus how much of each email is a sales pitch. Tap one for details.</p>
+      <div style="display:flex;flex-direction:column;gap:10px">${cs.map((c,k) => creatorHTML(c,k)).join("")}</div>
+      ${cut.length ? `<details class="why"><summary>Unsubscribe list (${cut.length})</summary><p class="small" style="margin:8px 0 0">${cut.map(c => `<b>${esc(c.name)}</b> <span class="muted">(${esc(c.by)})</span>`).join(" · ")}</p><p class="small muted" style="margin:6px 0 0">Each email has an unsubscribe link at the bottom. I haven't clicked any of them.</p></details>` : ""}`;
   } else if (IB.sec === "wall"){
     body = `<p class="small muted" style="margin:0">Images from the emails worth looking at, with how you'd use them.</p>
       <div class="wall">${I.images.map(m => `<figure class="shot" style="margin:0"><img src="${esc(m.src)}" alt="${esc(m.title)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"><figcaption class="in"><div class="row"><span class="chip">${esc(creator(m.from).by)}</span></div><h3>${esc(m.title)}</h3><p>${esc(m.cap)}</p><div class="idea" style="border:0"><div class="for"><b>Use it</b>${esc(m.use)}</div></div></figcaption></figure>`).join("")}</div>`;
@@ -685,7 +690,7 @@ function viewInbox(){
     <section class="ihero">
       <svg class="env" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 7l8.5 6 8.5-6"/></svg>
       <span class="label" style="color:var(--orange)">Your newsletters, read for you · ${esc(I.updated)}</span>
-      <h2>${I.creators.length} senders read. Here's what's worth your time.</h2>
+      <h2>${I.emails_read ? I.emails_read + " emails from " : ""}${I.creators.length} senders, boiled down to what's worth your time.</h2>
       <div class="nums"><div><b>${I.ideas.length}</b><span>ideas pulled out</span></div><div><b>${nSeen}/${I.ideas.length}</b><span>ideas you've read</span></div><div><b>${nCut}</b><span>worth unsubscribing</span></div></div>
     </section>
     <div class="seg" role="tablist">${Object.entries(segs).map(([k,v]) => `<button data-isec="${k}" class="${IB.sec===k?"on":""}" role="tab" aria-selected="${IB.sec===k}">${v}</button>`).join("")}</div>
@@ -693,6 +698,7 @@ function viewInbox(){
   </div>`;
   document.querySelectorAll("[data-isec]").forEach(b => b.onclick = () => { IB.sec = b.dataset.isec; viewInbox(); });
   document.querySelectorAll("[data-icat]").forEach(b => b.onclick = () => { IB.cat = b.dataset.icat; viewInbox(); });
+  document.querySelectorAll("[data-ibox]").forEach(b => b.onclick = () => { IB.box = b.dataset.ibox; IB.open = null; keepScroll(viewInbox); });
   document.querySelectorAll("[data-seen]").forEach(b => b.onclick = () => { const id = b.dataset.seen; st.seen[id] = st.seen[id] ? 0 : today(); if (!st.seen[id]) delete st.seen[id]; persist(); keepScroll(viewInbox); });
   document.querySelectorAll("[data-save]").forEach(b => b.onclick = () => { const id = b.dataset.save; if (st.saved[id]) delete st.saved[id]; else st.saved[id] = today(); persist(); keepScroll(viewInbox); });
   document.querySelectorAll("[data-deep]").forEach(b => b.onclick = () => openDeep([b.dataset.deep]));
@@ -719,7 +725,7 @@ function creatorHTML(c, k){
   return `<button class="crt ${k<3?"top":""}" data-crt="${c.id}" aria-expanded="${open}">
     <span class="rk">${k+1}</span>
     <span style="display:flex;flex-direction:column;gap:3px;min-width:0"><span class="nm">${esc(c.name)}</span><span class="by">${esc(c.by)} · ${esc(c.freq)}</span>
-      <span class="row" style="gap:6px;margin-top:3px"><span class="verdict-pill ${c.verdict}">${VERDICT[c.verdict]}</span><span class="chip">${esc(c.topic)}</span></span></span>
+      <span class="row" style="gap:6px;margin-top:3px"><span class="verdict-pill ${c.verdict}">${VERDICT[c.verdict]}</span><span class="chip">${esc(c.topic)}</span>${c.box === "old" ? `<span class="chip" style="opacity:.75">old inbox</span>` : ""}</span></span>
     <span class="ring" style="background:conic-gradient(${col} ${c.score*10}%, var(--line) 0)"><i>${c.score}</i></span>
     ${open ? `<span class="more">
       <p>${esc(c.why)}</p>
@@ -761,10 +767,16 @@ function hooksViz(){
     <div class="legend"><span><i style="background:var(--blue)"></i>hit videos</span><span><i style="background:var(--red)"></i>flop videos</span></div>
     <p class="cap">From your Intro Lab: 553 videos, 15 channels, 8 Nov 2026.</p></div>`;
 }
+function outliersViz(){
+  const rows = S.I.outliers || [], max = Math.max(...rows.map(r => r.v));
+  const scale = v => Math.max(1.5, 100 * Math.log10(1 + v) / Math.log10(1 + max)); // log scale so 4x and 59x both read
+  return `<div class="viz"><div class="hbars">${rows.map(r => { const flop = r.v < 1; return `<div class="hb"><div class="lab"><span style="font-weight:${flop?600:700}">${esc(r.k)}</span><span style="color:${flop?"var(--red)":"var(--blue)"};font-variant-numeric:tabular-nums">${r.v}x</span></div><div class="tr" style="height:10px;background:var(--paper)"><i style="width:${scale(r.v)}%;background:${flop?"var(--red)":"var(--blue)"}"></i></div></div>`; }).join("")}</div>
+    <p class="cap">Times better than that channel's normal video (log scale). Red = flops. Source: Creator Hooks.</p></div>`;
+}
 function openDeep(ids){
   const I = S.I, ds = ids.map(id => I.deep.find(d => d.id === id)), single = ds.length === 1, st = ibState();
   $("#nav").hidden = true;
-  const part = d => `${d.visual === "flywheel" ? flywheelSVG() : d.visual === "hooks" ? hooksViz() : ""}${d.img ? (m => m ? `<figure class="shot" style="margin:4px 0 14px"><img src="${esc(m.src)}" alt="${esc(m.title)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.style.display='none'"><figcaption class="in"><p class="small muted">${esc(m.title)}, from the ${esc(creator(m.from).name)} email</p></figcaption></figure>` : "")(I.images.find(m => m.id === d.img)) : ""}${md(d.md)}<p class="src" style="margin:10px 0 0">Sources: ${esc(d.sources.join(" · "))}</p>`;
+  const part = d => `${d.visual === "flywheel" ? flywheelSVG() : d.visual === "hooks" ? hooksViz() : d.visual === "outliers" ? outliersViz() : ""}${d.img ? (m => m ? `<figure class="shot" style="margin:4px 0 14px"><img src="${esc(m.src)}" alt="${esc(m.title)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.style.display='none'"><figcaption class="in"><p class="small muted">${esc(m.title)}, from the ${esc(creator(m.from).name)} email</p></figcaption></figure>` : "")(I.images.find(m => m.id === d.img)) : ""}${md(d.md)}<p class="src" style="margin:10px 0 0">Sources: ${esc(d.sources.join(" · "))}</p>`;
   const head = single ? `<div class="row"><span class="chip orange">Deep dive</span><span class="small muted">${ds[0].min} min read</span></div><h1>${esc(ds[0].title)}</h1><p class="dek" style="margin:0">${esc(ds[0].dek)}</p>`
     : `<div class="row"><span class="chip orange">Long read</span><span class="small muted">${ds.length} deep dives · ${ds.reduce((a,d)=>a+d.min,0)} min</span></div><h1>Everything worth knowing from your inbox</h1>`;
   const body = single ? part(ds[0]) : ds.map((d,k) => `<div class="part">${k+1} of ${ds.length}</div><div class="parttitle">${esc(d.title)}</div>${part(d)}`).join("");

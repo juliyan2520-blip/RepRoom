@@ -4,10 +4,322 @@
   "yt": "YouTube",
   "craft": "Craft",
   "mind": "Mind",
+  "looks": "Looks",
   "money": "Money",
-  "looks": "Looks"
+  "tools": "Free tools"
  },
+ "boxes": {
+  "main": "Main inbox",
+  "old": "Old inbox"
+ },
+ "emails_read": 51,
  "creators": [
+  {
+   "id": "hooks",
+   "box": "main",
+   "name": "Jake Thomas",
+   "by": "Creator Hooks",
+   "topic": "Titles that beat the average",
+   "freq": "Mondays",
+   "color": "orange",
+   "score": 9.5,
+   "signal": 10,
+   "fit": 9,
+   "sales": 2,
+   "verdict": "keep",
+   "why": "The most useful email you get. Each week: 5 titles that beat their channel's average (with the multiple), the formula behind each, why it works, two examples, and a Flop of the Week with fixes. It's your Packaging Lab, delivered.",
+   "best": "It's Boring, But It Builds An Athletic Physique: 59.5x its channel's average.",
+   "watch": "Plugs its own tools (title analyzer, outlier finder) in the middle, but they're free to try."
+  },
+  {
+   "id": "samir",
+   "box": "main",
+   "name": "Colin & Samir",
+   "by": "Creator Support",
+   "topic": "Craft & meaning",
+   "freq": "Sundays",
+   "color": "blue",
+   "score": 8.0,
+   "signal": 7,
+   "fit": 8,
+   "sales": 2,
+   "verdict": "keep",
+   "why": "Short Sunday notes from Samir about what makes work matter. The one I read is the best single idea in your inbox about why things get shared.",
+   "best": "The question I ask everyone: work breaks into culture when people can see themselves in it.",
+   "watch": "Some weeks are just episode promos."
+  },
+  {
+   "id": "ness",
+   "box": "main",
+   "name": "Anne-Laure Le Cunff",
+   "by": "Ness Labs",
+   "topic": "Curiosity & experiments",
+   "freq": "Thursdays",
+   "color": "violet",
+   "score": 8.0,
+   "signal": 8,
+   "fit": 6,
+   "sales": 3,
+   "verdict": "keep",
+   "why": "A neuroscientist writing about curiosity and how to run your life as small experiments. Sources linked, ideas you can try in a week.",
+   "best": "Algorithmic Resistance: why feeds make everyone's taste the same, and small ways to discover things yourself.",
+   "watch": "The bottom half is community events and sponsors. Stop at 'Brain Picks'."
+  },
+  {
+   "id": "clear",
+   "box": "main",
+   "name": "James Clear",
+   "by": "3-2-1",
+   "topic": "Habits & mindset",
+   "freq": "Thursdays",
+   "color": "ink",
+   "score": 7.5,
+   "signal": 7,
+   "fit": 6,
+   "sales": 3,
+   "verdict": "keep",
+   "why": "Three short ideas, two quotes, one question. Takes 2 minutes and is usually worth it.",
+   "best": "Skill comes before results, practice before skill, attitude before practice. And: when stuck, ask 'What can I do?'",
+   "watch": "The book ads at the bottom are long."
+  },
+  {
+   "id": "jon",
+   "box": "main",
+   "name": "Jon Youshaei",
+   "by": "Created",
+   "topic": "YouTube news & outliers",
+   "freq": "Wed + Sun",
+   "color": "blue",
+   "score": 7.5,
+   "signal": 7,
+   "fit": 7,
+   "sales": 3,
+   "verdict": "keep",
+   "why": "Ex-YouTube/Instagram marketer. Wednesday: creator-economy news, best thumbnails of the week, and one outlier broken down. Sunday: a story or tip.",
+   "best": "Weekly Outlier: a 26M-view video (31x average) explained in three points: double-take thumbnail, instant premise, real stakes.",
+   "watch": "Sunday 'comics' are lighter. Free Discord with 7,000 creators for feedback."
+  },
+  {
+   "id": "ali",
+   "box": "main",
+   "name": "Ali Abdaal",
+   "by": "LifeNotes",
+   "topic": "Productivity & life",
+   "freq": "Weekly",
+   "color": "ink",
+   "score": 6.5,
+   "signal": 5,
+   "fit": 6,
+   "sales": 4,
+   "verdict": "skim",
+   "why": "Friendly, personal notes from the doctor-turned-YouTuber. Light on ideas, but each has one useful question.",
+   "best": "My new morning routine: is there an hour you spend by default that you'd enjoy more elsewhere in the day?",
+   "watch": "Sponsored section plus course plugs."
+  },
+  {
+   "id": "jay",
+   "box": "main",
+   "name": "Jay Clouse",
+   "by": "Creator Science",
+   "topic": "Creator business",
+   "freq": "Sundays",
+   "color": "ink",
+   "score": 6.5,
+   "signal": 6,
+   "fit": 4,
+   "sales": 5,
+   "verdict": "skim",
+   "why": "How full-time creators run their business: teams, launches, memberships. Smart, but mostly for later.",
+   "best": "Six-week sprints: one theme, go all in, learn, repeat.",
+   "watch": "Long, with a sponsor block. Jay is on paternity leave, so the team writes it."
+  },
+  {
+   "id": "aprilynne",
+   "box": "main",
+   "name": "Aprilynne Alter",
+   "by": "YouTube nerd list",
+   "topic": "YouTube strategy",
+   "freq": "Just started",
+   "color": "pink",
+   "score": 6.0,
+   "signal": 5,
+   "fit": 8,
+   "sales": 4,
+   "verdict": "skim",
+   "why": "One of the sharpest YouTube strategists (she's already in your Intro Lab). Only the welcome email so far, so give it a month.",
+   "best": "(Only the welcome so far.)",
+   "watch": "Sponsored by 1of10, so expect some tool plugs."
+  },
+  {
+   "id": "josh",
+   "box": "main",
+   "name": "Editor Josh",
+   "by": "Elite Editor Academy",
+   "topic": "Editing & storytelling",
+   "freq": "Every 2 days",
+   "color": "pink",
+   "score": 5.5,
+   "signal": 4,
+   "fit": 7,
+   "sales": 8,
+   "verdict": "skim",
+   "why": "Will Tennyson's main editor. Mostly course sales, but there's a real opportunity in here: he re-edits subscribers' videos on camera.",
+   "best": "Can I re-edit your video? Send a recent, decent edit, not your masterpiece.",
+   "watch": "Case-study sales emails every other day."
+  },
+  {
+   "id": "bryan",
+   "box": "main",
+   "name": "Bryan Ng",
+   "by": "Viral Bangers",
+   "topic": "Scriptwriting",
+   "freq": "Weekly",
+   "color": "ink",
+   "score": 5.5,
+   "signal": 5,
+   "fit": 6,
+   "sales": 5,
+   "verdict": "skim",
+   "why": "Script coach for big personal brands. Honest, but most emails just point to his latest video.",
+   "best": "I hate my YouTube channel but make $100k a month: only 17 uploads in 10 months.",
+   "watch": ""
+  },
+  {
+   "id": "rupy",
+   "box": "main",
+   "name": "Dr Rupy Aujla",
+   "by": "The Doctor's Kitchen",
+   "topic": "Food & health",
+   "freq": "Weekly + app promos",
+   "color": "blue",
+   "score": 5.0,
+   "signal": 5,
+   "fit": 6,
+   "sales": 6,
+   "verdict": "skim",
+   "why": "A doctor with a nutrition master's. Credible but basic: whole foods, fibre, sleep, stress. Most emails sell his recipe app.",
+   "best": "The 5 practices: cook from scratch, eat a variety of plants, move daily, sleep, wind down.",
+   "watch": "App@ emails are pure promos."
+  },
+  {
+   "id": "nik",
+   "box": "main",
+   "name": "Nik",
+   "by": "Four Minute Books",
+   "topic": "Book summaries",
+   "freq": "Saturdays",
+   "color": "ink",
+   "score": 5.0,
+   "signal": 5,
+   "fit": 3,
+   "sales": 4,
+   "verdict": "skim",
+   "why": "Three book summaries a week, gently written. Good for finding books, not for your channel.",
+   "best": "Alan Watts, The Wisdom of Insecurity: if you have an identity crisis, maybe you think you only have one identity.",
+   "watch": ""
+  },
+  {
+   "id": "clark",
+   "box": "main",
+   "name": "Clark Kegley",
+   "by": "Newsletter",
+   "topic": "Self-improvement",
+   "freq": "Saturdays",
+   "color": "ink",
+   "score": 5.0,
+   "signal": 4,
+   "fit": 5,
+   "sales": 6,
+   "verdict": "skim",
+   "why": "Self-improvement YouTuber. The welcome email is a list of his best videos, which is a useful packaging reference for your niche.",
+   "best": "This helped 1M people: titles like 'I read 300 self-improvement books to learn these 3 lessons'.",
+   "watch": "Sells a journaling course."
+  },
+  {
+   "id": "jawliner",
+   "box": "main",
+   "name": "JAWLINER",
+   "by": "Brand you bought from",
+   "topic": "Jawline gum",
+   "freq": "Almost daily",
+   "color": "red",
+   "score": 3.5,
+   "signal": 3,
+   "fit": 7,
+   "sales": 10,
+   "verdict": "cut",
+   "why": "Pure promos, but useful for your gum video: their before/after photos and claims ('visible results after a few weeks') are perfect material to fact-check on camera.",
+   "best": "'These people took the exercises seriously': before/afters with different lighting, angles and colour.",
+   "watch": "Unsubscribe after you've saved what you need for the gum video."
+  },
+  {
+   "id": "tico",
+   "box": "main",
+   "name": "Tico",
+   "by": "ticovisuals",
+   "topic": "Videography",
+   "freq": "Daily course (Sep)",
+   "color": "ink",
+   "score": 4.0,
+   "signal": 3,
+   "fit": 4,
+   "sales": 7,
+   "verdict": "cut",
+   "why": "Story of a Miami kid hired by iShowSpeed at 16. One good line ('your camera is fine'), then a pitch. The sender name shows as 'Juliyan', which is a sketchy trick.",
+   "best": "You DON'T need better gear: he shot NBA games with a borrowed camera.",
+   "watch": "Sender name is spoofed to look like you."
+  },
+  {
+   "id": "tools",
+   "box": "main",
+   "name": "Tool companies",
+   "by": "1of10, Subscribr, Viewstats, SPI",
+   "topic": "Webinars & software",
+   "freq": "Weekly",
+   "color": "red",
+   "score": 3.0,
+   "signal": 2,
+   "fit": 4,
+   "sales": 9,
+   "verdict": "cut",
+   "why": "1of10 and Subscribr are useful tools, but their emails are webinar and launch funnels. Viewstats sends picture-only charts. SPI is selling a Black Friday lifetime deal.",
+   "best": "Subscribr's one good idea: build the thumbnail first, then the title.",
+   "watch": ""
+  },
+  {
+   "id": "qoves",
+   "box": "main",
+   "name": "QOVES",
+   "by": "Facial analysis",
+   "topic": "Looks (paid)",
+   "freq": "Every 3 days",
+   "color": "red",
+   "score": 2.0,
+   "signal": 1,
+   "fit": 5,
+   "sales": 10,
+   "verdict": "cut",
+   "why": "Sells AI 'biometric scores' and glow-up protocols. Same niche as you, opposite approach. No evidence in the emails.",
+   "best": "(none)",
+   "watch": ""
+  },
+  {
+   "id": "tate",
+   "box": "main",
+   "name": "Andrew Tate",
+   "by": "cobratate",
+   "topic": "'Motivation'",
+   "freq": "Several a week",
+   "color": "red",
+   "score": 1.0,
+   "signal": 1,
+   "fit": 1,
+   "sales": 5,
+   "verdict": "cut",
+   "why": "Shame as motivation ('you have failed everyone who ever loved you'). No ideas, no evidence. The opposite of your brand: help the viewer, never trade trust.",
+   "best": "(none)",
+   "watch": ""
+  },
   {
    "id": "mastroianni",
    "name": "Adam Mastroianni",
@@ -22,7 +334,8 @@
    "verdict": "keep",
    "why": "The best thinker in your inbox. A psychologist who shows how studies fail, in funny, sharp writing. Every issue makes you better at judging the evidence your channel is built on.",
    "best": "We need more goat sacrifices: most big programs meant to change people have zero measured effect, and one-off studies are worth little.",
-   "watch": "Long reads (15+ min). Save them for the weekend."
+   "watch": "Long reads (15+ min). Save them for the weekend.",
+   "box": "old"
   },
   {
    "id": "ed",
@@ -38,7 +351,8 @@
    "verdict": "keep",
    "why": "Real numbers from someone who has made millions on YouTube: views vs money, ideation, scripts, pivots. Written for coaches who sell courses, so half of it is about funnels you don't have yet.",
    "best": "100 nuggets of YouTube wisdom: the list he wishes he'd had in 2019.",
-   "watch": "Two sender addresses (film-booth.com and story-os.ai) = double the emails. Every P.S. sells Story OS."
+   "watch": "Two sender addresses (film-booth.com and story-os.ai) = double the emails. Every P.S. sells Story OS.",
+   "box": "old"
   },
   {
    "id": "tubelab",
@@ -54,7 +368,8 @@
    "verdict": "keep",
    "why": "A weekly digest of what's over-performing: title formats, hooks pulled from outliers, thumbnail styles, and a 'twist' for each niche. The niches are rarely yours, but the patterns transfer.",
    "best": "6 thumbnails that work in any niche: Downfall and Comparison grids pulled from outlier videos.",
-   "watch": "It exists to sell the TubeLab tool. Skip the 'welcome' and 'last day for your code' emails."
+   "watch": "It exists to sell the TubeLab tool. Skip the 'welcome' and 'last day for your code' emails.",
+   "box": "old"
   },
   {
    "id": "rystal",
@@ -70,7 +385,8 @@
    "verdict": "keep",
    "why": "Short emails, one idea each, all about getting better at Resolve and Fusion. The taste + 15-minute loop is exactly the kind of small daily rep you like.",
    "best": "stop being bad at editing: taste is the bottleneck, not your PC.",
-   "watch": "The 30-day course ended in September. Now it's mostly TypeFlow update emails."
+   "watch": "The 30-day course ended in September. Now it's mostly TypeFlow update emails.",
+   "box": "old"
   },
   {
    "id": "marcus",
@@ -86,7 +402,8 @@
    "verdict": "skim",
    "why": "Friendly Saturday essays on motivation and follow-through. Mostly ideas you already know from books (room for error, tribes, crabs in a bucket). Aimed at gaming creators.",
    "best": "Some life-changing ideas for ya: tribes, learning from other fields, room for error.",
-   "watch": "Comes as HTML only, so it often looks empty in previews."
+   "watch": "Comes as HTML only, so it often looks empty in previews.",
+   "box": "old"
   },
   {
    "id": "tilbury",
@@ -102,7 +419,8 @@
    "verdict": "skim",
    "why": "Kind, simple money basics (start now, time is the scarce thing, don't only sell hours). Nothing you'll act on this year.",
    "best": "What rich people figured out about time: the 86,400-seconds idea.",
-   "watch": "Only a few emails a year."
+   "watch": "Only a few emails a year.",
+   "box": "old"
   },
   {
    "id": "chic",
@@ -118,7 +436,8 @@
    "verdict": "cut",
    "why": "Opinions and personal observations, no sources, written for young women. One good idea (park what fascinates you on a list) per many emails.",
    "best": "12 ways to ruin your brain: multitasking two thinking tasks, phone first and last thing, bed as an office.",
-   "watch": "Half of each post is paywalled."
+   "watch": "Half of each post is paywalled.",
+   "box": "old"
   },
   {
    "id": "lml",
@@ -134,7 +453,8 @@
    "verdict": "cut",
    "why": "Ads written to look like a newsletter. Worth keeping one as a case study: it's a textbook looks-niche affiliate funnel (celebrity hairline → Norwood scale → personal story → discount code).",
    "best": "Have you seen Tom Cruise lately?: a minoxidil + derma-pen ad.",
-   "watch": "Overclaims what minoxidil can do. See the deep dive."
+   "watch": "Overclaims what minoxidil can do. See the deep dive.",
+   "box": "old"
   },
   {
    "id": "builders",
@@ -150,7 +470,8 @@
    "verdict": "cut",
    "why": "Just promos for podcast episodes. Watch the episodes on YouTube if a guest interests you.",
    "best": "Alex Karp on the surveillance state.",
-   "watch": ""
+   "watch": "",
+   "box": "old"
   },
   {
    "id": "hamza",
@@ -166,7 +487,8 @@
    "verdict": "cut",
    "why": "Last email was 2023, a teaser for a video. Nothing left to read.",
    "best": "Any plans this weekend?",
-   "watch": ""
+   "watch": "",
+   "box": "old"
   },
   {
    "id": "sales",
@@ -182,10 +504,211 @@
    "verdict": "cut",
    "why": "Pure sales: discounts, launches, 'last 48 hours'. Unsubscribing would remove about a third of your creator mail.",
    "best": "(none worth reading)",
-   "watch": ""
+   "watch": "",
+   "box": "old"
   }
  ],
  "ideas": [
+  {
+   "id": "boring",
+   "cat": "yt",
+   "kind": "claim",
+   "title": "'It's Boring, But It Works': 59.5x",
+   "body": "'It's Boring, But It Builds An Athletic Physique' did 59.5x its channel's average, the biggest outlier in your whole inbox. Boring vs a result you want is a strong contrast, and 'it' opens a loop.",
+   "use": "'It's Boring, But It Fixed My Skin' or 'It's Boring, But It Got Rid of My Puffy Face'. Only if the method really is boring and really worked.",
+   "deep": "titles",
+   "star": true,
+   "from": "hooks"
+  },
+  {
+   "id": "tier",
+   "cat": "yt",
+   "kind": "claim",
+   "title": "'Which X Are Actually Worth It? (Tier List)': 15.5x",
+   "body": "A question plus 'actually' (which challenges what people believe) plus a tier list. Farm animals did 15.5x.",
+   "use": "'Which Skincare Products Are Actually Worth It? (Tier List)'. Your evidence ranking is the tier list, and that's your edge over everyone else.",
+   "deep": "titles",
+   "star": true,
+   "from": "hooks"
+  },
+  {
+   "id": "goodbad",
+   "cat": "yt",
+   "kind": "claim",
+   "title": "Good thing, bad result",
+   "body": "'Why \"Good Parenting\" Creates Clingy Kids' (8.4x), 'The Hidden Trap of Working Hard' (4.4x), 'Stop Drawing Perfect Lines: A Better Way to Sketch' (11x). A habit people think is good leads to a result they don't want.",
+   "use": "'Why \"Clean Eating\" Can Make You Look Bloated', 'Stop Mewing: A Better Way to a Sharper Jaw'. Make sure the science backs the twist.",
+   "deep": "titles",
+   "from": "hooks"
+  },
+  {
+   "id": "level1",
+   "cat": "yt",
+   "kind": "claim",
+   "title": "'(Most People Are Level 1)': 8.5x",
+   "body": "'The Ultimate Guide to Social Intelligence (Most People Are Level 1)'. Status: everyone wants to know their level. Jake says the very specific thumbnail did half the work.",
+   "use": "'The Ultimate Guide to Looking Good (Most Guys Are Level 1)'. A levels ladder (1-5) is also a perfect visual for your wojaks.",
+   "deep": "titles",
+   "from": "hooks"
+  },
+  {
+   "id": "simple",
+   "cat": "craft",
+   "kind": "claim",
+   "title": "Simple titles win, same channel",
+   "body": "Same guitar channel: 'Slash's Stupidly Simple Techniques for EPIC Solos' got 205K views, 'Slash's GENIUS Approach to using Minor Pentatonic in Major Keys' got 5.8K. And '7 Gym Hacks Every Lifter Should Know' flopped (0.18x): no benefit promised.",
+   "use": "Before publishing, check: does the title promise a result a 15-year-old understands in 1 second? Jargon ('retinoids', 'masseter') goes in the video, not the title.",
+   "from": "hooks"
+  },
+  {
+   "id": "keyword",
+   "cat": "yt",
+   "kind": "opinion",
+   "title": "Check the keyword before you film",
+   "body": "A video titled around 'boundaries' flopped (0.17x). Searching that word in an outlier tool showed almost no videos with it ever beat their average. People just don't click it.",
+   "use": "Before scripting, search your main word (e.g. 'debloat', 'mewing', 'skincare routine') in your Packaging Lab or an outlier tool. No outliers = rethink the angle.",
+   "from": "hooks"
+  },
+  {
+   "id": "topicformat",
+   "cat": "yt",
+   "kind": "opinion",
+   "title": "Proven topic + borrowed format = original",
+   "body": "Take topics that work in your niche, and formats that work outside it (in channels with a similar style). The mix is both proven and original.",
+   "use": "Topic: debloating (works in your niche). Format: 'I tried X for 30 days, what did it really cost?' (travel/finance). Result: 'I Debloated For 30 Days: What Did It Really Cost?'",
+   "from": "hooks"
+  },
+  {
+   "id": "mirror",
+   "cat": "mind",
+   "kind": "opinion",
+   "title": "People share what they see themselves in",
+   "body": "Samir asked director Petra Collins the difference between views and culture: 'If people can see themselves in the work.' The work isn't to be louder, it's to be truer, so that someone thinks 'I feel that too'. That person shares it.",
+   "use": "For every video, write the one 'I feel that too' sentence your viewer would say. If you can't, the video is information, not connection.",
+   "deep": "truer",
+   "star": true,
+   "from": "samir"
+  },
+  {
+   "id": "sameness",
+   "cat": "mind",
+   "kind": "checked",
+   "title": "Algorithms make everyone the same",
+   "body": "Over 75% of YouTube watch time came from recommendations (YouTube, 2018). When feeds reward the same formats, creators copy them and culture gets more uniform. Anne-Laure's fix: little acts of 'algorithmic resistance', like full albums, library books and recommendations from friends.",
+   "use": "Your taste is your edge. Get some inputs from outside the feed (books, people, your own tests), or your videos will look like everyone else's.",
+   "deep": "truer",
+   "from": "ness"
+  },
+  {
+   "id": "tinyexp",
+   "cat": "mind",
+   "kind": "opinion",
+   "title": "'I will [X] for [2 weeks]'",
+   "body": "Ness Labs turns every idea into a tiny experiment with one fill-in-the-blank sentence and a time limit. It's not a habit forever, just a test you review at the end.",
+   "use": "This is literally your channel format. Say the sentence on camera at the start of each test video: 'I will chew this gum 1 hour a day for 60 days.'",
+   "from": "ness"
+  },
+  {
+   "id": "skillfirst",
+   "cat": "mind",
+   "kind": "opinion",
+   "title": "Attitude, then practice, then skill, then results",
+   "body": "James Clear: everyone wants results. Skill comes before results, practice before skill, and attitude (being willing to keep trying) before practice. When stuck, ask: 'What can I do?'",
+   "use": "When a video flops, don't judge the result, judge the practice: did you do your reps (scripts, packaging reviews) this week?",
+   "from": "clear"
+  },
+  {
+   "id": "hourswap",
+   "cat": "mind",
+   "kind": "opinion",
+   "title": "Swap one default hour",
+   "body": "Ali moved an hour of late-night scrolling to a 7am walk with an audiobook. Same hour, much better use. He also started with a rough version and fixed the annoying bits as he went, instead of planning the perfect routine.",
+   "use": "Find one default hour (probably phone at night) and swap it into your Life OS: filming, reading, or the gym.",
+   "from": "ali"
+  },
+  {
+   "id": "sprint",
+   "cat": "yt",
+   "kind": "opinion",
+   "title": "Run your channel in 6-week sprints",
+   "body": "Creator Science works in six-week sprints: one theme per cycle (e.g. 'best launch ever', 'members never want to leave'), lots of experiments, then a review.",
+   "use": "Next 6 weeks: one theme only, e.g. 'packaging': every video gets 3 thumbnails and a keyword check. Review on week 6.",
+   "from": "jay"
+  },
+  {
+   "id": "abtest",
+   "cat": "tools",
+   "kind": "opinion",
+   "title": "A free thumbnail A/B test log",
+   "body": "Chewbr (a small tool maker in your inbox) sent a free Google Sheet to log thumbnail swaps: what you changed, when, and the before/after numbers. Otherwise you never know if the swap caused the change.",
+   "use": "Use YouTube's built-in Test & Compare for every video and log the result. After 10 tests you'll have your own thumbnail rules.",
+   "from": "tools"
+  },
+  {
+   "id": "reedit",
+   "cat": "tools",
+   "kind": "opinion",
+   "title": "Free pro feedback on your edit",
+   "body": "Editor Josh (Will Tennyson's editor) asked subscribers to send a recent, decent edit, and he'll re-edit parts of it on camera, explaining the pacing, music and shot choices.",
+   "use": "Send one of your videos via the form in his 27 Oct email. Worst case: nothing. Best case: free expert notes plus exposure on his channel.",
+   "from": "josh"
+  },
+  {
+   "id": "storymove",
+   "cat": "craft",
+   "kind": "opinion",
+   "title": "Does this moment move the story?",
+   "body": "Josh's one-question edit: for each moment, ask 'How does this move the story forward?' If it doesn't, cut it. If it strengthens it, highlight it (zoom, music, text).",
+   "use": "Do one pass of your next timeline asking only this question. It's faster than any effect pack.",
+   "from": "josh"
+  },
+  {
+   "id": "doubletake",
+   "cat": "craft",
+   "kind": "opinion",
+   "title": "Double-take, instant premise, real stakes",
+   "body": "Jon's outlier of the week (26M views, 31x): a thumbnail that makes you look twice (a stretched car), a premise you get in a second ('widest street-legal car'), and real stakes ('street legal', so can it actually drive?).",
+   "use": "Check your gum thumbnail against all three: does it make me look twice? Do I get it in 1 second? Is there something at stake?",
+   "from": "jon"
+  },
+  {
+   "id": "igpay",
+   "cat": "money",
+   "kind": "checked",
+   "title": "Instagram's $500K checks won't last",
+   "body": "Instagram is reportedly paying creators $50K-500K to post long videos, and not asking for exclusivity. It paid up to $250K for IGTV in 2019, and IGTV was shut down by 2022. YouTube's revenue share has paid creators over $100B since 2021.",
+   "use": "Build on the platform that pays per view forever (YouTube). Repost to Instagram for free reach, but don't plan around platform bonuses.",
+   "from": "jon"
+  },
+  {
+   "id": "beforeafter",
+   "cat": "looks",
+   "kind": "checked",
+   "title": "Before/afters are mostly photography",
+   "body": "The JAWLINER emails in your inbox (you've bought from them) show 'before/afters' with different light, angles, colour, haircuts and clenched jaws. Their FAQ says most customers see results 'after only a few weeks'. That's very fast for a muscle to visibly grow.",
+   "use": "Make 'spot the trick' a segment of your gum video, then show your own photos taken under the same conditions. Honesty is the hook.",
+   "deep": "beforeafter",
+   "star": true,
+   "from": "jawliner"
+  },
+  {
+   "id": "shame",
+   "cat": "mind",
+   "kind": "opinion",
+   "title": "Shame isn't motivation",
+   "body": "Andrew Tate's emails say things like 'You are unhappy because you have failed everyone who ever loved you.' Shame might get a click, but it destroys trust and teaches nothing.",
+   "use": "Your anti-model. When a hook works by making the viewer feel worthless, rewrite it so the viewer feels capable instead.",
+   "from": "tate"
+  },
+  {
+   "id": "gear",
+   "cat": "craft",
+   "kind": "opinion",
+   "title": "Your camera is fine",
+   "body": "Tico shot NBA games with a borrowed camera. rystal (old inbox) says the same about editing PCs: the gap is taste and what you do after you shoot, not the gear.",
+   "use": "Before buying anything for Black Friday, ask: will this fix my biggest weakness? Usually that's packaging or scripting, not kit.",
+   "from": "tico"
+  },
   {
    "id": "flywheel",
    "cat": "yt",
@@ -400,6 +923,30 @@
  ],
  "images": [
   {
+   "id": "jw_split",
+   "src": "https://d3k81ch9hvuctc.cloudfront.net/company/Srt9Nu/images/e3c4e1fe-8134-49a0-87fb-0c15d5df4de8.png",
+   "title": "The jaw 'before / after' split",
+   "cap": "One face, split down the middle: 'no pronounced jaw muscle' vs 'bigger jaw muscle through constant training'. The right half is shot from lower with harder side light.",
+   "use": "Freeze it in your gum video and circle what changed: the light and the angle, not the muscle. Then show your own honest Day 1 vs Day 60.",
+   "from": "jawliner"
+  },
+  {
+   "id": "jw_ba1",
+   "src": "https://d3k81ch9hvuctc.cloudfront.net/company/Srt9Nu/images/5082eb09-55f2-476a-b54b-8af0247359f6.png",
+   "title": "Before/after #1: black-and-white vs colour",
+   "cap": "'Real results. Real persistence.' Before is soft black-and-white with a relaxed face. After is high-contrast, from a slightly lower angle, jaw clenched.",
+   "use": "A 'spot the 4 tricks' moment: colour, contrast, angle, clenching. Viewers love finding them before you reveal them.",
+   "from": "jawliner"
+  },
+  {
+   "id": "jw_ba2",
+   "src": "https://d3k81ch9hvuctc.cloudfront.net/company/Srt9Nu/images/d7f63946-5452-402f-8e78-32cdf53144d5.png",
+   "title": "Before/after #2: different everything",
+   "cap": "Different haircut, head tilt, lighting, background and even headphones. Lean-out and grooming could explain much of the difference.",
+   "use": "Use it to set your rules: same light, same distance, same time of day, neutral face, same hair. Show the rules on screen.",
+   "from": "jawliner"
+  },
+  {
    "id": "downfall",
    "src": "https://pbs.twimg.com/media/HVuskpDaEAARf2O?format=jpg&name=large",
    "title": "The Downfall thumbnail",
@@ -425,6 +972,46 @@
   }
  ],
  "deep": [
+  {
+   "id": "titles",
+   "title": "12 title formats beating their channel's average, rewritten for you",
+   "dek": "Everything Creator Hooks sent you in the last month, ranked by outlier score, each with a version for a science-based looks channel.",
+   "visual": "outliers",
+   "sources": [
+    "Creator Hooks, issues of 19 Oct, 26 Oct, 2 Nov and 9 Nov 2026 (outlier scores are Creator Hooks' own numbers)",
+    "Jon Youshaei, Created, 5 Nov 2026"
+   ],
+   "md": "## How to read this\n\nAn outlier score is how many times better a video did than that channel's usual video. 10x means ten times its average. It's the fairest way to compare titles because it removes channel size. These scores are Creator Hooks' numbers, not yours, so treat them as strong hints.\n\n## The 12 formats (chart above)\n\n| Format | Score | Your version |\n|---|---|---|\n| It's Boring, But It (big result) | 59.5x | It's Boring, But It Fixed My Skin |\n| Former (authority): The 5-Second Rule I Use Before (moment) | 22.1x | I Tested 40 Products: The 5-Second Check I Do Before Buying Skincare |\n| Which (things) Are Actually Worth It? (Tier List) | 15.5x | Which Grooming Products Are Actually Worth It? (Tier List) |\n| (Authority)'s Stupidly Simple Techniques for EPIC (thing) | 14.7x | Models' Stupidly Simple Tricks for EPIC Photos |\n| Stop (good habit): A Better Way to (goal) | 11.0x | Stop Mewing: A Better Way to a Sharper Jaw |\n| The (thing) Crisis Just Took an Unexpected Turn | 10.5x | The Looksmaxxing Trend Just Took an Unexpected Turn |\n| We (did X) for (time) - What Did It Really Cost? | 9.2x | I Glowed Up For 90 Days - What Did It Really Cost? |\n| The Ultimate Guide to (subject) (Most People Are Level 1) | 8.5x | The Ultimate Guide to Looking Good (Most Guys Are Level 1) |\n| Why \"Good (habit)\" Creates (bad result) | 8.4x | Why \"Healthy Eating\" Can Make You Look Bloated |\n| The Most Overlooked (thing) Every (group) Needs | 7.7x | The Most Overlooked $5 Product Every Guy Needs |\n| The #1 Sign (bad thing is true) | 4.9x | The #1 Sign Your Skincare Is Making Things Worse |\n| The Hidden Trap of (good thing) | 4.4x | The Hidden Trap of Drinking More Water |\n\n## The patterns behind them\n\n- **Contrast.** Boring vs great result. Simple vs epic. Good habit vs bad result. Two ideas that shouldn't go together make a gap the brain wants to close.\n- **'It' and 'this'.** 'It's boring, but **it**...' opens a loop because the title doesn't say what 'it' is.\n- **Authority in front.** 'Former CIA', 'Slash's', 'According to Science'. For you that's measured results and studies, not a fake title.\n- **Status.** 'Most people are level 1', 'Signs you're ahead of most…'. Everyone wants to know where they rank.\n- **Simplicity.** The same channel got 205K views with 'Stupidly Simple Techniques for EPIC Solos' and 5.8K with 'Minor Pentatonic in Major Keys'.\n\n## The flops are as useful as the hits\n\n- '7 Gym Hacks Every Lifter Should Know' (0.18x): a list, but no benefit. Her hit was 'Why You Don't Look Athletic (Even Though You Lift)'.\n- 'Set These Boundaries BEFORE You Retire' (0.17x): the word 'boundaries' almost never gets outliers. Check the keyword before you film.\n- 'The One Song That Makes Jam Solos Easy' (0.12x): 'song' doesn't sound like a shortcut. 'Trick' would have.\n\n## The honesty rule\n\nEvery one of these works for your channel **only if the video delivers the twist**. 'Stop Mewing' is fine if you show what the evidence says works better. If you can't back the twist with a study or your own test, pick another format. Your brand is that the title is true.",
+   "min": 3
+  },
+  {
+   "id": "beforeafter",
+   "title": "Spot the tricks: how jawline before/afters are made",
+   "dek": "The JAWLINER photos in your inbox, taken apart, plus a checklist for your own honest Day 1 vs Day 60 photos.",
+   "visual": null,
+   "img": "jw_ba1",
+   "sources": [
+    "JAWLINER emails to your inbox (Sep-Nov 2026)",
+    "Your gum video research pack (60-day jawline gum)",
+    "Animal and imaging studies on chewing load and masseter size (no good human trial of gum and jaw appearance found)"
+   ],
+   "md": "## What the emails claim\n\nJAWLINER (you've ordered from them) says the masseter is 'the key to a defined, powerful jawline', that their gum turns 'a flat, undefined jaw into a bold, masculine statement', and that most customers see 'visible results after only a few weeks'. The proof is before/after photos.\n\n## The tricks in their photos\n\nLook at the images in this tab (Images) and count them:\n\n1. **Light.** Before: soft, flat light. After: hard side light that throws a shadow under the jaw. Shadow alone 'creates' a jawline.\n2. **Colour.** Before in black-and-white with low contrast, after in colour with high contrast.\n3. **Angle.** After shots are taken slightly from below, with the chin forward. The neck stretches and the jaw looks sharper.\n4. **Clenching.** A clenched masseter bulges. A relaxed one doesn't. Same muscle, different photo.\n5. **Everything else.** Different haircut, background, expression, even headphones. Lost body fat (the biggest real factor) never gets mentioned.\n\n## What the evidence says (honestly)\n\n- The masseter is a muscle, so loading it hard can make it a bit bigger. In animal studies, taking chewing load away shrinks it within a week.\n- But no good human trial shows that gum changes how the jaw **looks** in a few weeks. Most of what you see under the ear is **body fat, posture and lighting**, then bone, which gum can't change.\n- Too much hard chewing can make the jaw joint (TMJ) sore. Stop if it clicks or hurts.\n\n## Your rules for honest photos\n\n- Same place, same light (no window behind you), same time of day.\n- Same camera, same lens, same distance (mark the floor with tape).\n- Neutral face, teeth apart, jaw relaxed. Then one clenched shot, labelled.\n- Same haircut length, same shirt, same head angle (look at a dot on the wall).\n- Weigh yourself too: if you lose fat, say so, because that's probably the real cause.\n\n## How to use it in the video\n\nOpen the segment with their photo: 'Find the 4 tricks before I show you.' Pause. Circle them one by one. Then show yours, under the rules above, and say exactly what changed and what didn't. The honest result is the payoff no other jawline video gives.",
+   "min": 2
+  },
+  {
+   "id": "truer",
+   "title": "Be truer, not louder",
+   "dek": "Why some videos get shared and others just get watched: Samir, Petra Collins and Anne-Laure Le Cunff, turned into one question to ask before every upload.",
+   "visual": null,
+   "sources": [
+    "Colin & Samir Creator Support, 1 Nov 2026",
+    "Ness Labs, 'Algorithmic Resistance', 12 Nov 2026",
+    "Bryan Ng, Viral Bangers, 6 Nov 2026",
+    "Ed Lawrence, Film Booth, 26 Oct 2026 (old inbox)"
+   ],
+   "md": "## Views vs culture\n\nSamir asks everyone the same question: what's the difference between something that gets a lot of views and something that breaks into culture? Director Petra Collins (Olivia Rodrigo's videos) answered: **'If people can see themselves in the work.'**\n\nHis takeaway: the job isn't to be louder, it's to be truer. Say what you actually think, honestly enough that someone stops and thinks 'I feel that too'. That's the person who shares it.\n\n## Why loud and samey stops working\n\nAnne-Laure Le Cunff (a neuroscientist who studies curiosity) points out that most of what we watch is picked by algorithms (over 75% of YouTube watch time, by YouTube's own 2018 number). When feeds reward the same formats, creators copy them, and everything starts to look alike. Your viewers are drowning in identical 'looksmaxxing' videos. The one that feels true stands out because it's rare.\n\n## Two warnings from your inbox\n\n- Bryan Ng, who writes scripts for huge channels, admitted he hates his own channel: it got the leftovers while he worked for others. Doing it for the algorithm alone burns out even the pros.\n- Ed Lawrence (old inbox) said his last Film Booth videos were forced, and the views showed it.\n\n## The one question\n\nBefore each upload, finish this sentence as your viewer:\n\n> 'I feel that too: ______.'\n\nExamples for your channel:\n\n- Gum video: 'I've also stared at my side profile in a car window and hated it.'\n- Debloat video: 'I also wake up looking puffy and don't know why.'\n- Skincare: 'I also bought 6 products and have no idea which one works.'\n\nIf you can't fill the blank, the video is information. It might still get views, but it won't get shared.\n\n## How it fits your packaging rules\n\nTruer doesn't mean softer packaging. Use the title formats (Titles deep dive) **and** put the true feeling in the first 30 seconds. Packaging gets the click. Recognition gets the share.",
+   "min": 2
+  },
   {
    "id": "flywheel",
    "title": "The flywheel: the one loop your channel runs on",
@@ -501,6 +1088,64 @@
    ],
    "md": "## Ed's claims (his numbers, not verified)\n\n- One video that gave away the free version of his paid system made **$240k in 90 days**, 2,000+ emails and 130k views.\n- Of 198 channels he tracked, the **top 25% of earners got about the same views** as the bottom 25%, but made **~20x more per view**.\n- In 42 of 44 niches for course creators, demand fell since 2023. **Self-improvement: -45%.**\n\nAll three come from the person selling the system that fixes them, so treat them as hints, not facts.\n\n## What applies to you now\n\n1. **The \"free version\" video is also a great binge video.** Lay out your whole method, step by step, with 1-3 simple actions per step. \"This was so good I should have paid for it\" is the feeling you want, sale or not.\n2. **Mention the next step early.** He lost ~2,000 emails by plugging his list at minute 19 instead of the first 90 seconds. For you, the \"next step\" is your playlist or your next test video.\n3. **Be specific, not \"self-improvement\".** If broad self-improvement demand is falling, specific, measurable looks topics are the safer place to be.\n4. **Talk to viewers.** He spends 2-3 hours a day on it. You can reply to every comment while you're small. That's your demand research for free.\n\n## What to save for later\n\n- One product, simplest version first. No free community (it eats your time).\n- Promote something in every video once you have something worth promoting.\n- A \"contentment number\": decide what's enough before the money pulls you into grinding 24/7.\n\n## Where I disagree with Ed\n\n- \"Hire an editor ASAP\" and \"short-form is a waste\": his advice is for business owners with money. At your stage, editing *is* your skill-building, and Shorts are cheap tests of hooks.\n- \"Never use visual metaphors in thumbnails\" is too absolute. Your Thumb Lab found clear outcome images win, which is a narrower rule.",
    "min": 2
+  }
+ ],
+ "outliers": [
+  {
+   "k": "It's Boring, But It…",
+   "v": 59.5
+  },
+  {
+   "k": "Former X: The 5-Second Rule…",
+   "v": 22.1
+  },
+  {
+   "k": "Which X Are Actually Worth It? (Tier List)",
+   "v": 15.5
+  },
+  {
+   "k": "X's Stupidly Simple Techniques for EPIC Y",
+   "v": 14.7
+  },
+  {
+   "k": "Stop X: A Better Way to Y",
+   "v": 11.0
+  },
+  {
+   "k": "The X Crisis Just Took an Unexpected Turn",
+   "v": 10.5
+  },
+  {
+   "k": "We Did X - What Did It Really Cost?",
+   "v": 9.2
+  },
+  {
+   "k": "Ultimate Guide (Most People Are Level 1)",
+   "v": 8.5
+  },
+  {
+   "k": "Why 'Good X' Creates Y",
+   "v": 8.4
+  },
+  {
+   "k": "The Most Overlooked X Every Y Needs",
+   "v": 7.7
+  },
+  {
+   "k": "The #1 Sign X",
+   "v": 4.9
+  },
+  {
+   "k": "The Hidden Trap of X",
+   "v": 4.4
+  },
+  {
+   "k": "7 Gym Hacks Every Lifter Should Know (flop)",
+   "v": 0.18
+  },
+  {
+   "k": "Set These Boundaries BEFORE You Retire (flop)",
+   "v": 0.17
   }
  ],
  "hooks": [
