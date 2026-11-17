@@ -301,6 +301,10 @@ body{padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}
 .callout.blue{border-color:var(--blue);background:var(--blue-soft)} .callout.blue .ctag{color:var(--blue)}
 .callout.key{border-color:var(--orange);background:var(--orange-soft)} .callout.key .ctag{color:var(--orange)}
 .callout.check{border-color:var(--muted);background:var(--sunk);font-size:15px} .callout.check .ctag::before{content:"✓ "}
+.callout.book{border-color:var(--ink);background:var(--sunk);font-size:15px} .callout.book .ctag{color:var(--ink)} .callout.book .ctag::before{content:"📖 "}
+.viz img{display:block;max-width:260px;width:100%;margin:0 auto;border-radius:10px;background:#fff}
+.viz details{margin-top:8px;font-size:14px} .viz summary{cursor:pointer;font-weight:800;text-align:center;color:var(--blue)}
+.viz details p{margin:8px 0 0}
 .prose figure.viz{margin:6px 0 18px}
 
 /* books */
@@ -310,6 +314,9 @@ body{padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}
 .bookcard .bt{font-weight:800;font-size:19px;line-height:1.15}
 .bookcard .ba{font-family:var(--hand);color:var(--orange);font-size:14px}
 .bookcard .small{color:color-mix(in srgb,var(--bg) 70%,transparent);margin-top:auto}
+.bookcard.notes{background:var(--sunk);color:var(--ink);min-height:118px;border:1.5px solid var(--line)}
+.bookcard.notes .spine{background:var(--blue)} .bookcard.notes .ba{color:var(--blue)} .bookcard.notes .bt{font-size:17px}
+.bookcard.notes .small{color:var(--muted)}
 .bprog{height:4px;border-radius:2px;background:color-mix(in srgb,var(--bg) 22%,transparent);overflow:hidden}
 .bprog i{display:block;height:100%;background:var(--orange)}
 .btitle{font-size:28px;font-weight:800;letter-spacing:-.01em}
@@ -512,7 +519,7 @@ function inline(s){
     .replace(/==([^=]+)==/g, "<mark>$1</mark>")
     .replace(/\[([^\]]+)\]\(([^)]+)\)/g, "$1");
 }
-const CALLOUT = {purple:"Your purple note", blue:"Your blue note", key:"Key for you", check:"Fact check"};
+const CALLOUT = {purple:"Your purple note", blue:"Your blue note", key:"Key for you", check:"Fact check", book:"From the book"};
 function md(src, opt){
   const L = src.split("\n"), out = []; let i = 0;
   const isList = s => /^\s*([-*•]|\d+\.)\s+/.test(s);
@@ -709,7 +716,7 @@ const ARROWDEF = `<defs><marker id="fa" viewBox="0 0 10 10" refX="8" refY="5" ma
 const FIG = {
   persuasion(){
     const c = [[128,96,"var(--blue)","Ethos","credibility"],[232,96,"var(--orange)","Logos","logic, data"],[180,178,"var(--pink)","Pathos","emotion"]];
-    return figWrap("0 0 360 280", c.map(([x,y,col]) => `<circle cx="${x}" cy="${y}" r="74" fill="${col}" fill-opacity=".16" stroke="${col}" stroke-width="2.5"/>`).join("")
+    return figWrap("0 0 360 286", c.map(([x,y,col]) => `<circle cx="${x}" cy="${y}" r="74" fill="${col}" fill-opacity=".16" stroke="${col}" stroke-width="2.5"/>`).join("")
       + c.map(([x,y,col,a,b],k) => T(x + (k===0?-24:k===1?24:0), y + (k===2?26:-8), a, {f:15, w:800, c:col}) + T(x + (k===0?-24:k===1?24:0), y + (k===2?44:10), b, {f:12, w:600, c:"var(--muted)"})).join("")
       + T(180, 126, "persuades", {f:12, w:800}) + T(180, 274, "logic alone doesn't persuade", {hand:true, f:13, c:"var(--muted)"}),
       "", "Ethos, logos and pathos overlap; persuasion sits where all three meet.");
@@ -747,7 +754,7 @@ const FIG = {
   },
   rule3(){
     const kids = [70, 180, 290];
-    return figWrap("0 0 360 186", box(130, 10, 100, 40, {fill:"var(--ink)"}) + T(180, 35, "The idea", {f:14, w:800, c:"var(--bg)"})
+    return figWrap("0 0 360 192", box(130, 10, 100, 40, {fill:"var(--ink)"}) + T(180, 35, "The idea", {f:14, w:800, c:"var(--bg)"})
       + kids.map((x,k) => `<line x1="180" y1="50" x2="${x}" y2="84" stroke="var(--muted)" stroke-width="2"/>` + box(x-48, 84, 96, 36, {stroke:"var(--orange)"}) + T(x, 107, "Point " + (k+1), {f:13, w:800, c:"var(--orange)"})
         + [-30, 0, 30].map(d => `<line x1="${x}" y1="120" x2="${x+d}" y2="150" stroke="var(--line)" stroke-width="2"/><circle cx="${x+d}" cy="158" r="9" fill="var(--sunk)" stroke="var(--muted)" stroke-width="1.5"/>`).join("")).join("")
       + T(180, 182, "and each of those can split into 3 again", {hand:true, f:12, c:"var(--muted)"}),
@@ -790,6 +797,107 @@ const FIG = {
       + T(180, 218, "one number, plain background, a second of silence", {hand:true, f:12, c:"var(--muted)"}),
       "", "A video frame with only a big number 200 on a plain background.");
   },
+  ted9(){
+    const cols = [["Emotional","var(--pink)",["1 Passion","2 Stories","3 Conversation"]],["Novel","var(--orange)",["4 Something new","5 Wow moment","6 Humour"]],["Memorable","var(--blue)",["7 18 minutes","8 Senses","9 Be yourself"]]];
+    return figWrap("0 0 360 176", cols.map(([h,col,items],k) => { const x = 4 + k*119;
+      return box(x, 8, 113, 138, {stroke:col}) + T(x+56, 32, h, {f:13, w:800, c:col}) + `<line x1="${x+14}" y1="42" x2="${x+99}" y2="42" stroke="${col}" stroke-width="1.5"/>` + items.map((s,j) => T(x+56, 70 + j*28, s, {f:11.5, w:700})).join(""); }).join("")
+      + T(180, 168, "the whole book in 9 words", {hand:true, f:12, c:"var(--muted)"}),
+      "", "Talk Like TED's 9 chapters in 3 groups: Emotional (passion, stories, conversation), Novel (something new, wow moment, humour), Memorable (18 minutes, senses, be yourself).");
+  },
+  coreprogress(){
+    return figWrap("0 0 360 232", `<circle cx="180" cy="116" r="106" fill="var(--orange)" fill-opacity=".12" stroke="var(--orange)" stroke-width="2.5" stroke-dasharray="7 6"/><circle cx="180" cy="116" r="56" fill="var(--ink)"/>`
+      + T(180, 112, "Core", {f:17, w:800, c:"var(--bg)"}) + T(180, 130, "never changes", {f:10.5, w:700, c:"var(--orange)"})
+      + T(180, 38, "Progress", {f:14, w:800, c:"var(--orange)"}) + T(180, 54, "everything else changes", {f:10.5, w:700, c:"var(--muted)"})
+      + T(180, 190, "formats · editing", {f:10.5, w:700, c:"var(--muted)"}) + T(180, 204, "thumbnails · your set", {f:10.5, w:700, c:"var(--muted)"}),
+      "", "A fixed core circle (never changes) inside a dashed ring of progress (everything else changes).");
+  },
+  iceberg(){
+    return figWrap("0 0 360 250", `<rect x="0" y="92" width="360" height="158" fill="var(--blue)" fill-opacity=".08"/><line x1="0" y1="92" x2="360" y2="92" stroke="var(--blue)" stroke-width="2"/>`
+      + `<polygon points="180,18 136,92 226,92" fill="var(--paper)" stroke="var(--ink)" stroke-width="2"/>`
+      + `<polygon points="136,92 64,170 104,236 266,236 304,168 226,92" fill="var(--paper)" stroke="var(--ink)" stroke-width="2"/>`
+      + T(236, 40, "Personality Ethic", {a:"start", f:12.5, w:800, c:"var(--orange)"}) + T(236, 56, "image, techniques,", {a:"start", f:10.5, w:600, c:"var(--muted)"}) + T(236, 70, "positive attitude", {a:"start", f:10.5, w:600, c:"var(--muted)"})
+      + T(124, 52, "secondary", {a:"end", hand:true, f:12, c:"var(--orange)"})
+      + T(184, 148, "Character Ethic", {f:15, w:800, c:"var(--blue)"}) + T(184, 168, "integrity, humility,", {f:11, w:600, c:"var(--muted)"}) + T(184, 183, "courage, patience,", {f:11, w:600, c:"var(--muted)"}) + T(184, 198, "hard work", {f:11, w:600, c:"var(--muted)"})
+      + T(40, 226, "primary", {a:"start", hand:true, f:13, c:"var(--blue)"}),
+      "What people see is the tip. What holds it up is underneath.", "Iceberg: the small visible tip is the Personality Ethic (secondary), the big part under water is the Character Ethic (primary).");
+  },
+  wrongmap(){
+    const rows = [["Try harder","you get lost faster",false],["Think positive","still lost, just happier",false],["Fix the map","now you arrive",true]];
+    return figWrap("0 0 360 228", ARROWDEF + T(180, 20, "Your map says Detroit. You want Chicago.", {f:12.5, w:800})
+      + rows.map(([a,b,ok],k) => { const y = 38 + k*58, col = ok ? "var(--blue)" : "var(--red)";
+        return box(10, y, 128, 44, {stroke: ok ? "var(--blue)" : "var(--ink)", fill: ok ? "var(--blue)" : "var(--paper)"}) + T(74, y+27, a, {f:13, w:800, c: ok ? "#fff" : "var(--ink)"})
+          + arrow(144, y+22, 176, y+22) + T(184, y+27, (ok ? "✓ " : "✗ ") + b, {a:"start", f:12.5, w:800, c:col}); }).join("")
+      + T(180, 216, "behaviour and attitude only help on the right map", {hand:true, f:12, c:"var(--muted)"}),
+      "", "Three fixes for being lost: trying harder and thinking positive fail; fixing the map works.");
+  },
+  oldyoung(){
+    return `<figure class="viz"><img src="data/img/oldyoung.jpg" alt="Ambiguous drawing: a young woman looking away, or an old woman in profile" loading="lazy">
+      <figcaption class="cap">"My Wife and My Mother-in-Law", W. E. Hill, 1915 (public domain). The book uses a redrawn version.</figcaption>
+      <details><summary>Show me both</summary><p><b>Young woman:</b> turned away from you. You see her ear, the line of her jaw and a black necklace.</p><p><b>Old woman:</b> in profile, looking down. Her big nose is the young woman's jaw, her eye is the young woman's ear, and her mouth is the necklace. Her chin is tucked into the fur coat.</p></details></figure>`;
+  },
+  popcorn(){
+    const bar = (y, l, v, col, vt) => T(10, y, l, {a:"start", f:13, w:800}) + `<rect x="10" y="${y+8}" width="280" height="20" rx="6" fill="var(--paper)"/><rect x="10" y="${y+8}" width="${280*v/40}" height="20" rx="6" fill="${col}"/>` + T(298, y+24, vt, {a:"start", f:14, w:800, c:col});
+    const food = [[38,"🥓🍳","breakfast"],[128,"🍔🍟","lunch"],[212,"🥩","dinner"],[320,"🍿","1 bag"]];
+    return figWrap("0 0 360 232", T(10, 16, "Saturated fat", {a:"start", f:12, w:800, c:"var(--muted)"}) + bar(40, "Daily limit (US advice)", 20, "var(--muted)", "20 g") + bar(92, "One medium movie popcorn", 37, "var(--red)", "37 g")
+      + food.map(([x,e,l]) => T(x, 176, e, {f:26}) + T(x, 200, l, {f:11, w:700, c:"var(--muted)"})).join("") + T(83, 172, "+", {f:18, w:800}) + T(172, 172, "+", {f:18, w:800}) + T(266, 174, "<", {f:24, w:800, c:"var(--red)"})
+      + T(180, 222, "same fact, but this version made the news", {hand:true, f:12, c:"var(--muted)"}),
+      "", "Bars: daily limit 20 g, one movie popcorn 37 g. Below: breakfast plus lunch plus dinner of junk food is less than one bag of popcorn.");
+  },
+  success(){
+    const t = [["S","Simple","find the core"],["U","Unexpected","open a gap"],["C","Concrete","see it, touch it"],["C","Credible","make them believe"],["E","Emotional","make them feel"],["S","Stories","make them act"]];
+    const cols = ["var(--blue)","var(--orange)","var(--pink)","var(--violet)","var(--red)","var(--ink)"];
+    return figWrap("0 0 360 202", t.map(([l,w,d],k) => { const x = 6 + (k%3)*118, y = 6 + Math.floor(k/3)*84, col = cols[k];
+      return box(x, y, 110, 74, {stroke:col}) + T(x+18, y+31, l, {f:22, w:800, c:col}) + T(x+34, y+29, w, {a:"start", f:11.5, w:800}) + T(x+55, y+58, d, {f:10.5, w:600, c:"var(--muted)"}); }).join("")
+      + T(180, 192, "SUCCESs: the 6 principles", {hand:true, f:12, c:"var(--muted)"}),
+      "", "Six tiles: Simple, Unexpected, Concrete, Credible, Emotional, Stories.");
+  },
+  tappers(){
+    const bar = (y, l, v, col, vt) => T(10, y, l, {a:"start", f:13, w:800}) + `<rect x="10" y="${y+8}" width="280" height="20" rx="6" fill="var(--paper)"/><rect x="10" y="${y+8}" width="${Math.max(5, 280*v/100)}" height="20" rx="6" fill="${col}"/>` + T(298, y+24, vt, {a:"start", f:14, w:800, c:col});
+    return figWrap("0 0 360 152", T(10, 16, "Songs the listener guessed", {a:"start", f:12, w:800, c:"var(--muted)"}) + bar(40, "What tappers predicted", 50, "var(--muted)", "1 in 2") + bar(92, "What actually happened", 2.5, "var(--red)", "1 in 40")
+      + T(180, 142, "the tapper hears the song, the listener hears knocking", {hand:true, f:11.5, c:"var(--muted)"}),
+      "Elizabeth Newton, Stanford, 1990: 120 songs, 3 guessed.", "Bars: tappers predicted half the songs would be guessed; only 1 in 40 were.");
+  },
+  fivewhys(){
+    const steps = ["Buy Talk Like TED","Learn the info","Speak better","Better on camera","More views","Become a great YouTuber","I love making videos"];
+    return figWrap("0 0 360 330", steps.map((s,k) => { const x = 8 + k*18, y = 6 + k*40, last = k === steps.length - 1;
+      return (k ? T(x + 211, y + 19, "why?", {a:"start", hand:true, f:11, c:"var(--orange)"}) : "") + box(x, y, 206, 28, {r:8, stroke: last ? "var(--ink)" : "var(--line)", fill: last ? "var(--ink)" : "var(--paper)", sw:1.5}) + T(x + 103, y + 19, s, {f:12, w:800, c: last ? "var(--bg)" : "var(--ink)"}); }).join("")
+      + T(250, 26, "short-term", {a:"start", hand:true, f:12, c:"var(--muted)"}) + T(250, 290, "the real reason", {a:"start", hand:true, f:12, c:"var(--ink)"})
+      + box(8, 296, 150, 28, {r:8, stroke:"var(--red)", sw:1.5}) + T(83, 315, "Minecraft video", {f:12, w:800}) + T(168, 315, "→ dopamine. Skip it.", {a:"start", f:12, w:800, c:"var(--red)"}),
+      "", "A staircase of whys from buying Talk Like TED down to 'I love making videos'; the Minecraft video dead-ends at dopamine.");
+  },
+  spotlight(){
+    const bar = (y, l, v, col, vt) => T(10, y, l, {a:"start", f:13, w:800}) + `<rect x="10" y="${y+8}" width="280" height="20" rx="6" fill="var(--paper)"/><rect x="10" y="${y+8}" width="${280*v/100}" height="20" rx="6" fill="${col}"/>` + T(298, y+24, vt, {a:"start", f:14, w:800, c:col});
+    return figWrap("0 0 360 136", T(10, 16, "People who noticed the embarrassing T-shirt", {a:"start", f:12, w:800, c:"var(--muted)"}) + bar(40, "What the wearer guessed", 50, "var(--muted)", "~half") + bar(92, "Who actually noticed", 23, "var(--blue)", "~¼"),
+      "Gilovich and colleagues, 2000. Rounded.", "Bars: the wearer guessed about half the room noticed; about a quarter actually did.");
+  },
+  rewards(){
+    const rows = [["No reward",16.7,"var(--blue)"],["Surprise reward",18.1,"var(--blue)"],["Expected a reward",8.6,"var(--red)"]];
+    return figWrap("0 0 360 202", T(10, 16, "Free time kids spent drawing, 1–2 weeks later", {a:"start", f:12, w:800, c:"var(--muted)"})
+      + rows.map(([l,v,col],k) => { const y = 40 + k*50; return T(10, y, l, {a:"start", f:13, w:800}) + `<rect x="10" y="${y+8}" width="280" height="20" rx="6" fill="var(--paper)"/><rect x="10" y="${y+8}" width="${280*v/20}" height="20" rx="6" fill="${col}"/>` + T(298, y+24, Math.round(v) + "%", {a:"start", f:14, w:800, c:col}); }).join("")
+      + T(180, 192, "promised a reward → drew half as much later", {hand:true, f:12, c:"var(--red)"}),
+      "Lepper, Greene and Nisbett, 1973.", "Bars: kids with no reward or a surprise reward kept drawing about 17-18% of free time; kids who expected a reward drew about 9%.");
+  },
+  rest(){
+    return figWrap("0 0 360 120", `<rect x="10" y="30" width="226" height="34" rx="8" fill="var(--blue)"/><rect x="242" y="30" width="74" height="34" rx="8" fill="var(--orange)"/>`
+      + T(123, 52, "Work · 52 min", {f:13, w:800, c:"#fff"}) + T(279, 52, "Rest · 17", {f:12, w:800, c:"#fff"}) + T(334, 52, "↻", {f:20, w:800, c:"var(--muted)"})
+      + T(10, 18, "One cycle", {a:"start", f:12, w:800, c:"var(--muted)"}) + T(180, 94, "a real break: walk, push-ups, one song", {hand:true, f:12, c:"var(--muted)"}),
+      "", "One cycle: 52 minutes of work, then 17 minutes of rest, repeated.");
+  },
+  algorithm(){
+    const s = [["Question","every requirement"],["Delete","any step you can (add back ≥10%)"],["Simplify","only what survived"],["Speed up","only after 1–3"],["Automate","last"]];
+    return figWrap("0 0 360 262", s.map(([a,b],k) => { const y = 8 + k*48, col = k === 1 ? "var(--red)" : "var(--blue)";
+      return (k ? `<line x1="26" y1="${y-14}" x2="26" y2="${y+2}" stroke="var(--line)" stroke-width="3"/>` : "") + `<circle cx="26" cy="${y+16}" r="16" fill="${col}"/>` + T(26, y+21, String(k+1), {f:14, w:800, c:"#fff"})
+        + T(52, y+14, a, {a:"start", f:14, w:800}) + T(52, y+30, b, {a:"start", f:11.5, w:600, c:"var(--muted)"}); }).join("")
+      + T(350, 254, "in this order, every time", {a:"end", hand:true, f:12, c:"var(--orange)"}),
+      "", "Five numbered steps: question, delete, simplify, speed up, automate.");
+  },
+  funnel(){
+    const st = [["Video","free, gets to know you"],["Longer video","starts to trust you"],["Discord","joins, engages"],["Cheap product","first purchase"],["Coaching","the expensive one"]];
+    return figWrap("0 0 360 246", st.map(([a,b],k) => { const w = 300 - k*44, x = 180 - w/2, y = 6 + k*44, col = ["var(--blue)","var(--blue)","var(--violet)","var(--orange)","var(--orange)"][k];
+      return `<rect x="${x}" y="${y}" width="${w}" height="36" rx="9" fill="${col}" fill-opacity="${.2 + k*.15}" stroke="${col}" stroke-width="2"/>` + T(180, y+16, a, {f:13, w:800}) + T(180, y+30, b, {f:10, w:600, c:"var(--muted)"}); }).join("")
+      + T(180, 240, "fewer people at each step, more trust", {hand:true, f:12, c:"var(--muted)"}),
+      "", "Funnel: video, longer video, Discord, cheap product, coaching. Fewer people at each step, more trust.");
+  },
 };
 
 /* ---------- books: chapter notes he can read and edit ---------- */
@@ -798,22 +906,26 @@ function bookState(){ S.st.notes ||= {}; S.st.bookread ||= {}; return S.st; }
 function secMd(s){ const st = bookState(); return st.notes[s.id] ?? s.md; }
 function chapterRead(c){ const st = bookState(); return c.sections.every(s => st.bookread[s.id]); }
 function markChip(k){ return k ? `<span class="chip ${k}">${k === "key" ? "★" : `<i class="dot ${k}"></i>`}${MARK[k]}</span>` : ""; }
+const plural = (n, w) => `${n} ${w}${n === 1 ? "" : "s"}`;
 function shelfHTML(){
   if (!S.B || !S.B.books.length) return "";
-  return `<section style="display:flex;flex-direction:column;gap:8px"><span class="label">Books</span><div class="shelf">${S.B.books.map(b => {
-    const done = b.chapters.filter(chapterRead).length, noted = b.chapters.filter(c => c.sections.some(s => secMd(s).trim() && !/^\*No notes yet/.test(secMd(s)))).length;
-    return `<button class="bookcard" data-book="${b.id}"><span class="spine"></span><span class="bt">${esc(b.title)}</span><span class="ba">${esc(b.author)}</span><span class="small muted">${b.chapters.length} chapters · notes for ${noted}</span><span class="bprog"><i style="width:${100*done/b.chapters.length}%"></i></span></button>`; }).join("")}</div></section>`;
+  const card = b => {
+    const done = b.chapters.filter(chapterRead).length;
+    return `<button class="bookcard ${b.kind === "notes" ? "notes" : ""}" data-book="${b.id}"><span class="spine"></span><span class="bt">${esc(b.title)}</span><span class="ba">${esc(b.author)}</span><span class="small muted">${plural(b.chapters.length, "chapter")} · ${b.chapters.reduce((a,c) => a + c.min, 0)} min</span><span class="bprog"><i style="width:${100*done/b.chapters.length}%"></i></span></button>`; };
+  const group = (kind, label) => { const bs = S.B.books.filter(b => (b.kind || "book") === kind); return bs.length ? `<section style="display:flex;flex-direction:column;gap:8px"><span class="label">${label}</span><div class="shelf">${bs.map(card).join("")}</div></section>` : ""; };
+  return group("book", "Books") + group("notes", "Podcast & video notes");
 }
 const BK = { open:{} };
 function openBook(id){
   const b = S.B.books.find(x => x.id === id);
   $("#nav").hidden = false; S.mode = "book";
-  const parts = b.parts.map(p => `<div class="partname">Part · ${esc(p)}</div>` + b.chapters.filter(c => c.part === p).map(c => {
+  const groups = b.parts.length > 1 ? b.parts.map(p => [p, b.chapters.filter(c => c.part === p)]) : [[null, b.chapters]];
+  const parts = groups.map(([p, chs]) => (p ? `<div class="partname">Part · ${esc(p)}</div>` : "") + chs.map(c => {
     const open = BK.open[c.id], read = chapterRead(c);
     return `<article class="chap ${read ? "read" : ""}">
-      <div class="chead"><span class="cn">${c.n}</span><h3>${esc(c.title)}</h3>${c.mark ? `<i class="dot ${c.mark}" title="${MARK[c.mark]}"></i>` : ""}${read ? `<span class="done">✓</span>` : ""}</div>
+      <div class="chead"><span class="cn">${c.n || "•"}</span><h3>${esc(c.title)}</h3>${c.mark ? `<i class="dot ${c.mark}" title="${MARK[c.mark]}"></i>` : ""}${read ? `<span class="done">✓</span>` : ""}</div>
       <ul class="csum">${c.summary.map(x => `<li>${esc(x)}</li>`).join("")}</ul>
-      <div class="cact"><button class="btn small-btn" data-rch="${c.id}">Read chapter · ${c.min} min</button><button class="btn ghost small-btn" data-tog="${c.id}" aria-expanded="${!!open}">${open ? "Hide sections" : `${c.sections.length} sections`}</button></div>
+      <div class="cact"><button class="btn small-btn" data-rch="${c.id}">Read chapter · ${c.min} min</button><button class="btn ghost small-btn" data-tog="${c.id}" aria-expanded="${!!open}">${open ? "Hide sections" : plural(c.sections.length, "section")}</button></div>
       ${open ? `<div class="secs">${c.sections.map(s => `<button class="seclink" data-rsec="${s.id}"><span>${esc(s.title)}</span>${s.imp ? (s.imp === "key" ? `<span class="star">★</span>` : `<i class="dot ${s.imp}"></i>`) : ""}${bookState().bookread[s.id] ? `<span class="done">✓</span>` : ""}</button>`).join("")}</div>` : ""}
     </article>`; }).join("")).join("");
   $("#view").innerHTML = `<div class="wrap" style="gap:14px">
@@ -839,12 +951,12 @@ function openBookRead(bid, cid, sid, editing){
     return `<section class="bsec">${sid ? "" : head}${md(secMd(s))}</section>`;
   };
   const idx = c.sections.findIndex(s => s.id === sid), nextSec = sid && idx < c.sections.length - 1 ? c.sections[idx+1] : null;
-  const nextCh = b.chapters.find(x => x.n === c.n + 1);
+  const nextCh = b.chapters[b.chapters.indexOf(c) + 1];
   const already = secs.every(s => st.bookread[s.id] === today());
   $("#view").innerHTML = `<div class="wrap" style="gap:14px">
     <div class="row"><button class="back" id="rb">← ${esc(b.title)}</button><span class="grow"></span><button class="mini ${editing ? "on" : ""}" id="edt">${editing ? "Done editing" : "✎ Edit"}</button></div>
     <article class="article">
-      <div class="row"><span class="chip orange">Chapter ${c.n}</span>${sid ? "" : `<span class="small muted">${c.min} min · ${c.sections.length} sections</span>`}</div>
+      <div class="row"><span class="chip orange">${c.n ? `Chapter ${c.n}` : esc(b.title)}</span>${sid ? "" : `<span class="small muted">${c.min} min · ${plural(c.sections.length, "section")}</span>`}</div>
       <h1>${esc(sid ? secs[0].title : c.title)}</h1>
       ${sid ? `<div class="row" style="margin-top:2px"><span class="small muted">${esc(c.title)}</span>${markChip(secs[0].imp)}${st.notes[sid] !== undefined ? `<span class="chip">edited</span>` : ""}</div>` : `<ul class="csum" style="margin-top:6px">${c.summary.map(x => `<li>${esc(x)}</li>`).join("")}</ul>`}
       ${editing ? `<p class="small muted" style="margin:8px 0 0">Change, delete or add anything. **bold**, ==highlight==, "- " for a list. Saved on this device.</p>` : ""}
@@ -852,7 +964,7 @@ function openBookRead(bid, cid, sid, editing){
     </article>
     ${editing ? `<button class="btn" id="save">Save changes</button>` : `
     <button class="btn" id="mr">${already ? "Read again today" : "Mark as read"}</button>
-    ${nextSec ? `<button class="btn ghost" id="nx">Next section: ${esc(nextSec.title)} →</button>` : nextCh ? `<button class="btn ghost" id="nx">Chapter ${nextCh.n}: ${esc(nextCh.title)} →</button>` : ""}`}
+    ${nextSec ? `<button class="btn ghost" id="nx">Next section: ${esc(nextSec.title)} →</button>` : nextCh ? `<button class="btn ghost" id="nx">${nextCh.n ? `Chapter ${nextCh.n}: ` : ""}${esc(nextCh.title)} →</button>` : ""}`}
   </div>`;
   $("#rb").onclick = () => openBook(bid);
   $("#edt").onclick = () => openBookRead(bid, cid, sid, !editing);

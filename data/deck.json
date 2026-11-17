@@ -863,6 +863,120 @@
 "q": "What's the real reward when you make a video?",
 "a2": "Getting to make it. The effort makes you grow, and growth is the reward. Views and comments are a separate bonus.",
 "src": "Your notes (EXTREMELY IMPORTANT)"
+},
+{
+"id": "k1",
+"a": "deliver",
+"imp": "purple",
+"q": "What's the real goal when you make a video (Talk Like TED, ch. 9)?",
+"a2": "Not \"a video made\". To inspire the audience, move them, make them dream bigger. And you can't move people who don't think you're real.",
+"src": "Talk Like TED"
+},
+{
+"id": "k2",
+"a": "channel",
+"q": "\"Preserve the core, stimulate progress\": what does it mean for your channel?",
+"a2": "Keep a few principles fixed (evidence-based, safe, honest about what doesn't work) and change everything else freely: formats, editing, packaging, set.",
+"src": "7 Habits (Jim Collins foreword)"
+},
+{
+"id": "k3",
+"a": "work",
+"q": "Character Ethic vs Personality Ethic: which is primary, and why?",
+"a2": "Character (integrity, humility, courage, patience) is primary. Personality (image, techniques, positive attitude) is secondary: without character underneath it reads as manipulation.",
+"src": "7 Habits"
+},
+{
+"id": "k4",
+"a": "work",
+"q": "The wrong-map example: what does it teach?",
+"a2": "With a map of Detroit you'll never reach Chicago. Trying harder gets you lost faster; thinking positive leaves you lost but happy. Fix the map (paradigm) first, then behaviour and attitude matter.",
+"src": "7 Habits"
+},
+{
+"id": "k5",
+"a": "work",
+"q": "The young woman / old woman picture: what's the lesson?",
+"a2": "Conditioning shapes what you see (10 seconds of priming was enough). Two people can see the same thing differently and both be right from their map.",
+"src": "7 Habits"
+},
+{
+"id": "k6",
+"a": "channel",
+"q": "Elon's algorithm: the 5 steps, in order?",
+"a2": "1. Question every requirement.\n2. Delete any step you can (if you don't add back 10%, you didn't delete enough).\n3. Simplify.\n4. Speed up.\n5. Automate, last.",
+"src": "Elon Musk (Isaacson)"
+},
+{
+"id": "k7",
+"a": "channel",
+"imp": "purple",
+"q": "What kind of mission should you pick (Elon notes)?",
+"a2": "One that inspires you and is good for civilisation, even if it seems impossible. Ideally something that wouldn't happen without you.",
+"src": "Elon Musk notes"
+},
+{
+"id": "k8",
+"a": "channel",
+"q": "Why did Elon sleep in the middle of the factory floor?",
+"a2": "So the team would see him. Zero comfort, zero direct benefit, but when the team sees the leader working hardest, they work hard. Be a frontline general.",
+"src": "Elon Musk notes"
+},
+{
+"id": "k9",
+"a": "work",
+"q": "How does Elon solve a hard problem?",
+"a2": "Alone, in the dark and silence (or staring at a wall), for 20 minutes to a whole night. No forcing: let the mind wander around the problem.",
+"src": "Elon Musk notes"
+},
+{
+"id": "k10",
+"a": "work",
+"q": "The spotlight effect: what did the T-shirt study find?",
+"a2": "People wearing an embarrassing T-shirt guessed about half the room noticed. About a quarter did. Nobody watches you as closely as you think.",
+"src": "Feel-Good Productivity / Gilovich 2000"
+},
+{
+"id": "k11",
+"a": "work",
+"q": "Benjamin Franklin and his rival: what did Franklin do?",
+"a2": "Asked to borrow a rare book from the rival's library and returned it with a thank-you note. Asking a small favour made the rival like him; they became friends.",
+"src": "Feel-Good Productivity"
+},
+{
+"id": "k12",
+"a": "work",
+"q": "Someone tells you good news. What should you do?",
+"a2": "React with energy: ask questions, get excited, let them relive it (\"No way, how did it happen?\"). Shared joy is double joy.",
+"src": "Feel-Good Productivity"
+},
+{
+"id": "k13",
+"a": "channel",
+"q": "Ali Abdaal's selling rule: 10 people or 1,000?",
+"a2": "Sell a $1,000 thing to 10 people, not a $10 thing to 1,000. Expensive buyers want results with the least effort, not more information. And trust comes first.",
+"src": "Ali Abdaal podcast"
+},
+{
+"id": "k14",
+"a": "channel",
+"q": "Why can't one short video sell your coaching?",
+"a2": "Like a story: you only cheer for a character you know. Video → longer video → Discord → cheap product → coaching. Every step builds trust.",
+"src": "Your notes"
+},
+{
+"id": "k15",
+"a": "pack",
+"q": "The 3 questions to ask about every reference thumbnail?",
+"a2": "1. What questions does it make me ask?\n2. What emotions does it make me feel?\n3. HOW does it make me ask or feel that?",
+"src": "Thumbnail tutorial"
+},
+{
+"id": "k16",
+"a": "pack",
+"q": "Where do your 10+ thumbnail references come from?",
+"a2": "Your own outliers, random outliers, niche channels' outliers on a DIFFERENT topic, thumbnails that caught your eye, and off-platform (posters, billboards).",
+"src": "Thumbnail tutorial"
 }
 ],
 "teach": [
