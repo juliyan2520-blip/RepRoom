@@ -340,6 +340,20 @@ body{padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}
 .bsec:first-child .sechead{margin-top:4px}
 textarea.edit{min-height:140px;font-size:15px;line-height:1.55;font-family:var(--display);margin:6px 0 8px}
 
+
+/* listen: mini player */
+.player{position:fixed;left:0;right:0;z-index:25;bottom:0;padding:0 max(10px,env(safe-area-inset-right,0px)) 8px max(10px,env(safe-area-inset-left,0px));pointer-events:none}
+.player .pb{pointer-events:auto;max-width:560px;margin:0 auto;background:var(--ink);color:var(--bg);border-radius:16px;padding:10px 12px;display:flex;flex-direction:column;gap:7px;box-shadow:0 6px 24px rgba(0,0,0,.18)}
+.player .pt{display:flex;align-items:center;gap:10px}
+.player .pt b{font-size:13.5px;line-height:1.25;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.player .pt span{font-size:11.5px;opacity:.7}
+.player button{background:none;border:0;color:inherit;font-weight:800;padding:6px 7px;border-radius:10px;font-size:13px}
+.player .pp{background:var(--orange);color:#2A2826;width:40px;height:40px;border-radius:50%;font-size:16px;flex:none;display:grid;place-items:center;padding:0}
+.player input[type=range]{width:100%;accent-color:var(--orange);margin:0}
+.player .pc{display:flex;align-items:center;gap:2px;font-size:11.5px;font-variant-numeric:tabular-nums}
+.btn.listen{background:var(--orange);color:#2A2826}
+body.playing{padding-bottom:calc(200px + env(safe-area-inset-bottom,0px))}
+
 /* end */
 .end h2{font-size:26px;font-weight:800}
 .tally{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
@@ -911,11 +925,74 @@ function shelfHTML(){
   if (!S.B || !S.B.books.length) return "";
   const card = b => {
     const done = b.chapters.filter(chapterRead).length;
-    return `<button class="bookcard ${b.kind === "notes" ? "notes" : ""}" data-book="${b.id}"><span class="spine"></span><span class="bt">${esc(b.title)}</span><span class="ba">${esc(b.author)}</span><span class="small muted">${plural(b.chapters.length, "chapter")} · ${b.chapters.reduce((a,c) => a + c.min, 0)} min</span><span class="bprog"><i style="width:${100*done/b.chapters.length}%"></i></span></button>`; };
+    return `<button class="bookcard ${b.kind === "notes" ? "notes" : ""}" data-book="${b.id}"><span class="spine"></span><span class="bt">${esc(b.title)}</span><span class="ba">${esc(b.author)}</span><span class="small muted">${AUDIO_BOOKS.has(b.id) ? "🎧 " : ""}${plural(b.chapters.length, "chapter")} · ${b.chapters.reduce((a,c) => a + c.min, 0)} min</span><span class="bprog"><i style="width:${100*done/b.chapters.length}%"></i></span></button>`; };
   const group = (kind, label) => { const bs = S.B.books.filter(b => (b.kind || "book") === kind); return bs.length ? `<section style="display:flex;flex-direction:column;gap:8px"><span class="label">${label}</span><div class="shelf">${bs.map(card).join("")}</div></section>` : ""; };
   return group("book", "Books") + group("notes", "Podcast & video notes");
 }
 const BK = { open:{} };
+
+/* ---------- listen: audio versions of book chapters ---------- */
+const AUDIO_BOOKS = new Set(["ted","habits","stick","feelgood","elon"]);
+const audioSrc = (b, c) => `data/audio/${b.id}-${String(c.n || 0).padStart(2,"0")}.mp3`;
+let AUDIO_LIST = null; // public app ships data/audio/list.json (chapters whose narration is safe to publish); the artifact has none = all
+function hasAudio(b, c){ return AUDIO_BOOKS.has(b.id) && (!AUDIO_LIST || AUDIO_LIST.has(audioSrc(b, c).slice(11, -4))); }
+const Listen = (() => {
+  const a = new Audio(); a.preload = "metadata";
+  let cur = null, rate = 1;
+  const RATES = [1, 1.15, 1.3, 1.5, 0.9];
+  const bar = document.createElement("div"); bar.className = "player"; bar.hidden = true;
+  bar.innerHTML = `<div class="pb"><div class="pt"><button class="pp" id="pl-pp" aria-label="Play or pause">▶</button><div class="grow"><b id="pl-t"></b><span id="pl-s"></span></div><button id="pl-x" aria-label="Close player">✕</button></div>
+    <input type="range" id="pl-r" min="0" max="1000" value="0" aria-label="Position">
+    <div class="pc"><span id="pl-c">0:00</span><span class="grow"></span><button id="pl-b">↺ 15</button><button id="pl-sp">1×</button><button id="pl-f">15 ↻</button><button id="pl-n">Next ⏭</button><span class="grow"></span><span id="pl-d">0:00</span></div></div>`;
+  document.body.appendChild(bar);
+  const q = s => bar.querySelector(s), fmt = t => isFinite(t) ? Math.floor(t/60) + ":" + String(Math.floor(t%60)).padStart(2,"0") : "0:00";
+  const place = () => { const nav = $("#nav"); bar.style.bottom = nav.hidden ? "0px" : (nav.offsetHeight + "px"); };
+  new MutationObserver(place).observe($("#nav"), {attributes:true, attributeFilter:["hidden"]});
+  window.addEventListener("resize", place);
+  const posKey = () => cur ? "reproom-pos-" + cur.b.id + "-" + cur.c.id : null;
+  function play(bid, cid, startAt){
+    const b = S.B.books.find(x => x.id === bid), c = b.chapters.find(x => x.id === cid);
+    if (cur && cur.c.id === cid){ a.paused ? a.play() : a.pause(); return; }
+    cur = {b, c};
+    a.src = audioSrc(b, c); a.playbackRate = rate;
+    let saved = 0; try { saved = +localStorage.getItem(posKey()) || 0; } catch {}
+    a.addEventListener("loadedmetadata", function once(){ a.removeEventListener("loadedmetadata", once); if (startAt == null && saved > 5 && saved < a.duration - 10) a.currentTime = saved; }, {once:true});
+    q("#pl-t").textContent = (c.n ? `Ch ${c.n}: ` : "") + c.title; q("#pl-s").textContent = b.title;
+    bar.hidden = false; document.body.classList.add("playing"); place();
+    a.play().catch(() => {});
+    if ("mediaSession" in navigator){
+      navigator.mediaSession.metadata = new MediaMetadata({title: (c.n ? `Chapter ${c.n}: ` : "") + c.title, artist: b.author, album: b.title});
+      navigator.mediaSession.setActionHandler("play", () => a.play());
+      navigator.mediaSession.setActionHandler("pause", () => a.pause());
+      navigator.mediaSession.setActionHandler("seekbackward", () => { a.currentTime = Math.max(0, a.currentTime - 15); });
+      navigator.mediaSession.setActionHandler("seekforward", () => { a.currentTime = Math.min(a.duration, a.currentTime + 15); });
+      navigator.mediaSession.setActionHandler("nexttrack", next);
+    }
+  }
+  function next(){ if (!cur) return; const i = cur.b.chapters.indexOf(cur.c), n = cur.b.chapters[i+1]; if (n){ const bid = cur.b.id; cur = null; play(bid, n.id, 0); } }
+  a.onplay = () => { q("#pl-pp").textContent = "❚❚"; };
+  a.onpause = () => { q("#pl-pp").textContent = "▶"; };
+  let lastSave = 0;
+  a.ontimeupdate = () => {
+    q("#pl-c").textContent = fmt(a.currentTime); q("#pl-d").textContent = fmt(a.duration);
+    if (a.duration) q("#pl-r").value = Math.round(1000 * a.currentTime / a.duration);
+    if (Date.now() - lastSave > 4000){ lastSave = Date.now(); try { localStorage.setItem(posKey(), a.currentTime); } catch {} }
+  };
+  a.onended = () => {
+    try { localStorage.removeItem(posKey()); } catch {}
+    const st = bookState(); for (const s of cur.c.sections) st.bookread[s.id] = today(); rep("listen", {n: cur.c.sections.length});
+    next();
+  };
+  q("#pl-pp").onclick = () => a.paused ? a.play() : a.pause();
+  q("#pl-b").onclick = () => { a.currentTime = Math.max(0, a.currentTime - 15); };
+  q("#pl-f").onclick = () => { a.currentTime = Math.min(a.duration || 0, a.currentTime + 15); };
+  q("#pl-n").onclick = next;
+  q("#pl-sp").onclick = () => { rate = RATES[(RATES.indexOf(rate) + 1) % RATES.length]; a.playbackRate = rate; q("#pl-sp").textContent = rate + "×"; };
+  q("#pl-r").oninput = e => { if (a.duration) a.currentTime = a.duration * e.target.value / 1000; };
+  q("#pl-x").onclick = () => { a.pause(); bar.hidden = true; document.body.classList.remove("playing"); cur = null; };
+  return { play };
+})();
+
 function openBook(id){
   const b = S.B.books.find(x => x.id === id);
   $("#nav").hidden = false; S.mode = "book";
@@ -925,18 +1002,21 @@ function openBook(id){
     return `<article class="chap ${read ? "read" : ""}">
       <div class="chead"><span class="cn">${c.n || "•"}</span><h3>${esc(c.title)}</h3>${c.mark ? `<i class="dot ${c.mark}" title="${MARK[c.mark]}"></i>` : ""}${read ? `<span class="done">✓</span>` : ""}</div>
       <ul class="csum">${c.summary.map(x => `<li>${esc(x)}</li>`).join("")}</ul>
-      <div class="cact"><button class="btn small-btn" data-rch="${c.id}">Read chapter · ${c.min} min</button><button class="btn ghost small-btn" data-tog="${c.id}" aria-expanded="${!!open}">${open ? "Hide sections" : plural(c.sections.length, "section")}</button></div>
+      <div class="cact"><button class="btn small-btn" data-rch="${c.id}">Read chapter · ${c.min} min</button>${hasAudio(b, c) ? `<button class="btn listen small-btn" data-lis="${c.id}">▶ Listen</button>` : ""}<button class="btn ghost small-btn" data-tog="${c.id}" aria-expanded="${!!open}">${open ? "Hide sections" : plural(c.sections.length, "section")}</button></div>
       ${open ? `<div class="secs">${c.sections.map(s => `<button class="seclink" data-rsec="${s.id}"><span>${esc(s.title)}</span>${s.imp ? (s.imp === "key" ? `<span class="star">★</span>` : `<i class="dot ${s.imp}"></i>`) : ""}${bookState().bookread[s.id] ? `<span class="done">✓</span>` : ""}</button>`).join("")}</div>` : ""}
     </article>`; }).join("")).join("");
   $("#view").innerHTML = `<div class="wrap" style="gap:14px">
     <div class="row"><button class="back" id="bb">← Read</button></div>
     <div><h1 class="btitle">${esc(b.title)}</h1><p class="small muted" style="margin:2px 0 0">${esc(b.author)} · ${esc(b.dek)}</p></div>
+    ${AUDIO_BOOKS.has(b.id) ? `<button class="btn listen" id="lisall">▶ Listen to the whole book</button>` : ""}
     <p class="small muted legend2" style="margin:0"><span><i class="dot purple"></i> your purple</span><span><i class="dot blue"></i> your blue</span><span><span class="star">★</span> key for you</span></p>
     ${parts}
   </div>`;
   $("#bb").onclick = () => go("read");
+  const la = $("#lisall"); if (la) la.onclick = () => Listen.play(id, b.chapters[0].id);
   document.querySelectorAll("[data-tog]").forEach(x => x.onclick = () => { BK.open[x.dataset.tog] = !BK.open[x.dataset.tog]; keepScroll(() => openBook(id)); });
   document.querySelectorAll("[data-rch]").forEach(x => x.onclick = () => openBookRead(id, x.dataset.rch, null));
+  document.querySelectorAll("[data-lis]").forEach(x => x.onclick = () => Listen.play(id, x.dataset.lis));
   document.querySelectorAll("[data-rsec]").forEach(x => x.onclick = () => { const c = b.chapters.find(c => c.sections.some(s => s.id === x.dataset.rsec)); openBookRead(id, c.id, x.dataset.rsec); });
 }
 function openBookRead(bid, cid, sid, editing){
@@ -956,7 +1036,7 @@ function openBookRead(bid, cid, sid, editing){
   $("#view").innerHTML = `<div class="wrap" style="gap:14px">
     <div class="row"><button class="back" id="rb">← ${esc(b.title)}</button><span class="grow"></span><button class="mini ${editing ? "on" : ""}" id="edt">${editing ? "Done editing" : "✎ Edit"}</button></div>
     <article class="article">
-      <div class="row"><span class="chip orange">${c.n ? `Chapter ${c.n}` : esc(b.title)}</span>${sid ? "" : `<span class="small muted">${c.min} min · ${plural(c.sections.length, "section")}</span>`}</div>
+      <div class="row"><span class="chip orange">${c.n ? `Chapter ${c.n}` : esc(b.title)}</span>${sid ? "" : `<span class="small muted">${c.min} min · ${plural(c.sections.length, "section")}</span>`}${hasAudio(b, c) && !editing ? `<span class="grow"></span><button class="mini go" id="lis">▶ Listen</button>` : ""}</div>
       <h1>${esc(sid ? secs[0].title : c.title)}</h1>
       ${sid ? `<div class="row" style="margin-top:2px"><span class="small muted">${esc(c.title)}</span>${markChip(secs[0].imp)}${st.notes[sid] !== undefined ? `<span class="chip">edited</span>` : ""}</div>` : `<ul class="csum" style="margin-top:6px">${c.summary.map(x => `<li>${esc(x)}</li>`).join("")}</ul>`}
       ${editing ? `<p class="small muted" style="margin:8px 0 0">Change, delete or add anything. **bold**, ==highlight==, "- " for a list. Saved on this device.</p>` : ""}
@@ -968,6 +1048,7 @@ function openBookRead(bid, cid, sid, editing){
   </div>`;
   $("#rb").onclick = () => openBook(bid);
   $("#edt").onclick = () => openBookRead(bid, cid, sid, !editing);
+  const lb = $("#lis"); if (lb) lb.onclick = () => Listen.play(bid, cid);
   if (editing){
     document.querySelectorAll("textarea.edit").forEach(t => { const fit = () => { t.style.height = "auto"; t.style.height = (t.scrollHeight + 4) + "px"; }; fit(); t.oninput = fit; });
     document.querySelectorAll("[data-reset]").forEach(x => x.onclick = () => { delete st.notes[x.dataset.reset]; persist(); openBookRead(bid, cid, sid, true); });
@@ -1408,6 +1489,7 @@ async function boot(){
     S.R = { cats: reads.cats, reads: reads.reads, byId: {} }; for (const r of reads.reads) S.R.byId[r.id] = r;
     S.I = await fetch("data/inbox.json").then(r => r.json()).catch(() => null);
     S.B = await fetch("data/books.json").then(r => r.json()).catch(() => null);
+    AUDIO_LIST = await fetch("data/audio/list.json").then(r => r.ok ? r.json() : null).then(l => l && new Set(l)).catch(() => null);
   } catch {
     $("#view").innerHTML = `<p>The deck didn't load. Reload the page to try again.</p>`; return;
   }
