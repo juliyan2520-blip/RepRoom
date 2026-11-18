@@ -352,6 +352,13 @@ textarea.edit{min-height:140px;font-size:15px;line-height:1.55;font-family:var(-
 .player input[type=range]{width:100%;accent-color:var(--orange);margin:0}
 .player .pc{display:flex;align-items:center;gap:2px;font-size:11.5px;font-variant-numeric:tabular-nums}
 .btn.listen{background:var(--orange);color:#2A2826}
+.rcl{display:flex;flex-direction:column;gap:8px}
+.itm{display:flex;gap:12px;align-items:flex-start;text-align:left;background:var(--paper);border:1.5px solid var(--line);border-radius:12px;padding:11px 13px}
+.itm small{display:block;color:var(--muted);font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.itm .box{flex:none;width:22px;height:22px;border-radius:6px;border:2px solid var(--line);margin-top:1px;display:grid;place-items:center}
+.itm.on{border-color:var(--blue);background:var(--blue-soft)}
+.itm.on .box{background:var(--blue);border-color:var(--blue)}
+.itm.on .box::after{content:"✓";color:#fff;font-weight:800;font-size:14px;line-height:1}
 body.playing{padding-bottom:calc(200px + env(safe-area-inset-bottom,0px))}
 
 /* end */
@@ -953,7 +960,7 @@ const Listen = (() => {
   function play(bid, cid, startAt){
     const b = S.B.books.find(x => x.id === bid), c = b.chapters.find(x => x.id === cid);
     if (cur && cur.c.id === cid){ a.paused ? a.play() : a.pause(); return; }
-    cur = {b, c};
+    cur = {b, c}; pendOff();
     a.src = audioSrc(b, c); a.playbackRate = rate;
     let saved = 0; try { saved = +localStorage.getItem(posKey()) || 0; } catch {}
     a.addEventListener("loadedmetadata", function once(){ a.removeEventListener("loadedmetadata", once); if (startAt == null && saved > 5 && saved < a.duration - 10) a.currentTime = saved; }, {once:true});
@@ -969,7 +976,7 @@ const Listen = (() => {
       navigator.mediaSession.setActionHandler("nexttrack", next);
     }
   }
-  function next(){ if (!cur) return; const i = cur.b.chapters.indexOf(cur.c), n = cur.b.chapters[i+1]; if (n){ const bid = cur.b.id; cur = null; play(bid, n.id, 0); } }
+  function next(){ if (!cur) return; const i = cur.b.chapters.indexOf(cur.c), n = cur.b.chapters[i+1]; if (n){ const bid = cur.b.id; cur = null; pendOff(); play(bid, n.id, 0); } }
   a.onplay = () => { q("#pl-pp").textContent = "❚❚"; };
   a.onpause = () => { q("#pl-pp").textContent = "▶"; };
   let lastSave = 0;
@@ -978,20 +985,73 @@ const Listen = (() => {
     if (a.duration) q("#pl-r").value = Math.round(1000 * a.currentTime / a.duration);
     if (Date.now() - lastSave > 4000){ lastSave = Date.now(); try { localStorage.setItem(posKey(), a.currentTime); } catch {} }
   };
+  // finished: no auto-next, no auto "read". Recall first (it marks the chapter read when done or skipped).
+  let pend = null;
+  const pendOff = () => { pend = null; q("#pl-n").textContent = "Next ⏭"; };
   a.onended = () => {
     try { localStorage.removeItem(posKey()); } catch {}
-    const st = bookState(); for (const s of cur.c.sections) st.bookread[s.id] = today(); rep("listen", {n: cur.c.sections.length});
-    next();
+    pend = cur; q("#pl-n").textContent = "Recall ✎"; q("#pl-s").textContent = "Finished · recall it before the next one";
+    if (S.mode === null || S.mode === "book") openRecall(pend.b.id, pend.c.id, "audio");
   };
   q("#pl-pp").onclick = () => a.paused ? a.play() : a.pause();
   q("#pl-b").onclick = () => { a.currentTime = Math.max(0, a.currentTime - 15); };
   q("#pl-f").onclick = () => { a.currentTime = Math.min(a.duration || 0, a.currentTime + 15); };
-  q("#pl-n").onclick = next;
+  q("#pl-n").onclick = () => { if (pend) openRecall(pend.b.id, pend.c.id, "audio"); else next(); };
   q("#pl-sp").onclick = () => { rate = RATES[(RATES.indexOf(rate) + 1) % RATES.length]; a.playbackRate = rate; q("#pl-sp").textContent = rate + "×"; };
   q("#pl-r").oninput = e => { if (a.duration) a.currentTime = a.duration * e.target.value / 1000; };
-  q("#pl-x").onclick = () => { a.pause(); bar.hidden = true; document.body.classList.remove("playing"); cur = null; };
+  q("#pl-x").onclick = () => { a.pause(); bar.hidden = true; document.body.classList.remove("playing"); cur = null; pendOff(); };
   return { play };
 })();
+
+/* ---------- recall: 60-second brain dump after a chapter (retrieval practice), then tick what you had ---------- */
+function openRecall(bid, cid, from){
+  const b = S.B.books.find(x => x.id === bid), c = b.chapters.find(x => x.id === cid);
+  const st = bookState(); st.recall ||= {};
+  const prev = st.recall[cid];
+  const nextCh = b.chapters[b.chapters.indexOf(c) + 1];
+  S.mode = "book"; $("#nav").hidden = true;
+  const title = (c.n ? `Chapter ${c.n}: ` : "") + c.title;
+  const markRead = () => { for (const s of c.sections) st.bookread[s.id] = today(); };
+  const exits = () => `<div class="cact">${from === "audio" && nextCh && hasAudio(b, nextCh) ? `<button class="btn listen" id="rnext">▶ Listen to the next chapter</button>` : ""}<button class="btn ghost" id="rback">Back to ${esc(b.title)}</button></div>`;
+  const wireExits = () => { const n = $("#rnext"); if (n) n.onclick = () => { openBook(bid); Listen.play(bid, nextCh.id, 0); }; $("#rback").onclick = () => openBook(bid); };
+  const phase1 = () => {
+    $("#view").innerHTML = `<div class="wrap" style="gap:14px">
+      <div class="row"><span class="chip orange">Brain dump · about 60 seconds</span>${prev ? `<span class="small muted">last time ${prev.score}%</span>` : ""}</div>
+      <h1 style="font-size:24px">${esc(title)}</h1>
+      <p class="muted" style="margin:0">Don't look back at the chapter. Type everything you remember: ideas, examples, numbers, even half-remembered bits. Messy is fine.</p>
+      <textarea id="rtxt" class="edit" placeholder="What I remember…" aria-label="What you remember from this chapter" style="min-height:190px"></textarea>
+      <button class="btn" id="rshow">Show what the chapter said</button>
+      <button class="btn ghost" id="rskip">Skip and mark as read</button>
+    </div>`;
+    $("#rtxt").focus();
+    $("#rshow").onclick = () => phase2($("#rtxt").value.trim());
+    $("#rskip").onclick = () => { markRead(); rep("book", {n: c.sections.length}); persist(); openBook(bid); };
+  };
+  const phase2 = txt => {
+    const items = c.summary.map(t => ({t, k:"Main point"})).concat(c.sections.map(s => ({t: s.title, k:"Section"})));
+    $("#view").innerHTML = `<div class="wrap" style="gap:14px">
+      <div class="row"><span class="chip orange">Check yourself</span></div>
+      <h1 style="font-size:24px">${esc(title)}</h1>
+      ${txt ? `<div class="ans" style="font-weight:400"><span class="label" style="display:block;margin-bottom:4px">What you wrote</span>${esc(txt)}</div>` : ""}
+      <p class="muted" style="margin:0">Tap everything you had, even partly. Be strict: only what you wrote or clearly knew.</p>
+      <div class="rcl">${items.map((x, i) => `<button class="itm" data-i="${i}" aria-pressed="false"><span class="box"></span><span class="grow">${esc(x.t)}<small>${x.k}</small></span></button>`).join("")}</div>
+      <button class="btn" id="rdone">Done</button>
+    </div>`;
+    document.querySelectorAll(".itm").forEach(x => x.onclick = () => { const on = x.getAttribute("aria-pressed") !== "true"; x.setAttribute("aria-pressed", on); x.classList.toggle("on", on); });
+    $("#rdone").onclick = () => {
+      const got = document.querySelectorAll(".itm.on").length, score = Math.round(100 * got / items.length);
+      st.recall[cid] = {last: today(), n: (prev?.n || 0) + 1, score, hist: ((prev?.hist) || []).slice(-9).concat({d: today(), score}), text: txt.slice(0, 1500)};
+      markRead(); rep("recall", {n: 1}); persist();
+      $("#view").innerHTML = `<div class="wrap" style="gap:14px">
+        <div class="card"><span class="label">You recalled</span><div class="verdict"><span class="big ${score >= 60 ? "hit" : "flop"}">${got} of ${items.length}</span><span class="muted">${score}%</span></div>
+        <p class="note ${score >= 60 ? "blue" : "red"}">${score >= 60 ? "Good. Pulling it out of your head is what made it stick." : "That's normal for a first try. The effort is the point; the gaps are what to look at again."}</p>
+        ${prev ? `<p class="small muted" style="margin:0">Earlier attempts: ${st.recall[cid].hist.slice(0, -1).map(h => h.score + "%").join(", ")}</p>` : ""}</div>
+        ${exits()}</div>`;
+      wireExits();
+    };
+  };
+  phase1();
+}
 
 function openBook(id){
   const b = S.B.books.find(x => x.id === id);
@@ -1000,7 +1060,7 @@ function openBook(id){
   const parts = groups.map(([p, chs]) => (p ? `<div class="partname">Part · ${esc(p)}</div>` : "") + chs.map(c => {
     const open = BK.open[c.id], read = chapterRead(c);
     return `<article class="chap ${read ? "read" : ""}">
-      <div class="chead"><span class="cn">${c.n || "•"}</span><h3>${esc(c.title)}</h3>${c.mark ? `<i class="dot ${c.mark}" title="${MARK[c.mark]}"></i>` : ""}${read ? `<span class="done">✓</span>` : ""}</div>
+      <div class="chead"><span class="cn">${c.n || "•"}</span><h3>${esc(c.title)}</h3>${c.mark ? `<i class="dot ${c.mark}" title="${MARK[c.mark]}"></i>` : ""}${bookState().recall?.[c.id] ? `<span class="chip blue" title="Last brain dump">🧠 ${bookState().recall[c.id].score}%</span>` : ""}${read ? `<span class="done">✓</span>` : ""}</div>
       <ul class="csum">${c.summary.map(x => `<li>${esc(x)}</li>`).join("")}</ul>
       <div class="cact"><button class="btn small-btn" data-rch="${c.id}">Read chapter · ${c.min} min</button>${hasAudio(b, c) ? `<button class="btn listen small-btn" data-lis="${c.id}">▶ Listen</button>` : ""}<button class="btn ghost small-btn" data-tog="${c.id}" aria-expanded="${!!open}">${open ? "Hide sections" : plural(c.sections.length, "section")}</button></div>
       ${open ? `<div class="secs">${c.sections.map(s => `<button class="seclink" data-rsec="${s.id}"><span>${esc(s.title)}</span>${s.imp ? (s.imp === "key" ? `<span class="star">★</span>` : `<i class="dot ${s.imp}"></i>`) : ""}${bookState().bookread[s.id] ? `<span class="done">✓</span>` : ""}</button>`).join("")}</div>` : ""}
@@ -1044,6 +1104,7 @@ function openBookRead(bid, cid, sid, editing){
     </article>
     ${editing ? `<button class="btn" id="save">Save changes</button>` : `
     <button class="btn" id="mr">${already ? "Read again today" : "Mark as read"}</button>
+    ${sid ? "" : `<button class="btn listen" id="rc">✎ Brain dump · 60 sec</button>`}
     ${nextSec ? `<button class="btn ghost" id="nx">Next section: ${esc(nextSec.title)} →</button>` : nextCh ? `<button class="btn ghost" id="nx">${nextCh.n ? `Chapter ${nextCh.n}: ` : ""}${esc(nextCh.title)} →</button>` : ""}`}
   </div>`;
   $("#rb").onclick = () => openBook(bid);
@@ -1058,6 +1119,7 @@ function openBookRead(bid, cid, sid, editing){
     };
   } else {
     $("#mr").onclick = () => { for (const s of secs) st.bookread[s.id] = today(); rep("book", {n: secs.length}); $("#mr").textContent = "✓ Read"; $("#mr").disabled = true; };
+    const rc = $("#rc"); if (rc) rc.onclick = () => openRecall(bid, cid, "read");
     const nx = $("#nx"); if (nx) nx.onclick = () => nextSec ? openBookRead(bid, cid, nextSec.id) : openBookRead(bid, nextCh.id, null);
   }
   window.scrollTo(0,0);
