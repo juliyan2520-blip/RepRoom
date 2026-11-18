@@ -353,12 +353,11 @@ textarea.edit{min-height:140px;font-size:15px;line-height:1.55;font-family:var(-
 .player .pc{display:flex;align-items:center;gap:2px;font-size:11.5px;font-variant-numeric:tabular-nums}
 .btn.listen{background:var(--orange);color:#2A2826}
 .rcl{display:flex;flex-direction:column;gap:8px}
-.itm{display:flex;gap:12px;align-items:flex-start;text-align:left;background:var(--paper);border:1.5px solid var(--line);border-radius:12px;padding:11px 13px}
-.itm small{display:block;color:var(--muted);font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
-.itm .box{flex:none;width:22px;height:22px;border-radius:6px;border:2px solid var(--line);margin-top:1px;display:grid;place-items:center}
-.itm.on{border-color:var(--blue);background:var(--blue-soft)}
-.itm.on .box{background:var(--blue);border-color:var(--blue)}
-.itm.on .box::after{content:"✓";color:#fff;font-weight:800;font-size:14px;line-height:1}
+.itm{display:flex;flex-direction:column;gap:10px;background:var(--paper);border:1.5px solid var(--line);border-radius:14px;padding:13px 14px;font-size:15.5px;line-height:1.45}
+.itm .rate{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.itm .rate button{border:1.5px solid var(--line);background:var(--sunk);border-radius:10px;padding:9px 0;font-weight:800;font-size:15px;color:var(--ink)}
+.itm .rate button[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:#fff}
+.btn[disabled]{opacity:.5}
 body.playing{padding-bottom:calc(200px + env(safe-area-inset-bottom,0px))}
 
 /* end */
@@ -1003,7 +1002,8 @@ const Listen = (() => {
   return { play };
 })();
 
-/* ---------- recall: 60-second brain dump after a chapter (retrieval practice), then tick what you had ---------- */
+/* ---------- recall (2026-11-18): 60-second brain dump after a chapter (retrieval practice), then tick what you had ---------- */
+const rtxt = r => r.avg != null ? r.avg.toFixed(1) + "/5" : r.score + "%"; // old attempts were saved as a percent
 function openRecall(bid, cid, from){
   const b = S.B.books.find(x => x.id === bid), c = b.chapters.find(x => x.id === cid);
   const st = bookState(); st.recall ||= {};
@@ -1016,7 +1016,7 @@ function openRecall(bid, cid, from){
   const wireExits = () => { const n = $("#rnext"); if (n) n.onclick = () => { openBook(bid); Listen.play(bid, nextCh.id, 0); }; $("#rback").onclick = () => openBook(bid); };
   const phase1 = () => {
     $("#view").innerHTML = `<div class="wrap" style="gap:14px">
-      <div class="row"><span class="chip orange">Brain dump · about 60 seconds</span>${prev ? `<span class="small muted">last time ${prev.score}%</span>` : ""}</div>
+      <div class="row"><span class="chip orange">Brain dump · about 60 seconds</span>${prev ? `<span class="small muted">last time ${rtxt(prev)}</span>` : ""}</div>
       <h1 style="font-size:24px">${esc(title)}</h1>
       <p class="muted" style="margin:0">Don't look back at the chapter. Type everything you remember: ideas, examples, numbers, even half-remembered bits. Messy is fine.</p>
       <textarea id="rtxt" class="edit" placeholder="What I remember…" aria-label="What you remember from this chapter" style="min-height:190px"></textarea>
@@ -1028,24 +1028,31 @@ function openRecall(bid, cid, from){
     $("#rskip").onclick = () => { markRead(); rep("book", {n: c.sections.length}); persist(); openBook(bid); };
   };
   const phase2 = txt => {
-    const items = c.summary.map(t => ({t, k:"Main point"})).concat(c.sections.map(s => ({t: s.title, k:"Section"})));
+    const items = (c.ideas && c.ideas.length ? c.ideas : c.summary).slice(), rate = items.map(() => 0);
     $("#view").innerHTML = `<div class="wrap" style="gap:14px">
-      <div class="row"><span class="chip orange">Check yourself</span></div>
+      <div class="row"><span class="chip orange">Rate yourself</span></div>
       <h1 style="font-size:24px">${esc(title)}</h1>
       ${txt ? `<div class="ans" style="font-weight:400"><span class="label" style="display:block;margin-bottom:4px">What you wrote</span>${esc(txt)}</div>` : ""}
-      <p class="muted" style="margin:0">Tap everything you had, even partly. Be strict: only what you wrote or clearly knew.</p>
-      <div class="rcl">${items.map((x, i) => `<button class="itm" data-i="${i}" aria-pressed="false"><span class="box"></span><span class="grow">${esc(x.t)}<small>${x.k}</small></span></button>`).join("")}</div>
-      <button class="btn" id="rdone">Done</button>
+      <p class="muted" style="margin:0">These are the ideas to learn and apply from this chapter. Rate how well you had each one, honestly.</p>
+      <p class="small muted" style="margin:0"><b>1</b> didn't remember it · <b>3</b> vaguely · <b>5</b> could explain it and use it</p>
+      <div class="rcl">${items.map((t, i) => `<div class="itm" data-i="${i}"><span>${esc(t)}</span><span class="rate" role="group" aria-label="Rating for idea ${i+1}">${[1,2,3,4,5].map(n => `<button data-n="${n}" aria-pressed="false">${n}</button>`).join("")}</span></div>`).join("")}</div>
+      <button class="btn" id="rdone" disabled>Rate all ${items.length} to finish</button>
     </div>`;
-    document.querySelectorAll(".itm").forEach(x => x.onclick = () => { const on = x.getAttribute("aria-pressed") !== "true"; x.setAttribute("aria-pressed", on); x.classList.toggle("on", on); });
-    $("#rdone").onclick = () => {
-      const got = document.querySelectorAll(".itm.on").length, score = Math.round(100 * got / items.length);
-      st.recall[cid] = {last: today(), n: (prev?.n || 0) + 1, score, hist: ((prev?.hist) || []).slice(-9).concat({d: today(), score}), text: txt.slice(0, 1500)};
+    const done = $("#rdone");
+    document.querySelectorAll(".itm .rate button").forEach(x => x.onclick = () => {
+      const row = x.closest(".itm"), i = +row.dataset.i, n = +x.dataset.n; rate[i] = n;
+      row.querySelectorAll(".rate button").forEach(y => y.setAttribute("aria-pressed", +y.dataset.n === n));
+      const left = rate.filter(r => !r).length; done.disabled = left > 0; done.textContent = left ? `Rate ${left} more to finish` : "Done";
+    });
+    done.onclick = () => {
+      const avg = Math.round(10 * rate.reduce((a, b) => a + b, 0) / rate.length) / 10, low = items.filter((_, i) => rate[i] <= 2);
+      st.recall[cid] = {last: today(), n: (prev?.n || 0) + 1, avg, rates: rate, hist: ((prev?.hist) || []).slice(-9).concat({d: today(), avg}), text: txt.slice(0, 1500)};
       markRead(); rep("recall", {n: 1}); persist();
       $("#view").innerHTML = `<div class="wrap" style="gap:14px">
-        <div class="card"><span class="label">You recalled</span><div class="verdict"><span class="big ${score >= 60 ? "hit" : "flop"}">${got} of ${items.length}</span><span class="muted">${score}%</span></div>
-        <p class="note ${score >= 60 ? "blue" : "red"}">${score >= 60 ? "Good. Pulling it out of your head is what made it stick." : "That's normal for a first try. The effort is the point; the gaps are what to look at again."}</p>
-        ${prev ? `<p class="small muted" style="margin:0">Earlier attempts: ${st.recall[cid].hist.slice(0, -1).map(h => h.score + "%").join(", ")}</p>` : ""}</div>
+        <div class="card"><span class="label">Your rating</span><div class="verdict"><span class="big ${avg >= 3.5 ? "hit" : "flop"}">${avg.toFixed(1)}</span><span class="muted">out of 5</span></div>
+        <p class="note ${avg >= 3.5 ? "blue" : "red"}">${avg >= 4 ? "Strong. Now use these in a video or script this week." : avg >= 3 ? "Decent. The ones you rated low are what to look at again." : "That's normal on a first try. Pulling it out is what makes it stick, and the low ones show where to look."}</p>
+        ${low.length ? `<div><span class="label">Look at these again</span><ul class="csum" style="margin-top:6px">${low.map(t => `<li>${esc(t)}</li>`).join("")}</ul></div>` : ""}
+        ${prev ? `<p class="small muted" style="margin:0">Earlier attempts: ${st.recall[cid].hist.slice(0, -1).map(rtxt).join(", ")}</p>` : ""}</div>
         ${exits()}</div>`;
       wireExits();
     };
@@ -1060,7 +1067,7 @@ function openBook(id){
   const parts = groups.map(([p, chs]) => (p ? `<div class="partname">Part · ${esc(p)}</div>` : "") + chs.map(c => {
     const open = BK.open[c.id], read = chapterRead(c);
     return `<article class="chap ${read ? "read" : ""}">
-      <div class="chead"><span class="cn">${c.n || "•"}</span><h3>${esc(c.title)}</h3>${c.mark ? `<i class="dot ${c.mark}" title="${MARK[c.mark]}"></i>` : ""}${bookState().recall?.[c.id] ? `<span class="chip blue" title="Last brain dump">🧠 ${bookState().recall[c.id].score}%</span>` : ""}${read ? `<span class="done">✓</span>` : ""}</div>
+      <div class="chead"><span class="cn">${c.n || "•"}</span><h3>${esc(c.title)}</h3>${c.mark ? `<i class="dot ${c.mark}" title="${MARK[c.mark]}"></i>` : ""}${bookState().recall?.[c.id] ? `<span class="chip blue" title="Last brain dump">🧠 ${rtxt(bookState().recall[c.id])}</span>` : ""}${read ? `<span class="done">✓</span>` : ""}</div>
       <ul class="csum">${c.summary.map(x => `<li>${esc(x)}</li>`).join("")}</ul>
       <div class="cact"><button class="btn small-btn" data-rch="${c.id}">Read chapter · ${c.min} min</button>${hasAudio(b, c) ? `<button class="btn listen small-btn" data-lis="${c.id}">▶ Listen</button>` : ""}<button class="btn ghost small-btn" data-tog="${c.id}" aria-expanded="${!!open}">${open ? "Hide sections" : plural(c.sections.length, "section")}</button></div>
       ${open ? `<div class="secs">${c.sections.map(s => `<button class="seclink" data-rsec="${s.id}"><span>${esc(s.title)}</span>${s.imp ? (s.imp === "key" ? `<span class="star">★</span>` : `<i class="dot ${s.imp}"></i>`) : ""}${bookState().bookread[s.id] ? `<span class="done">✓</span>` : ""}</button>`).join("")}</div>` : ""}
